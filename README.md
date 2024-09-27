@@ -3,6 +3,6 @@ Repository for our final year project
 COMING SOON
 .
 ## stages completed successfully
-    ### project planning 
-    ### scope documentation
-    ### Software Requirements Specifications
+    Project planning 
+    Scope documentation
+    Software Requirements Specifications
