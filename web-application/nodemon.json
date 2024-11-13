@@ -1,0 +1,6 @@
+{
+    "watch": ["backend/server.js", "frontend/src", "frontend/public"],
+    "ext": "js,json,html,css,jsx",
+    "ignore": ["node_modules"],
+    "exec": "node backend/server.js"
+  }
