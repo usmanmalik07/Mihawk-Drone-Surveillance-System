@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, '../frontend', 'build')));
 
 // Handle any requests that don't match the static files
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'public', 'index.js'));
+  res.sendFile(path.join(__dirname, '../frontend', 'src', 'index.js'));
 });
 
 app.listen(PORT, () => {
