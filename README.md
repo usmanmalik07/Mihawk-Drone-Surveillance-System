@@ -6,3 +6,5 @@ Github Repository for our final year project Mihawk
 3. SRS + Scope Presentation
 
 ## Implementation starting soon
+
+## Deliverables : 30% Presentation on 2nd December 2024
