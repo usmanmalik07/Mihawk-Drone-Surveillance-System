@@ -1,9 +1,9 @@
-// backend/database/db.js
 const mongoose = require('mongoose');
+require('dotenv').config();  
 
 const connectDB = async () => {
   try {
-    const connectionString = 'mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>?retryWrites=true&w=majority';
+    const connectionString = process.env.MONGO_URI;  
     
     await mongoose.connect(connectionString, {
       useNewUrlParser: true,
