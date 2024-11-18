@@ -1,6 +1,14 @@
 {
-  "dependencies": {
-    "express": "^4.21.1",
-    "nodemon": "^3.1.7"
+  "name": "web-application",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\" \"npm run python\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "python": "cd models && venv\\Scripts\\activate && python app.py"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
   }
 }
