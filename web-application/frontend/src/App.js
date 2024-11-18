@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   const [data, setData] = useState(null);
@@ -10,10 +13,12 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>Mihawk Drone Surveillance System</h1>
-      <p>{data}</p>
-    </div>
+    <Router>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/about" element={<AboutPage />} />
+    </Routes>
+  </Router>
   );
 }
 
