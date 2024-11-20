@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Component from '../components/Component'
-import '../css/LoginSignup.css'
+import '../styles/LoginPage.css'
 
 export default function LoginPage() {
   const[signin,toggle]=React.useState(true);
