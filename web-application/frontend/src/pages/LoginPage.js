@@ -1,101 +1,62 @@
-import React from "react";
+import React from 'react'
+import * as Component from '../components/Component'
+import '../css/LoginSignup.css'
 
-const LoginPage = () => {
+export default function LoginPage() {
+  const[signin,toggle]=React.useState(true);
   return (
-    <div
-      style={{
-        fontFamily: "Arial, sans-serif",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-        backgroundColor: "#f4f4f4",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "400px",
-          backgroundColor: "#fff",
-          padding: "20px",
-          borderRadius: "10px",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Login</h2>
-        <form>
-          <div style={{ marginBottom: "15px" }}>
-            <label
-              htmlFor="email"
-              style={{
-                display: "block",
-                marginBottom: "5px",
-                fontWeight: "bold",
-              }}
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              style={{
-                width: "100%",
-                padding: "10px",
-                border: "1px solid #ddd",
-                borderRadius: "5px",
-                fontSize: "1rem",
-              }}
-              required
-            />
-          </div>
-          <div style={{ marginBottom: "20px" }}>
-            <label
-              htmlFor="password"
-              style={{
-                display: "block",
-                marginBottom: "5px",
-                fontWeight: "bold",
-              }}
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              style={{
-                width: "100%",
-                padding: "10px",
-                border: "1px solid #ddd",
-                borderRadius: "5px",
-                fontSize: "1rem",
-              }}
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            style={{
-              width: "100%",
-              padding: "10px",
-              backgroundColor: "#007BFF",
-              color: "#fff",
-              border: "none",
-              borderRadius: "5px",
-              fontSize: "1rem",
-              cursor: "pointer",
-            }}
-          >
-            Login
-          </button>
-        </form>
-        <p style={{ textAlign: "center", marginTop: "15px", fontSize: "0.9rem" }}>
-          Don't have an account? <a href="/register" style={{ color: "#007BFF" }}>Register</a>
-        </p>
-      </div>
-    </div>
-  );
-};
+    <div className='login-app'>
+    <div className='container'>
 
-export default LoginPage;
+        <div className={`signin-container ${!signin ? 'active' : ''}`}>
+          <form className='login-form'>
+            <h2 className='heading'>Sign In</h2>
+            <Component.Input type='email' placeholder='Email / Username'/>
+            <Component.Input type='password' placeholder='Password'/>
+            <div className='forgot-remember'>
+              <label className='remember'><input type='checkbox' id='remember-me' name='remember-me'/>Remember Me</label>
+              <a href='#' className='forgot'>Forgot Password?</a>
+            </div>
+            <Component.Button className='bt'>SIGN IN</Component.Button>
+          </form>
+        </div>
+
+        <div className={`signup-container ${!signin ? 'active' : ''}`}>
+          <form className='login-form'>
+          <h2 className='heading'>Create Account</h2>
+          <Component.Input type='text' placeholder='Name'/>
+          <Component.Input type='email' placeholder='Email'/>
+          <Component.Input type='password' placeholder='Password'/>
+          <Component.Button className='bt'>SIGN UP</Component.Button>
+          </form>
+        </div>
+
+        <div className={`banner-container ${!signin ? 'active' : ''}`}>
+          <div className={`banner ${!signin ? 'active' : ''}`}>
+
+            <div className={`banners left-banner ${!signin ? 'active' : ''}`}>
+              <h1>Sign In</h1>
+              <p>welcome to our website </p>
+              <Component.GhostButton onClick={()=> toggle(true)}>SIGN IN</Component.GhostButton>
+              <p></p>
+              
+            </div>
+
+            <div className={`banners right-banner ${!signin ? 'active' : ''}`}>
+            <img src='' alt='login'/>
+            <h1>Create Account</h1>
+            <p>create account to enjoy personalized experience to thid website</p>
+            
+            <Component.GhostButton onClick={()=> toggle(false)}>SIGN UP</Component.GhostButton>
+
+
+            </div>
+            
+          </div>
+        </div>
+
+    </div>
+    </div>
+    
+  )
+}
