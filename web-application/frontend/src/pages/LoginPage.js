@@ -45,7 +45,7 @@ export default function LoginPage() {
             <div className={`banners right-banner ${!signin ? 'active' : ''}`}>
             <img src='' alt='login'/>
             <h1>Create Account</h1>
-            <p>create account to enjoy personalized experience to thid website</p>
+            <p></p>
             
             <Component.GhostButton onClick={()=> toggle(false)}>SIGN UP</Component.GhostButton>
 
