@@ -7,6 +7,48 @@
 </head>
 <body>
     <h1>Live Camera Feed</h1>
-    <img src="{{ url_for('video') }}" width="640" height="480" />
+    
+    <!-- Button to start video streaming -->
+    <button id="startButton">Start Video Stream</button>
+    
+    <!-- Video element where the stream will be shown -->
+    <video id="videoElement" width="640" height="480" autoplay></video>
+
+    <script>
+        const startButton = document.getElementById("startButton");
+        const videoElement = document.getElementById("videoElement");
+
+        let stream;  // Holds the media stream
+
+        // When the button is clicked, start the video stream
+        startButton.addEventListener("click", function() {
+            // If the stream is already running, notify the user
+            if (stream) {
+                alert("Stream is already running!");
+                return;
+            }
+
+            // Request access to the webcam
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then((mediaStream) => {
+                    // Show the video stream on the video element
+                    videoElement.srcObject = mediaStream;
+                    stream = mediaStream;  // Store the stream to check later
+
+                    // Change the button text to show streaming
+                    startButton.textContent = "Streaming...";  
+
+                    // Optionally, you can stop the stream after a certain time (e.g., 30 seconds)
+                    // setTimeout(() => {
+                    //     stream.getTracks().forEach(track => track.stop());
+                    //     startButton.textContent = "Start Video Stream";
+                    // }, 30000); // Stop after 30 seconds
+                })
+                .catch((error) => {
+                    console.error("Error accessing media devices.", error);
+                    alert("Error accessing webcam.");
+                });
+        });
+    </script>
 </body>
 </html>
