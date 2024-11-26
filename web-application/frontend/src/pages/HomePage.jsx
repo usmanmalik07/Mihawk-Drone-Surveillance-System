@@ -23,7 +23,7 @@ const HomePage = () => {
         </div>
         <div className="navbar-links">
           <a href="#features" className="nav-link">Features</a>
-          <a href="#about" className="nav-link">About</a>
+          <a href="#about" className="nav-link">About us</a>
           <a href="#contact" className="nav-link">Contact</a>
         </div>
         <button className="navbar-button" onClick={handleLogin}>
@@ -34,7 +34,7 @@ const HomePage = () => {
       {/* Hero Section */}
       <div className="hero-section">
       <div className="hero-content">
-        <h1 className="hero-title">Welcome to Mihawk Drone Surveillance</h1>
+        <h1 className="hero-title">Mihawk : Drone Surveillance System</h1>
         <p className="hero-text">
           Leading the way in cutting-edge drone technology and advanced
           surveillance solutions.
