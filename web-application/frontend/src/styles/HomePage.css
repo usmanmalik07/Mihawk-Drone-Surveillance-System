@@ -1,26 +1,31 @@
 /* Hero Section */
-*{
+.bg-color{
   background-color: #262261; 
 }
+/* Hero Section */
 .hero-section {
   background: url('../assets/drone.gif') no-repeat center center;
-  background-size:auto; /* Ensure the drone image fits within the section */
-  background-color: #262261; /* Dark background for the section */
+  background-size:cover; /* Ensure the GIF is contained */
+  background-color: #262261; /* Dark background color */
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Align the content towards the bottom */
   align-items: center;
-  height: 80vh;
-  
+  justify-content: flex-start; /* Align content below the image */
+  height: 80vh; /* Adjust height for better spacing */
+  padding: 0px 0px;
   text-align: center;
-  padding: 40px 20px;
+}
+
+.hero-content {
+  margin-top: auto; /* Push the content below the GIF */
+  color: #ffffff;
 }
 
 .hero-title {
   font-size: 2.5rem;
   margin-bottom: 15px;
-  color: #ffffff;
   font-weight: bold;
+  color: #ffffff;
 }
 
 .hero-text {
@@ -37,12 +42,14 @@
   border-radius: 50px;
   cursor: pointer;
   font-size: 1rem;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
 .hero-button:hover {
   background-color: #ff6a00;
 }
+
 /* Navbar Styling */
 .navbar {
   position: sticky;

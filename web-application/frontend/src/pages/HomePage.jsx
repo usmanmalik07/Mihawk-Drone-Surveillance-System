@@ -15,6 +15,7 @@ const HomePage = () => {
 
   return (
     <div style={{ fontFamily: "Arial, sans-serif", color: "#333" }}>
+    <div className="bg-color">
       {/* Navbar */}
       <nav className="navbar">
         <div className="navbar-logo" onClick={() => handleNavigation("/")}>
@@ -32,6 +33,7 @@ const HomePage = () => {
 
       {/* Hero Section */}
       <div className="hero-section">
+      <div className="hero-content">
         <h1 className="hero-title">Welcome to Mihawk Drone Surveillance</h1>
         <p className="hero-text">
           Leading the way in cutting-edge drone technology and advanced
@@ -40,6 +42,7 @@ const HomePage = () => {
         <button className="hero-button" onClick={handleLogin}>
           Get Started
         </button>
+        </div>
       </div>
 
       {/* Features Section */}
@@ -69,11 +72,14 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      
 
       {/* Footer */}
       <footer className="footer">
+      
         <p>&copy; {new Date().getFullYear()} Mihawk Drone Surveillance. All Rights Reserved.</p>
       </footer>
+      </div>
     </div>
   );
 };
