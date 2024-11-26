@@ -1,9 +1,13 @@
+.bg-color {
+    background-color: #262261;
+}
 .login-app{
 
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: #262261;
     
 }
 .container{
@@ -14,7 +18,7 @@
     height: 80%;
     position: relative;
     overflow: hidden;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(59, 113, 230);
 
 }
 .signin-container{
@@ -63,9 +67,9 @@
     transform: translateX(-100%);
 }
 .banner{
-    background: #800000;
-    background: -webkit-linear-gradient(to right, #2b0707, #b00d2e);
-    background: linear-gradient(to right, #510c17, #8a1022);
+    background: #1506e7;
+    background: -webkit-linear-gradient(to right, #262261, #0728bb);
+    background: linear-gradient(to right, #262261, #042fec);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;

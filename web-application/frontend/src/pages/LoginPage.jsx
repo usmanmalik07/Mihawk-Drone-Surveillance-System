@@ -1,10 +1,12 @@
 import React from 'react'
 import * as Component from '../components/LoginComponent'
 import '../styles/LoginPage.css'
-
+import Navbar from "../components/navbar";
 export default function LoginPage() {
   const[signin,toggle]=React.useState(true);
   return (
+    <div className="bg-color">
+    <Navbar />
     <div className='login-app'>
     <div className='container'>
 
@@ -55,6 +57,7 @@ export default function LoginPage() {
           </div>
         </div>
 
+    </div>
     </div>
     </div>
     
