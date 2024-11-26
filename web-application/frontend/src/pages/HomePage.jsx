@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
-import "../styles/HomePage.css"; // Import the CSS file
+import "../styles/HomePage.css";
+import Navbar from "../components/navbar"; // Import the CSS file
 
 const HomePage = () => {
   const navigate = useNavigate(); // Initialize the navigate function
@@ -16,20 +17,7 @@ const HomePage = () => {
   return (
     <div style={{ fontFamily: "Arial, sans-serif", color: "#333" }}>
     <div className="bg-color">
-      {/* Navbar */}
-      <nav className="navbar">
-        <div className="navbar-logo" onClick={() => handleNavigation("/")}>
-          Mihawk
-        </div>
-        <div className="navbar-links">
-          <a href="#features" className="nav-link">Features</a>
-          <a href="#about" className="nav-link">About us</a>
-          <a href="#contact" className="nav-link">Contact</a>
-        </div>
-        <button className="navbar-button" onClick={handleLogin}>
-          Login
-        </button>
-      </nav>
+    <Navbar />
 
       {/* Hero Section */}
       <div className="hero-section">
