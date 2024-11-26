@@ -5,12 +5,31 @@ import "../styles/HomePage.css"; // Import the CSS file
 const HomePage = () => {
   const navigate = useNavigate(); // Initialize the navigate function
 
-  const handleGetStarted = () => {
+  const handleLogin = () => {
     navigate("/login"); // Navigate to the login page
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
   };
 
   return (
     <div style={{ fontFamily: "Arial, sans-serif", color: "#333" }}>
+      {/* Navbar */}
+      <nav className="navbar">
+        <div className="navbar-logo" onClick={() => handleNavigation("/")}>
+          Mihawk
+        </div>
+        <div className="navbar-links">
+          <a href="#features" className="nav-link">Features</a>
+          <a href="#about" className="nav-link">About</a>
+          <a href="#contact" className="nav-link">Contact</a>
+        </div>
+        <button className="navbar-button" onClick={handleLogin}>
+          Login
+        </button>
+      </nav>
+
       {/* Hero Section */}
       <div className="hero-section">
         <h1 className="hero-title">Welcome to Mihawk Drone Surveillance</h1>
@@ -18,13 +37,13 @@ const HomePage = () => {
           Leading the way in cutting-edge drone technology and advanced
           surveillance solutions.
         </p>
-        <button className="hero-button" onClick={handleGetStarted}>
+        <button className="hero-button" onClick={handleLogin}>
           Get Started
         </button>
       </div>
 
       {/* Features Section */}
-      <div className="features-section">
+      <div className="features-section" id="features">
         <h2 className="features-title">Why Choose Mihawk?</h2>
         <div className="features-grid">
           <div className="feature-card">
