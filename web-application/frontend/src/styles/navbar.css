@@ -56,6 +56,13 @@
   .navbar-button:hover {
     background-color: #ff6a00;
   }
+  .navbar-gif {
+    width: 24px; /* Adjust size */
+    height: 24px; /* Adjust size */
+    margin-left: 8px; /* Spacing from text */
+    vertical-align: middle; /* Align with the text */
+  }
+  
   
   /* Responsive Navbar */
   @media (max-width: 768px) {

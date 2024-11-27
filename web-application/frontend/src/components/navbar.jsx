@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/navbar.css"; 
+import "../styles/navbar.css";
+import giftIcon from "../assets/eyes.gif"; // Import the GIF
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -9,6 +10,11 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo" onClick={() => navigate("/")}>
         Mihawk
+        <img
+          src={giftIcon} // Use the imported GIF
+          alt="gift icon"
+          className="navbar-gif"
+        />
       </div>
       <div className="navbar-links">
         <a href="#features" className="nav-link">Features</a>
