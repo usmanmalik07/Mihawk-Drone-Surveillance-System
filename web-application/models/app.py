@@ -23,7 +23,7 @@ def process_frame(frame):
 
 @app.route('/video_feed')
 def video_feed():
-    rtsp_url = "rtsp://your_mobile_rtsp_url"
+    rtsp_url = "rtsp://192.168.100.38:8554/stream"
     return Response(generate_frames(rtsp_url), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def generate_frames(rtsp_url):
