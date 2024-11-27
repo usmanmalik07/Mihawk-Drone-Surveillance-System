@@ -27,7 +27,7 @@ const AboutUs = () => {
           mb={2}
           sx={{ color: "#333" }}
         >
-          Message From The CEO
+          Message From The Team
         </Typography>
         <Typography
           variant="body1"
