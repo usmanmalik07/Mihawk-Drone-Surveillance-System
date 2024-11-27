@@ -5,20 +5,22 @@
 /* Hero Section */
 .hero-section {
   background: url('../assets/drone-unscreen.gif') no-repeat center center;
-  background-size: 500px; /* Ensure the GIF is contained */
+  background-size: 300px; /* Ensure the GIF is contained */
    /* Dark background color */
   display: flex;
   flex-direction: column;
   
   justify-content: flex-start; /* Align content below the image */
-  height: 60vh; /* Adjust height for better spacing */
+  height: 40vh; /* Adjust height for better spacing */
   padding: 0px 0px;
   text-align: center;
 }
 
 .hero-content {
-  margin-top: auto; /* Push the content below the GIF */
+  
+  padding-top: 200px; /* Push the content below the GIF */
   color: #ffffff;
+  margin-bottom: 300px;
 }
 
 .hero-title {

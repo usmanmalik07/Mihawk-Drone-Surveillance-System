@@ -3,6 +3,7 @@ import { Box, Typography, Avatar, Button } from "@mui/material";
 
 const AboutUs = () => {
   return (
+    <div style={{ textAlign: 'center', padding: '150px' }}>
     <Box
       display="flex"
       flexDirection={{ xs: "column", md: "row" }}
@@ -45,19 +46,13 @@ const AboutUs = () => {
           Our team of innovators and experts specialize in cutting-edge technologies, including AI-driven analytics, real-time data processing, and autonomous navigation systems. Together, we provide comprehensive surveillance solutions tailored to meet the unique challenges of industries like defense, agriculture, disaster management, and urban security.
           <br />
           <br />
-          Integrity and transparency are the cornerstones of our culture. We
-          earn your trust by delivering excellence and practicing open
-          communication. Moreover, we actively support social causes and
-          embrace sustainable practices to make a positive impact on our world.
+          At Mihawk, we go beyond being a technology provider; we are your strategic allies in achieving safety, efficiency, and innovation. We believe in fostering long-term partnerships and delivering results that exceed expectations.
           <br />
           <br />
-          Let's shape the future together through technology. Choose InvoZone
-          for exceptional results and leverage our resource augmentation or
-          remote teams of software developers.
+          Integrity, transparency, and sustainability are the cornerstones of our culture. We are committed to pushing technological boundaries while ensuring our solutions make a positive impact on communities and the environment.
           <br />
           <br />
-          Join us on this exciting journey, and let's make a difference
-          together.
+          Join us in redefining the future of surveillance and monitoring. Together, let’s make the skies smarter, safer, and more responsive to the needs of our evolving world.
         </Typography>
       </Box>
 
@@ -126,6 +121,7 @@ const AboutUs = () => {
         </Box>
       </Box>
     </Box>
+  </div>
   );
 };
 
