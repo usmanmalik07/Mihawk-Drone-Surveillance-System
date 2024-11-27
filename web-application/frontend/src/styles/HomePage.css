@@ -1,12 +1,12 @@
 /* Hero Section */
 .bg-color{
-  background-color: #262261; 
+  background-color: #3263e9; 
 }
 /* Hero Section */
 .hero-section {
-  background: url('../assets/drone.gif') no-repeat center center;
+  background: url('../assets/drone-unscreen.gif') no-repeat center center;
   background-size: 500px; /* Ensure the GIF is contained */
-  background-color: #262261; /* Dark background color */
+   /* Dark background color */
   display: flex;
   flex-direction: column;
   

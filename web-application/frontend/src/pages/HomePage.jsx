@@ -15,8 +15,8 @@ const HomePage = () => {
   };
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", color: "#333" }}>
-    <div className="bg-color">
+    <div style={{ fontFamily: "Arial, sans-serif", color: "white" }}>
+    <div className="bg-color" style= {{backgroundColor: "#3263e9"}}>
     <Navbar />
 
       {/* Hero Section */}
