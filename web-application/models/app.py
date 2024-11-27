@@ -1,35 +1,38 @@
-from flask import Flask, request, render_template, Response
+from flask import Flask, Response
+from ultralytics import YOLO
 import cv2
-import numpy as np
+
+# Load YOLOv8n model
+model = YOLO('yolov8n.pt')
 
 app = Flask(__name__)
+rtsp_url = "rtsp://192.168.100.38:8554/stream"
+def get_frame(rtsp_url):
+    cap = cv2.VideoCapture(rtsp_url)
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        yield frame
+    cap.release()
 
-# Route to serve the video stream (from PC camera or another video source)
-@app.route('/')
-def index():
-    return render_template('index.html')  # Serve the frontend (HTML page)
+def process_frame(frame):
+    results = model.predict(source=frame, show=False)  # Run YOLOv8 inference
+    annotated_frame = results[0].plot()  # Annotate the frame
+    return annotated_frame
 
-# This route will handle the POST request from the mobile device, containing the video frame
-@app.route('/upload', methods=['POST'])
-def upload_frame():
-    # Get the image from the incoming POST request (mobile camera feed)
-    file = request.files['file']
-    
-    # Read the image as bytes and convert it to a numpy array
-    nparr = np.frombuffer(file.read(), np.uint8)
-    
-    # Decode the image into an OpenCV format
-    frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    
-    # Process the frame (e.g., apply machine learning model for object detection)
-    # For simplicity, let's just draw a rectangle on the frame
-    if frame is not None:
-        height, width = frame.shape[:2]
-        cv2.rectangle(frame, (50, 50), (width-50, height-50), (0, 255, 0), 2)
+@app.route('/video_feed')
+def video_feed():
+    rtsp_url = "rtsp://your_mobile_rtsp_url"
+    return Response(generate_frames(rtsp_url), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-    # Optionally, you could save the frame, or send it back to the client as processed
-    _, buffer = cv2.imencode('.jpg', frame)  # Encode the frame as JPEG
-    return Response(buffer.tobytes(), content_type='image/jpeg')  # Send back processed frame
+def generate_frames(rtsp_url):
+    for frame in get_frame(rtsp_url):
+        processed_frame = process_frame(frame)  # Process the frame
+        _, buffer = cv2.imencode('.jpg', processed_frame)  # Encode to JPEG
+        frame_bytes = buffer.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)  # Make the app accessible on local network
+    app.run(host='0.0.0.0', port=5000, debug=True)
