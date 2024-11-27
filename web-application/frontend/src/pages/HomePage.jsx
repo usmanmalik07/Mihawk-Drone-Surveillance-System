@@ -8,13 +8,13 @@ import AboutUs from "../components/aboutUs"; // Import the CSS file
 const HomePage = () => {
   const navigate = useNavigate(); // Initialize the navigate function
 
-  const handleLogin = () => {
-    navigate("/login"); // Navigate to the login page
+  
+  const handleDashboard = () => {
+    navigate("/dashboard");
+    // Navigate to the dashboard page
   };
 
-  const handleNavigation = (path) => {
-    navigate(path);
-  };
+
 
   return (
     <div style={{ fontFamily: "Arial, sans-serif", color: "white" }}>
@@ -30,7 +30,7 @@ const HomePage = () => {
           Leading the way in cutting-edge drone technology and advanced
           surveillance solutions.
         </p>
-        <button className="hero-button" onClick={handleLogin}>
+        <button className="hero-button" onClick={handleDashboard}>
           Get Started
         </button>
         </div>
