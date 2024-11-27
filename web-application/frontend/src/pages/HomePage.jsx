@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
 import "../styles/HomePage.css";
-import Navbar from "../components/navbar"; // Import the CSS file
+import Navbar from "../components/navbar";
+import ContactUs from "../components/contactUs";
+import AboutUs from "../components/aboutUs"; // Import the CSS file
 
 const HomePage = () => {
   const navigate = useNavigate(); // Initialize the navigate function
@@ -18,6 +20,7 @@ const HomePage = () => {
     <div style={{ fontFamily: "Arial, sans-serif", color: "white" }}>
     <div className="bg-color" style= {{backgroundColor: "#3263e9"}}>
     <Navbar />
+    
 
       {/* Hero Section */}
       <div className="hero-section">
@@ -32,8 +35,10 @@ const HomePage = () => {
         </button>
         </div>
       </div>
+      
 
       {/* Features Section */}
+      <AboutUs /> 
       <div className="features-section" id="features">
         <h2 className="features-title">Why Choose Mihawk?</h2>
         <div className="features-grid">
@@ -60,6 +65,8 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <ContactUs />
+      
       
 
       {/* Footer */}
@@ -68,6 +75,7 @@ const HomePage = () => {
         <p>&copy; {new Date().getFullYear()} Mihawk Drone Surveillance. All Rights Reserved.</p>
       </footer>
       </div>
+      
     </div>
   );
 };
