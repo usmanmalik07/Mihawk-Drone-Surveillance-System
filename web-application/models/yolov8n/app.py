@@ -1,4 +1,5 @@
-from flask import Flask, Response
+from fastapi import FastAPI
+from fastapi.responses import StreamingResponse, HTMLResponse
 from ultralytics import YOLO
 import cv2
 import threading
@@ -8,11 +9,12 @@ import time
 # Load YOLOv8n model
 model = YOLO('yolov8n.pt')  # Replace with your custom model if needed
 
-# Flask application
-app = Flask(__name__)
+# FastAPI application
+app = FastAPI()
 
 # Queue for asynchronous processing
 frame_queue = queue.Queue(maxsize=10)
+
 def get_frame(rtsp_url):
     """Read frames from RTSP stream."""
     cap = cv2.VideoCapture(rtsp_url)
@@ -37,7 +39,7 @@ def process_frame(frame):
     return annotated_frame
 
 def generate_frames():
-    """Generate frames for the Flask route."""
+    """Generate frames for the FastAPI route."""
     while True:
         if not frame_queue.empty():
             frame = frame_queue.get()
@@ -49,12 +51,32 @@ def generate_frames():
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
 
-@app.route('/video_feed')
-def video_feed():
-    """Flask route for video feed."""
-    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.get("/", response_class=HTMLResponse)
+async def home():
+    """Default route that shows a blank screen."""
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blank Screen</title>
+    </head>
+    <body>
+        <h1>Welcome to the Drone Surveillance System</h1>
+        <p>Go to <a href="/video_feed">/video_feed</a> to view the video stream.</p>
+    </body>
+    </html>
+    """
+    return html_content
 
-if __name__ == '__main__':
-    rtsp_url = "rtsp://192.168.100.38:8554/stream"  # Replace with your RTSP stream URL
+@app.get("/video_feed")
+async def video_feed():
+    """Route for video feed."""
+    return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
+
+if __name__ == "__main__":
+    import uvicorn
+    rtsp_url = "rtsp://admin:admin@192.168.100.5:1935"  # Replace with your RTSP stream URL
     threading.Thread(target=rtsp_thread, args=(rtsp_url,), daemon=True).start()  # Start RTSP thread
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
