@@ -4,9 +4,9 @@ import "../styles/dashboard.css";
 const Dashboard = () => {
   return (
     <div className="dashboard">
-      {/* Header Section */}
+      
       <header className="dashboard-header">
-        <h1>My Dashboard</h1>
+        <h1>Dashboard</h1>
         <nav>
           <a href="/">Home</a>
           <a href="/profile">Profile</a>
@@ -14,7 +14,7 @@ const Dashboard = () => {
         </nav>
       </header>
 
-      {/* Sidebar Section */}
+      
       <aside className="dashboard-sidebar">
         <ul>
           <li><a href="/">Overview</a></li>
@@ -24,7 +24,7 @@ const Dashboard = () => {
         </ul>
       </aside>
 
-      {/* Main Content Section */}
+      
       <main className="dashboard-content">
         <section>
           <h2>Surveillance</h2>
@@ -52,7 +52,7 @@ const Dashboard = () => {
         </section>
       </main>
 
-      {/* Footer Section */}
+      
       <footer className="dashboard-footer">
         <p>© 2024 My Dashboard. All rights reserved.</p>
       </footer>
