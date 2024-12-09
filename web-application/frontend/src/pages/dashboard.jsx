@@ -1,6 +1,5 @@
 import React from "react";
 import ReactPlayer from "react-player";
- // For video player
 import {
   Box,
   CssBaseline,
@@ -18,13 +17,12 @@ import {
   Security,
   Notifications,
 } from "@mui/icons-material";
-import "../styles/dashboard.css";
 
 const Dashboard = () => {
   const drawerWidth = 240;
 
   return (
-    <Box sx={{ display: "flex", height: "100vh", backgroundColor: "#f5f5f5" }}>
+    <Box sx={{ display: "flex", height: "100vh", backgroundColor: "#1e3a8a" }}> {/* Blue background */}
       <CssBaseline />
 
       {/* Sidebar */}
@@ -36,7 +34,7 @@ const Dashboard = () => {
           [`& .MuiDrawer-paper`]: {
             width: drawerWidth,
             boxSizing: "border-box",
-            backgroundColor: "#1e293b", // Sidebar background color
+            backgroundColor: "#0f172a", // Darker blue sidebar
             color: "#fff",
           },
         }}
@@ -46,7 +44,7 @@ const Dashboard = () => {
           sx={{
             padding: "16px",
             textAlign: "center",
-            borderBottom: "1px solid #444",
+            borderBottom: "1px solid #334155",
             backgroundColor: "#0f172a",
           }}
         >
@@ -92,13 +90,14 @@ const Dashboard = () => {
         sx={{
           flexGrow: 1,
           p: 3,
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "#1e3a8a", // Blue main background
+          color: "#000", // Black text color
         }}
       >
         {/* Header */}
         <Typography
           variant="h4"
-          sx={{ marginBottom: "16px", fontWeight: "bold", color: "#1e293b" }}
+          sx={{ marginBottom: "16px", fontWeight: "bold", color: "#000" }}
         >
           Surveillance Dashboard
         </Typography>
@@ -130,15 +129,16 @@ const Dashboard = () => {
             sx={{
               flex: 1,
               padding: "16px",
-              backgroundColor: "#fff",
+              backgroundColor: "#93c5fd", // Lighter blue widget background
               borderRadius: "8px",
               boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              color: "#000", // Black text
             }}
           >
             <Typography variant="h6" sx={{ fontWeight: "bold", marginBottom: "8px" }}>
               System Status
             </Typography>
-            <Typography variant="body1" sx={{ color: "#555" }}>
+            <Typography variant="body1">
               All systems are operational.
             </Typography>
           </Box>
@@ -148,15 +148,16 @@ const Dashboard = () => {
             sx={{
               flex: 1,
               padding: "16px",
-              backgroundColor: "#fff",
+              backgroundColor: "#93c5fd", // Lighter blue widget background
               borderRadius: "8px",
               boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              color: "#000", // Black text
             }}
           >
             <Typography variant="h6" sx={{ fontWeight: "bold", marginBottom: "8px" }}>
               Alerts
             </Typography>
-            <Typography variant="body1" sx={{ color: "#555" }}>
+            <Typography variant="body1">
               No alerts at the moment.
             </Typography>
           </Box>
