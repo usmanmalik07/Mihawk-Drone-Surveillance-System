@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/dashboard.css";
+import Footer from "../components/footer";
 
 const Dashboard = () => {
   return (
@@ -24,7 +25,7 @@ const Dashboard = () => {
         </ul>
       </aside>
 
-      
+      <div>
       <main className="dashboard-content">
         <section>
           <h2>Surveillance</h2>
@@ -51,12 +52,12 @@ const Dashboard = () => {
           </div>
         </section>
       </main>
-
+      </div>
+      <Footer />
       
-      <footer className="dashboard-footer">
-        <p>© 2024 My Dashboard. All rights reserved.</p>
-      </footer>
+      
     </div>
+    
   );
 };
 
