@@ -68,12 +68,14 @@ body {
   grid-area: content;
   padding: 2rem;
   background-color: #ff8c00;
+  
 }
 
 .dashboard-stats {
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
+  
 }
 
 .stat-card {
@@ -84,6 +86,7 @@ body {
   text-align: center;
   flex: 1;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
 }
 
 /* Footer Styling */
@@ -93,6 +96,7 @@ body {
   color: white;
   text-align: center;
   padding: 1rem;
+  
 }
 .video-container {
   margin-top: 1rem;

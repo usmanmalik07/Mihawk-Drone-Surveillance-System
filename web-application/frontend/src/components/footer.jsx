@@ -9,7 +9,7 @@ const Footer = () => {
     padding: "15px",
     textAlign: "center",
     width: "100%",
-    position: "abo",
+    
   };
 
   const footerLinksStyle = {
