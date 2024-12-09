@@ -109,8 +109,6 @@
 .navbar-button:hover {
   background-color: #ff6a00;
 }
-
-/* Responsive Navbar */
 @media (max-width: 768px) {
   .navbar-links {
     display: none; /* Hide links for smaller screens */

@@ -14,14 +14,11 @@ const HomePage = () => {
     // Navigate to the dashboard page
   };
 
-
-
   return (
     <div style={{ fontFamily: "Arial, sans-serif", color: "white" }}>
     <div className="bg-color" style= {{backgroundColor: "#3263e9"}}>
     <Navbar />
     
-
       {/* Hero Section */}
       <div className="hero-section">
       <div className="hero-content">
@@ -36,14 +33,10 @@ const HomePage = () => {
         </div>
       </div>
       
-
       {/* Features Section */}
       <AboutUs /> 
-      
       <ContactUs />
-      
-      
-
+            
       {/* Footer */}
       <footer className="footer">
       
