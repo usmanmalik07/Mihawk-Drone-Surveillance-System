@@ -20,6 +20,9 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/dashboard/admin" element={<Dashboard userType="admin" />} />
+      <Route path="/dashboard/manager" element={<Dashboard userType="manager" />} />
+      <Route path="/dashboard/viewer" element={<Dashboard userType="viewer" />} />
     </Routes>
   </Router>
   );
