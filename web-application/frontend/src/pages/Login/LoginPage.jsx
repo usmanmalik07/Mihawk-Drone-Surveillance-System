@@ -1,9 +1,17 @@
 import React from "react";
 import './LoginPage.css';
 import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 
 const LoginPage = () => {
+    const navigate = useNavigate(); // Initialize the navigate function
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+  navigate("/admin-dashboard");
+  };
   return (
     <div>
         <NavBar />
@@ -13,7 +21,7 @@ const LoginPage = () => {
         <h2 className="login-heading">
           Welcome Back to <span className="highlight">Mihawk</span>
         </h2>
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleLogin}>
           <div className="input-group">
             <label htmlFor="email">Email</label>
             <input
