@@ -1,0 +1,91 @@
+
+html, body {
+    background-color: #171820;/* Default text color */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
+}
+body{
+    overflow-x: hidden;
+}
+* {
+    margin: 0;
+    padding: 0;
+  }
+  .blinking-text {
+    display: inline-block; /* Ensure the element behaves as an inline-block for the animation */
+    animation: shake 1s linear infinite; /* Shortened duration for each cycle and infinite repetition */
+    animation-iteration-count: 2;
+    color: #c92d45; /* Number of times the shake repeats within 5 seconds */
+}
+
+/* Define the keyframes for the shake animation */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px); /* Added Shake */
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px); /* alternate shake */
+    }
+}
+
+
+
+.bn3 {
+    font-size: 18px;
+    display: inline-block;
+    padding: 0.5em 1.7em;
+    margin: 0 0.1em 0.1em 0;
+    border: 0.16em solid rgb(255, 255, 250);
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+    text-shadow: 0 0.04em 0.04em rgba(255, 255, 250, 0.253);
+    text-align: center;
+    transition: all 0.2s;
+  }
+  
+  .bn3:hover {
+    color: black;
+    background-color: rgb(255, 255, 255);
+  }
+  .bn4 {
+    background: linear-gradient(45deg, rgb(199, 47, 72), rgb(120, 27, 43));
+    font-size: 20px;
+    display: inline-block;
+    padding: 0.5em 1.7em;
+    margin: 0 0.1em 0.1em 0;
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+    text-shadow: 0 0.04em 0.04em rgba(255, 255, 250, 0.253);
+    text-align: center;
+    transition: background 0.3s ease; /* Smooth transition */
+}
+.bn4:hover {
+    background: linear-gradient(45deg, rgb(120, 27, 43), rgb(199, 47, 72)); /* Reverse gradient on hover */
+}  
+
+ 
+  
+
+@media screen and (max-width: 1024px) {
+    .hero-text {
+        line-height: 50px !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    .hero-text {
+        line-height: 46px !important;
+    }
+}

@@ -1,0 +1,28 @@
+.book-apointment-container {
+    padding: 77px 0 0;
+    margin: 0 5vw;
+}
+
+.time-button {
+    border-color: rgb(199, 47, 72) !important;
+    color: rgb(199, 47, 72) !important;
+}
+
+.time-button:hover {
+    background-color: rgb(199, 47, 72) !important;
+    color: white !important;
+}
+
+.time-button.selected {
+    background-color: rgb(199, 47, 72) !important;
+    color: white !important;
+}
+.text-white {
+    color: white;
+  }
+  
+@media (max-width: 991px) {
+    .book-apointment-container {
+        padding: 80px 0 0;
+    }
+}
