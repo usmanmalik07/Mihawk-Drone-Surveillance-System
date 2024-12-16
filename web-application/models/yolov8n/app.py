@@ -80,3 +80,4 @@ if __name__ == "__main__":
     rtsp_url = "rtsp://admin:admin@192.168.100.5:1935"  # Replace with your RTSP stream URL
     threading.Thread(target=rtsp_thread, args=(rtsp_url,), daemon=True).start()  # Start RTSP thread
     uvicorn.run(app, host="0.0.0.0", port=8000)
+    
