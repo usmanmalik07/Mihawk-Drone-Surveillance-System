@@ -1,6 +1,7 @@
 import React from "react";
 import './LoginPage.css';
 import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
 
 
 const LoginPage = () => {
@@ -40,11 +41,12 @@ const LoginPage = () => {
           </button>
         </form>
         <p className="login-footer">
-          Don’t have an account? <a href="/signup">Get Access</a>
+          Don’t have an account? <a href="/get-access">Get Access</a>
         </p>
 
       </div>
     </div>
+    <Footer />
     </div>  
   );
 };

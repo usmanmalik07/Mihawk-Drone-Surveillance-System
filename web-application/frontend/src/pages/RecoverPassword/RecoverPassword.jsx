@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./RecoverPassword.css";
+import Footer from "../../components/Footer/Footer";
 
 const RecoverPassword = () => {
   const [emailSent, setEmailSent] = useState(false);
@@ -10,6 +11,7 @@ const RecoverPassword = () => {
   };
 
   return (
+    <div>
     <div className="recover-container">
       <div className="recover-box">
         <h2 className="recover-heading">
@@ -46,6 +48,8 @@ const RecoverPassword = () => {
           </div>
         )}
       </div>
+    </div>
+    <Footer />
     </div>
   );
 };
