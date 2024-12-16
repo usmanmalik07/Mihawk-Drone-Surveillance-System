@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   // Inline styles for the footer
   const footerStyle = {
-    backgroundColor: "#333",
+    backgroundColor: "#3263e9",
     color: "white",
     padding: "15px",
     textAlign: "center",
