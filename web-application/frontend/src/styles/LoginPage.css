@@ -1,142 +1,108 @@
+/* Background color for the page */
 .bg-color {
-    background-color: #262261;
-}
-.login-app{
-
+    background-color: #3263e9;
+  }
+  
+  /* Align the login app in the center of the screen */
+  .login-app {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #262261;
-    
-}
-.container{
-    background-color: #fff;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    border-radius: 2%/3%;
-    width: 65%;
-    height: 80%;
-    position: relative;
-    overflow: hidden;
-    background-color: rgb(59, 113, 230);
-
-}
-.signin-container{
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    position: absolute;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
-    width: 50%;
-    z-index: 2;
-}
-.signin-container.active{
-    transform: translateX(100%);
-    opacity: 0;
-}
-
-
-.signup-container{
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    position: absolute;
-    height: 100%;
-    opacity: 0;
-    z-index: 1;
-    transition: all 0.6s ease-in-out;
-    width: 50%;
-}
-.signup-container.active{
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-}
-.banner-container{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.6s ease-in-out;
-    z-index: 100;
-}
-.banner-container.active{
-    transform: translateX(-100%);
-}
-.banner{
-    background: #1506e7;
-    background: -webkit-linear-gradient(to right, #262261, #0728bb);
-    background: linear-gradient(to right, #262261, #042fec);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0 0;
-    color: #ffffff;
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out;
-}
-.banner.active{
-    transform: translateX(50%);
-}
-
-.banners{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    text-align: center;
-    top: 0;
-    height: 100%;
-    width: 50%;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out;
-}
-.left-banner{
-    transform: translateX(-20%);
-}
-.left-banner.active{
-    transform: translateX(0);
-}
-.right-banner{
-    right: 0;
-    transform: translateX(0);
-}
-.right-banner.active{
-    transform: translateX(20%);
-}
-.login-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 10%;
+  }
+  
+  /* Container for the login form */
+  .container {
+    background-color: #ff8c00;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
+    border-radius: 12px; /* Rounded corners */
     width: 100%;
-    gap: 5px;
-}
-.forgot-remember{
+    max-width: 400px; /* Responsive width */
+    padding: 40px;
+    position: relative;
+    color: white;
+  }
+  
+  /* Sign-in container */
+  .signin-container {
+    color: white;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Login form styles */
+  .login-form {
+    width: 100%;
+    color: white;
+  }
+  
+  /* Heading style */
+  .heading {
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: white;
+    text-align: center;
+  }
+  
+  /* Input fields */
+  input[type='email'],
+  input[type='password'] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  input[type='email']:focus,
+  input[type='password']:focus {
+    border-color: #3263e9;
+    background-color: #e9f4ff;
+    outline: none;
+  }
+  
+  /* Remember Me and Forgot Password */
+  .forgot-remember {
+    display: flex;
     justify-content: space-between;
-    width: 100%;
-}
-.forgot{
-    color: rgb(4, 49, 208);
-    font-weight: bold;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .remember {
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  .forgot {
+    font-size: 0.9em;
+    color: #3263e9;
     text-decoration: none;
-}
-.heading{
-    font-weight: bold;
-    margin-bottom: 5%;
-}
-.bt{
-    margin-top: 5%;
-}
+  }
+  
+  .forgot:hover {
+    text-decoration: underline;
+  }
+  
+  /* Login button */
+  .bt {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1em;
+    background-color: #3263e9;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .bt:hover {
+    background-color: #274bb2;
+  }
+  
