@@ -1,4 +1,3 @@
-// Import mongoose
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -20,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'operator', 'observer'], // Only these roles are allowed
+    enum: ['admin', 'operator', 'observer'], 
     required: true,
   },
   permissions: {
