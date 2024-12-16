@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "../styles/HomePage.css";
-import About from '../sections/About/About';
-import Services from '../sections/OurServices/OurServices';
-// Products from '../sections/Products/Products';
-import Footer from '../components/Footer/Footer';
-import CountUpBar from '../components/CountUpBar/CountUpBar';
+import "./LandingPage.css";
+import About from '../../sections/About/About';
+import Services from '../../sections/OurServices/OurServices';
+// import Products from '../../sections/Products/Products';
+import Footer from '../../components/Footer/Footer';
+import CountUpBar from '../../components/CountUpBar/CountUpBar';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import ReviewCarousel from '../components/ReviewCarousel/ReviewCarousel';
-import VMV from '../sections/VMV/VMV';
+import ReviewCarousel from '../../components/ReviewCarousel/ReviewCarousel';
+import VMV from '../../sections/VMV/VMV';
 
 /* App.css */
 
 
 
-const HomePage = () => {
+const LandingPage = () => {
 
   // Scroll to top when the component is mounted
   useEffect(() => {
@@ -37,7 +37,7 @@ const HomePage = () => {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundImage: `url(${require('../assets/background.gif')})`, // Updated to local GIF
+          backgroundImage: `url(${require('../../assets/background.gif')})`, // Updated to local GIF
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: "1", // Background opacity
@@ -85,7 +85,8 @@ const HomePage = () => {
       <About/> 
       <Services/>
       <VMV/>
-      <ReviewCarousel/>
+      <ReviewCarousel/> 
+      {/* <Products/> */}
       <CountUpBar/>
       <Footer/>
       <hr className='mx-10' style={{color: "whitesmoke"}}/>
@@ -94,4 +95,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default LandingPage;
