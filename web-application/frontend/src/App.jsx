@@ -8,6 +8,10 @@ import ContactUs from './pages/ContactUs/ContactUs';
 import LoginPage from './pages/Login/LoginPage';
 import RecoverPassword from './pages/RecoverPassword/RecoverPassword';
 import GetAccessPage from './pages/GetAccess/GetAccessPage';
+import AdminDashboardPage from './pages/AdminDashboard/AdminDashboard';
+import OperatorDashboardPage from './pages/OperatorDashboard/OperatorDashboard';
+import ObserverDashboardPage from './pages/ObserverDashboard/ObserverDashboard';
+import UserInfo from './pages/UserInfo/UserInfo';
 function App() {
   return (
     <Router>
@@ -21,6 +25,13 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/recover-password" element={<RecoverPassword />} />
           <Route path="/get-access" element={<GetAccessPage />} />
+          <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
+          <Route path="/operator-dashboard" element={<OperatorDashboardPage />} />
+          <Route path="/observer-dashboard" element={<ObserverDashboardPage />} />
+          <Route path="/user-info" element={<UserInfo />} />
+
+
+
         </Routes>
       </div>
     </Router>
