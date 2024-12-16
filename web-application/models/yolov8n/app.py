@@ -3,7 +3,6 @@ from fastapi.responses import StreamingResponse, HTMLResponse
 from ultralytics import YOLO
 import cv2
 import threading
-import queue
 import time
 
 # Load YOLOv8n model
@@ -13,9 +12,13 @@ model = YOLO('yolov8n.pt')  # Replace with your custom model if needed
 app = FastAPI()
 
 # Queue for asynchronous processing
-frame_queue = queue.Queue(maxsize=10)
+frame_queue = []
 
-def get_frame(rtsp_url):
+# Set target frame size (width x height)
+frame_width = 320
+frame_height = 240
+
+def get_rtsp_frame(rtsp_url):
     cap = cv2.VideoCapture(rtsp_url)
     if not cap.isOpened():
         print("Failed to connect to RTSP stream.")
@@ -26,15 +29,10 @@ def get_frame(rtsp_url):
         if not ret:
             print("No frame received. Check RTSP stream.")
             break
-        yield frame
+        # Resize the frame to a smaller size for faster processing
+        frame_resized = cv2.resize(frame, (frame_width, frame_height))
+        frame_queue.append(frame_resized)  # Add the resized frame to the queue
     cap.release()
-    
-
-def rtsp_thread(rtsp_url):
-    """Thread to read frames asynchronously and put them in the queue."""
-    for frame in get_frame(rtsp_url):
-        if not frame_queue.full():
-            frame_queue.put(frame)
 
 def process_frame(frame):
     """Process a frame using YOLO model and return annotated frame."""
@@ -45,26 +43,26 @@ def process_frame(frame):
 def generate_frames():
     """Generate frames for the FastAPI route."""
     while True:
-        if not frame_queue.empty():
-            frame = frame_queue.get()
-            start_time = time.time()  # For debugging timing
-            frame = cv2.resize(frame, (640, 480))  # Resize frame for faster processing
+        if len(frame_queue) > 0:
+            frame = frame_queue.pop(0)  # Get a frame from the queue
             processed_frame = process_frame(frame)
-            print("Processing time per frame:", time.time() - start_time)  # Debug info
-            _, buffer = cv2.imencode('.jpg', processed_frame)
+            
+            # Compress the frame to reduce size (adjust quality for smaller size)
+            _, buffer = cv2.imencode('.jpg', processed_frame, [cv2.IMWRITE_JPEG_QUALITY, 70])  # 70% quality
+            
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
-    """Default route that shows a blank screen."""
+    """Default route that shows a welcome page with a link to the video stream."""
     html_content = """
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Blank Screen</title>
+        <title>Drone Surveillance System</title>
     </head>
     <body>
         <h1>Welcome to the Drone Surveillance System</h1>
@@ -78,19 +76,22 @@ async def home():
 async def video_feed():
     """Route for video feed."""
     return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
+
 def test_rtsp(rtsp_url):
     cap = cv2.VideoCapture(rtsp_url)
     if not cap.isOpened():
-        print("Error: Unable to connect to RTSP stream")
+        print("Error: Unable to connect to RTSP stream.")
     else:
-        print("RTSP stream is accessible")
+        print("RTSP stream is accessible.")
     cap.release()
 
-rtsp_url = "rtsp://192.168.100.38:8554/stream"
-test_rtsp(rtsp_url)
 if __name__ == "__main__":
     import uvicorn
-    rtsp_url = "rtsp://192.168.100.5:1945"  # Replace with your RTSP stream URL
-    threading.Thread(target=rtsp_thread, args=(rtsp_url,), daemon=True).start()  # Start RTSP thread
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    rtsp_url = "rtsp://admin:admin@192.168.100.6:1935"  # Replace with your RTSP stream URL
+    test_rtsp(rtsp_url)  # Test RTSP URL first
 
+    # Start the RTSP frame capture in a separate thread
+    threading.Thread(target=get_rtsp_frame, args=(rtsp_url,), daemon=True).start()
+
+    # Run the FastAPI app
+    uvicorn.run(app, host="0.0.0.0", port=8000)
