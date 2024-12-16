@@ -1,12 +1,17 @@
 import React from "react";
 import './LoginPage.css';
+import NavBar from "../../components/NavBar/NavBar";
+
 
 const LoginPage = () => {
   return (
+    <div>
+        <NavBar />
+    
     <div className="login-container">
       <div className="login-box">
         <h2 className="login-heading">
-          Welcome Back to <span className="highlight">Buzz</span>
+          Welcome Back to <span className="highlight">Mihawk</span>
         </h2>
         <form className="login-form">
           <div className="input-group">
@@ -26,16 +31,21 @@ const LoginPage = () => {
               placeholder="Enter your password"
               required
             />
+            <p className="login-footer">
+          Forgot your password? <a href="/recover-password">Recover Account</a>
+        </p>
           </div>
           <button type="submit" className="login-button">
             Log In
           </button>
         </form>
         <p className="login-footer">
-          Don’t have an account? <a href="/signup">Sign Up</a>
+          Don’t have an account? <a href="/signup">Get Access</a>
         </p>
+
       </div>
     </div>
+    </div>  
   );
 };
 
