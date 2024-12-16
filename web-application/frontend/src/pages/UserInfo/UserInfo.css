@@ -1,0 +1,16 @@
+.user-info-user-container {
+    border: 3px solid #C72F48;
+    border-radius: 17px;
+}
+/* Remove focus outline for the modal */
+.MuiBox-root:focus {
+    outline: none;
+  }
+  /* Scrollable User List */
+.user-list-container {
+    max-height: calc(100vh - 150px); /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scroll */
+    border-radius: 0.5rem; /* Match existing design */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
