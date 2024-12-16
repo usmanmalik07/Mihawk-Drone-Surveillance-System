@@ -1,0 +1,19 @@
+.countup-container {
+    margin: 10vh 0 0vh;
+    background-color: rgb(199, 47, 72);
+    padding: 0 5vw;
+}
+
+.countup-value {
+    color: whitesmoke;
+    margin: 20px 0 0;
+}
+
+.countup-label {
+    color: whitesmoke;
+    margin: 0 0 20px;
+}
+
+.countup-separator {
+    background-color: whitesmoke;
+}

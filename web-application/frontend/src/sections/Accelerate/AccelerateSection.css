@@ -1,0 +1,131 @@
+/* AccelerateSection.css */
+.accelerate-section {
+    background: linear-gradient(135deg, #171820, #171820); /* Dark blue gradient */
+    margin: 10vh 5vw;
+    text-align: center;
+    position: relative;
+  }
+  
+  .accelerate-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .accelerate-title {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .accelerate-description {
+    font-size: 1.2rem;
+    color: #d1d5db;
+    margin-bottom: 30px;
+  }
+  
+  .accelerate-button {
+    padding: 12px 24px;
+    background-color: rgb(199, 47, 72);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .accelerate-button:hover {
+    background-color: rgb(116, 4, 22);
+  }
+  
+  .accelerate-images {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  .image-tilt {
+    width: 400px;
+    height: auto;
+    padding-top: 20px;
+    margin: 0 15px;
+    border-radius: 10px;
+    transform: rotate(-5deg); /* Tilt the image */
+    transition: transform 0.3s ease;
+  }
+  
+  .image-tilt:hover {
+    transform: rotate(0deg); /* Straighten image on hover */
+  }
+  
+  @media (max-width: 768px) {
+    .image-tilt {
+      width: 220px;
+      margin: 0 10px;
+    }
+    .accelerate-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+  }
+  @media  (max-width: 320px) {
+    .accelerate-title {
+      font-size: 1.8rem;
+    }
+    .accelerate-button {
+        padding: 10px 20px;
+        font-size: 0.69rem;
+    }
+  
+    .accelerate-description {
+      font-size: 1rem;
+    }
+    .accelerate-images {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    
+  
+    .image-tilt {
+      width: 400px;
+      height: auto;
+      margin: 5px 15px;
+      border-radius: 10px;
+      transform: rotate(-5deg); /* Tilt the image */
+      transition: transform 0.3s ease;
+      }
+    
+  }
+  
+  @media (min-width: 321px) and (max-width: 425px) {
+    .accelerate-title {
+      font-size: 1.8rem;
+    }
+    .accelerate-button {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+  
+    .accelerate-description {
+      font-size: 1rem;
+    }
+    .accelerate-images {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .image-tilt {
+      width: 400px;
+      height: auto;
+      margin: 5px 15px;
+      border-radius: 10px;
+      transform: rotate(-5deg); /* Tilt the image */
+      transition: transform 0.3s ease;
+      }
+    
+  }
+  

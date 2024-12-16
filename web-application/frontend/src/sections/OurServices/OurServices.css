@@ -1,0 +1,68 @@
+.our-services-container {
+  margin: 0 5vw;
+  background-color: #171820;
+}
+.our-services-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  
+  gap: 1.5rem;
+  margin-top: 2rem;
+  background-color: #171820;
+  
+  /* Limit max columns to 3 */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  
+  /* Adjust column limit */
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.abcd {
+  color:#fff;
+}
+
+/* .services-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.services-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+} */
+.our-services-card {
+    position: relative; /* Enable positioning for the pseudo-element */
+    background: rgb(24, 36, 49);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+     /* Prevent overflow of the pseudo-element */
+  }
+  
+  .our-services-card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%; /* Start with full width */
+    height: 4px; /* Thickness of the border */
+    background-color: #C72F48; /* Border color */
+    transform: scaleX(0); /* Start with scale 0 */
+    transition: transform 0.4s ease; /* Smooth transition for growing */
+  }
+  
+  .our-services-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .our-services-card:hover::after {
+    transform: scaleX(1); /* Grow to full width on hover */
+  }
+  

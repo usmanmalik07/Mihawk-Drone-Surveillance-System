@@ -15,13 +15,13 @@
   .navbar-logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ff8c00; /* Accent color */
+    color: #f8ee00; /* Accent color */
     cursor: pointer;
     transition: color 0.3s ease;
   }
   
   .navbar-logo:hover {
-    color: #ff6a00;
+    color: #f8ee00;
   }
   
   .navbar-links {
@@ -38,11 +38,11 @@
   }
   
   .nav-link:hover {
-    color: #ff8c00; /* Accent color for hover */
+    color: #f8ee00; /* Accent color for hover */
   }
   
   .navbar-button {
-    background-color: #ff8c00;
+    background-color: #f8ee00;
     color: #ffffff;
     border: none;
     padding: 10px 20px;
@@ -54,7 +54,7 @@
   }
   
   .navbar-button:hover {
-    background-color: #ff6a00;
+    background-color: #f8ee00;
   }
   .navbar-gif {
     width: 24px; /* Adjust size */

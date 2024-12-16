@@ -1,0 +1,150 @@
+/* ProcessSection.css */
+.process-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10vh 5vw;
+    background-color: #171820;
+    margin-top: 80px; /* Dark background color */
+  }
+  
+  .process-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    width: 100%;
+  }
+  
+  .process-left {
+    flex: 1;
+    margin-right: 50px;
+  }
+  
+  .process-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .process-description {
+    font-size: 1.25rem;
+    color: #d1d5db;
+    line-height: 1.6;
+  }
+  
+  .process-right {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .process-circle {
+    width: 250px;
+    height: 250px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1); /* Slight transparent background */
+    text-align: center;
+    transition: transform 0.3s ease;
+    padding: 20px; /* Ensure enough space inside the circle */
+    box-sizing: border-box;
+    overflow-wrap: break-word; /* Allow long words to wrap inside the circle */
+  }
+  
+  .process-circle:hover {
+    transform: scale(1.05); /* Slight hover effect */
+  }
+  
+  .circle-number {
+    font-size: 2.5rem;
+    color: #c72f48; /* Red for the number */
+    font-weight: bold;
+  }
+  
+  .circle-title {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .circle-description {
+    font-size: 0.9rem;
+    color: #d1d5db;
+    margin-top: 10px;
+    line-height: 1.4; /* Adjust line height to prevent overflow */
+  }
+  /* Media query for mobile devices */
+/* Media query for tablets and large mobiles */
+/* Media query for two circles per row between 425px and 768px */
+@media (min-width: 426px) and (max-width: 768px) {
+  .process-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .process-right {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* One circle per row */
+    gap: 10px;
+    justify-items: center;
+  }
+
+  .process-circle {
+    width: 220px;
+    height: 220px;
+  }
+
+  
+    .circle-number {
+      font-size: 2rem; /* Adjusted for smaller circles */
+    }
+  
+    .circle-title {
+      font-size: 1.2rem; /* Slightly smaller title */
+    }
+  
+    .circle-description {
+      font-size: 0.66rem; /* Smaller description */
+    }
+  }
+  
+  /* Media query for smaller screens (below 425px) */
+  @media (max-width: 425px) {
+    .process-content {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .process-right {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr); /* One circle per row */
+      gap: 10px;
+      justify-items: center;
+    }
+  
+    .process-circle {
+      width: 180px;
+      height: 180px;
+    }
+  
+    .circle-number {
+      font-size: 1.8rem; /* Adjusted for smaller circles */
+    }
+  
+    .circle-title {
+      font-size: 1.1rem; /* Slightly smaller title */
+    }
+  
+    .circle-description {
+      font-size: 0.45rem; /* Smaller description */
+    }
+  }

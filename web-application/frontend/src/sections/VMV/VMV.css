@@ -1,0 +1,76 @@
+.vmv-container {
+    margin: 10vh 5vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-rows: repeat(3, auto); /* Three rows, with 'auto' height */
+    gap: 30px; /* Space between grid items */
+}
+
+.our-vision,
+.our-value,
+.our-mission {
+    position: relative; /* Ensures that the box shadow applies relative to each element */
+    border-radius: 10px; /* Optional: Add rounded corners to enhance the glow effect */
+    transition: box-shadow 0.3s ease; /* Smooth transition on hover */
+}
+
+.our-vision {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: #c72f48;
+    padding: 30px;
+    color: white;
+    box-shadow: 0 0 10px 3px rgba(199, 47, 72, 0.6); /* Subtle outer glow with matching color */
+}
+
+.our-value {
+    grid-column: 2;
+    grid-row: span 2; /* Spans 2 rows */
+    background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGw5OW14a3V5ZHRoczV1amsxOGppNGw1MHVvNDNuMm9udzU1NmZ2biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7b8jdNUoFBdcoILjjv/giphy.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 30px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.6); /* Darker glow for image background */
+}
+
+.our-mission {
+    grid-column: 1;
+    grid-row: 2;
+    background-color: #3a3a3a;
+    padding: 30px;
+    color: white;
+    box-shadow: 0 0 10px 3px rgba(58, 58, 58, 0.6); /* Subtle outer glow with matching gray */
+}
+
+/* Glow effect on hover with matching colors */
+.our-vision:hover {
+    box-shadow: 0 0 15px 5px rgba(199, 47, 72, 0.8); /* Stronger glow with same color */
+}
+
+.our-value:hover {
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.8); /* Stronger glow with darker black */
+}
+
+.our-mission:hover {
+    box-shadow: 0 0 15px 5px rgba(58, 58, 58, 0.8); /* Stronger glow with same gray */
+}
+
+/* Media query for screens with max-width of 786px */
+@media (max-width: 786px) {
+    .vmv-container {
+        grid-template-columns: 1fr; /* One column */
+        grid-template-rows: auto; /* One row */
+    }
+
+    .our-vision,
+    .our-value,
+    .our-mission {
+        grid-column: 1; /* All elements take the full width */
+        grid-row: auto; /* Stacks elements vertically */
+    }
+}

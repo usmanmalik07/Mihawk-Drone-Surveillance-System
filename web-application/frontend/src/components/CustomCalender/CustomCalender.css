@@ -1,0 +1,25 @@
+.rdp-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 344px;
+}
+.rdp-selected .rdp-day_button {
+    border: 2px solid rgb(199, 47, 72);
+    font-weight: 500;
+    font-size: medium;
+}
+.rdp-today:not(.rdp-outside) {
+    color: rgb(199, 47, 72);
+}
+.rdp-chevron {
+    fill: rgb(199, 47, 72); 
+}
+.rdp-caption_label {
+    font-weight: 400;
+}
+.rdp-footer {
+    font-weight: 300;
+    text-align: center;
+}

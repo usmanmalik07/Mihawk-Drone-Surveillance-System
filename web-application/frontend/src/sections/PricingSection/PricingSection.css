@@ -1,0 +1,79 @@
+.pricing-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Default: auto-fill as many cards as possible */
+  gap: 2.5rem;
+  margin-top: 2rem;
+  color: white;
+
+  /* Max 3 cards per row on larger screens */
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, 1fr); /* Show a maximum of 3 cards per row */
+  }
+
+  /* Show 2 cards per row on screens with a max-width of 1100px */
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, 1fr); /* Show 2 cards per row */
+  }
+
+  /* Show only 1 card per row on smaller screens */
+  @media (max-width: 724px) {
+    grid-template-columns: 1fr; /* Show 1 card per row */
+  }
+}
+
+
+@keyframes backgroundTransition {   
+  0% {
+    background: rgb(24, 36, 49);
+  }
+  100% {
+    background: linear-gradient(45deg, #171820, rgb(199, 47, 72));
+  }
+}
+
+.pricing-card {
+  background: rgb(24, 36, 49);
+  border-radius: 10px;
+  border-color: #8b1e30;
+  box-shadow: 10px 10px 10px rgba(177, 18, 18, 0.1);
+  border-bottom: 4px solid #B93D4E; /* Permanent bottom border without transition */
+  overflow: hidden; /* Prevent overflow of the pseudo-element */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for box-shadow */
+}
+
+.pricing-card:hover {
+  animation: backgroundTransition 0.4s ease-out; /* Apply the background transition on hover */
+  background: linear-gradient(45deg, #171820, rgb(199, 47, 72));
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.03); /* Smooth box-shadow effect on hover */
+}
+
+
+
+/* Button styling */
+.price-button {
+  background: linear-gradient(90deg, rgba(199, 47, 72, 1) 0%, rgba(235, 87, 87, 1) 100%);
+  color: white;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(199, 47, 72, 0.3);
+  cursor: pointer;
+}
+
+/* Button hover effect */
+.price-button:hover {
+  /* background: rgb(116, 4, 22); */
+  background: linear-gradient(90deg, rgba(235, 87, 87, 1) 0%, rgba(199, 47, 72, 1) 100%);
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(199, 47, 72, 0.5);
+}
+
+/* Selected button styling */
+.price-button.selected {
+  background: linear-gradient(90deg, rgba(199, 47, 72, 1) 0%, rgba(235, 87, 87, 1) 100%);
+  transform: translateY(-5px);
+}
+
+/* Smooth transition for the button */
+.price-button span {
+  transition: all 0.3s ease;
+}

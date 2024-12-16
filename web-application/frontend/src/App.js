@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Dashboard from './pages/dashboard';
 import LoginPage from './pages/LoginPage';
+import NavBar from './components/NavBar/NavBar.jsx';
 
 function App() {
   const [data, setData] = useState(null);
@@ -16,6 +17,7 @@ function App() {
   
   return (
     <Router>
+    <NavBar />
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/dashboard" element={<Dashboard />} />

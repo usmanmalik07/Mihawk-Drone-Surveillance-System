@@ -1,0 +1,40 @@
+/* MapSection.css */
+.map-section {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #171820; /* Dark background for contrast */
+  }
+  
+  .map-title {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+  
+  .map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .map-frame {
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  /* Responsive Design for Smaller Screens */
+  @media (max-width: 768px) {
+    .map-frame {
+      height: 400px; /* Reduce height for smaller screens */
+    }
+  }
+  
+  @media (max-width: 425px) {
+    .map-frame {
+      height: 300px; /* Reduce height for mobile screens */
+    }
+  }
+  
