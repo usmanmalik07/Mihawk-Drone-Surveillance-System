@@ -90,7 +90,7 @@ const LandingPage = () => {
       <CountUpBar/>
       <Footer/>
       <hr className='mx-10' style={{color: "whitesmoke"}}/>
-      <div style={{color: "whitesmoke"}} className='text-sm flex justify-center items-center py-2'>© 2024 Buzz Solutions. All Rights Reserved.</div>
+      <div style={{color: "whitesmoke"}} className='text-sm flex justify-center items-center py-2'>© 2024 Mihawk. All Rights Reserved.</div>
     </div>
   );
 };

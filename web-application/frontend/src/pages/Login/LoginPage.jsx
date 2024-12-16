@@ -48,12 +48,11 @@ const LoginPage = () => {
           </button>
         </form>
         <p className="login-footer">
-          Don’t have an account? <a href="/get-access">Get Access</a>
+          Don’t have an account? <a href="/signup">Get Access</a>
         </p>
 
       </div>
     </div>
-    <Footer />
     </div>  
   );
 };
