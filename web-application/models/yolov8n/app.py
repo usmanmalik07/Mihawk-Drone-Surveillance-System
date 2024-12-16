@@ -3,7 +3,8 @@ from fastapi.responses import StreamingResponse, HTMLResponse
 from ultralytics import YOLO
 import cv2
 import threading
-import time
+import queue
+import uvicorn
 
 # Load YOLOv8n model
 model = YOLO('yolov8n.pt')  # Replace with your custom model if needed
@@ -11,8 +12,8 @@ model = YOLO('yolov8n.pt')  # Replace with your custom model if needed
 # FastAPI application
 app = FastAPI()
 
-# Queue for asynchronous processing
-frame_queue = []
+# Thread-safe Queue for frames
+frame_queue = queue.Queue(maxsize=10)  # Limit the queue size for better control
 
 # Set target frame size (width x height)
 frame_width = 320
@@ -29,9 +30,10 @@ def get_rtsp_frame(rtsp_url):
         if not ret:
             print("No frame received. Check RTSP stream.")
             break
-        # Resize the frame to a smaller size for faster processing
+        # Resize the frame for faster processing
         frame_resized = cv2.resize(frame, (frame_width, frame_height))
-        frame_queue.append(frame_resized)  # Add the resized frame to the queue
+        if not frame_queue.full():
+            frame_queue.put(frame_resized)  # Add the resized frame to the queue
     cap.release()
 
 def process_frame(frame):
@@ -43,15 +45,17 @@ def process_frame(frame):
 def generate_frames():
     """Generate frames for the FastAPI route."""
     while True:
-        if len(frame_queue) > 0:
-            frame = frame_queue.pop(0)  # Get a frame from the queue
+        try:
+            frame = frame_queue.get(timeout=1)  # Wait for a frame (timeout prevents freeze)
             processed_frame = process_frame(frame)
             
-            # Compress the frame to reduce size (adjust quality for smaller size)
-            _, buffer = cv2.imencode('.jpg', processed_frame, [cv2.IMWRITE_JPEG_QUALITY, 70])  # 70% quality
+            # Compress the frame
+            _, buffer = cv2.imencode('.jpg', processed_frame, [cv2.IMWRITE_JPEG_QUALITY, 70])
             
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
+        except queue.Empty:
+            print("Frame queue is empty. Waiting for frames...")
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
@@ -86,8 +90,7 @@ def test_rtsp(rtsp_url):
     cap.release()
 
 if __name__ == "__main__":
-    import uvicorn
-    rtsp_url = "rtsp://admin:admin@192.168.100.6:1935"  # Replace with your RTSP stream URL
+    rtsp_url = "rtsp://192.168.100.5:1945"  # Replace with your RTSP stream URL
     test_rtsp(rtsp_url)  # Test RTSP URL first
 
     # Start the RTSP frame capture in a separate thread
