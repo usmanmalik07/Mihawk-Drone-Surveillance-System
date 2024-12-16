@@ -16,15 +16,19 @@ app = FastAPI()
 frame_queue = queue.Queue(maxsize=10)
 
 def get_frame(rtsp_url):
-    """Read frames from RTSP stream."""
     cap = cv2.VideoCapture(rtsp_url)
-    cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)  # Reduce buffer to avoid lag
+    if not cap.isOpened():
+        print("Failed to connect to RTSP stream.")
+        return
+    cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
     while True:
         ret, frame = cap.read()
         if not ret:
+            print("No frame received. Check RTSP stream.")
             break
         yield frame
     cap.release()
+    
 
 def rtsp_thread(rtsp_url):
     """Thread to read frames asynchronously and put them in the queue."""
@@ -74,10 +78,19 @@ async def home():
 async def video_feed():
     """Route for video feed."""
     return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
+def test_rtsp(rtsp_url):
+    cap = cv2.VideoCapture(rtsp_url)
+    if not cap.isOpened():
+        print("Error: Unable to connect to RTSP stream")
+    else:
+        print("RTSP stream is accessible")
+    cap.release()
 
+rtsp_url = "rtsp://192.168.100.38:8554/stream"
+test_rtsp(rtsp_url)
 if __name__ == "__main__":
     import uvicorn
-    rtsp_url = "rtsp://admin:admin@192.168.100.5:1935"  # Replace with your RTSP stream URL
+    rtsp_url = "rtsp://192.168.100.38:8554/stream"  # Replace with your RTSP stream URL
     threading.Thread(target=rtsp_thread, args=(rtsp_url,), daemon=True).start()  # Start RTSP thread
     uvicorn.run(app, host="0.0.0.0", port=8000)
-    
+
