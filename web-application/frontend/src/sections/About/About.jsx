@@ -26,7 +26,7 @@ const About = () => {
             padding: '10px 20px',
           }}
         >
-          At <span style={{ color: '#c72f48' }}>BUZZ SOLUTIONS,</span>
+          At <span style={{ color: '#c72f48' }}>MIHAWK,</span>
         </h3>
         <p
           className='lg:text-lg text-sm font-light'
@@ -39,7 +39,7 @@ const About = () => {
             color: '#ffffff',
           }}
         >
-          We fuse innovation with energy, delivering cutting-edge technology that creates a buzz in the digital world. Our solutions are designed to power businesses forward, transforming ideas into impactful realities.
+          We blend innovation with precision to deliver state-of-the-art drone surveillance solutions. Our technology is designed to empower safety, ensuring rapid detection and response to potential threats. By merging intelligence and efficiency, we transform modern surveillance into a proactive force, safeguarding communities and redefining security standards.
         </p>
         <div className='read-more-button'>
           <Link to="https://www.linkedin.com/company/buzz-sol" className="text-decoration-none text-inherit">
