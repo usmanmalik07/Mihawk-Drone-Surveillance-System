@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import BookAppointment from './pages/BookAppointment/BookAppointment';
 import Services from './pages/Services/Services';
 import ContactUs from './pages/ContactUs/ContactUs';
+import LoginPage from './pages/Login/LoginPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/book-an-appointment" element={<BookAppointment />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
     </Router>
