@@ -39,13 +39,8 @@ const AdminDashboardPage = () => {
         <div className="video-section">
           <h3 className="video-title">Live Video Feed</h3>
           <div className="video-player">
-            <video controls>
-              <source
-                src="https://www.w3schools.com/html/mov_bbb.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
+          <img src="http://127.0.0.1:8000/video_feed" className="stream" alt="Live Video Stream" />
+
           </div>
         </div>
       </div>
