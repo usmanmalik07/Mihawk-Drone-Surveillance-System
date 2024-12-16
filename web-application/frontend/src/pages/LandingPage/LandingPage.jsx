@@ -74,7 +74,7 @@ const LandingPage = () => {
                 Our Services
               </span>
             </Link>
-            <Link to="/book-an-appointment" className="text-decoration-none text-inherit">
+            <Link to="/login" className="text-decoration-none text-inherit">
               <span className="bn3 mt-3">
                 Login
               </span>
