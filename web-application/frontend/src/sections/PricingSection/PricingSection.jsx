@@ -29,7 +29,7 @@ export const servicesPricingData = [
     ]
   },
   {
-    title: "Suspicious Activity Detection",
+    title: "Suspicious Activity",
     description: "Detecting abnormal behaviors in real-time using AI and machine learning for enhanced accuracy.",
     icon: <FaRobot />, // Add the icon here
     details: [
