@@ -7,6 +7,7 @@ import Services from './pages/Services/Services';
 import ContactUs from './pages/ContactUs/ContactUs';
 import LoginPage from './pages/Login/LoginPage';
 import RecoverPassword from './pages/RecoverPassword/RecoverPassword';
+import GetAccessPage from './pages/GetAccess/GetAccessPage';
 function App() {
   return (
     <Router>
@@ -19,6 +20,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/recover-password" element={<RecoverPassword />} />
+          <Route path="/get-access" element={<GetAccessPage />} />
         </Routes>
       </div>
     </Router>
