@@ -65,7 +65,7 @@ const LandingPage = () => {
           fontFamily: 'Poppins, sans-serif',
 
         }}>
-          Where Technology <br/> Meets <span className='blinking-text'>Buzz</span>
+          Eyes Above, <br/> Safety <span className='blinking-text'>Below.</span>
         </div>
         <div style={{zIndex: "1"}}>
           <div className='d-flex column-gap-3' style={{zIndex: "1"}}>
@@ -76,7 +76,7 @@ const LandingPage = () => {
             </Link>
             <Link to="/book-an-appointment" className="text-decoration-none text-inherit">
               <span className="bn3 mt-3">
-                Let's Talk
+                Login
               </span>
             </Link>
           </div>
