@@ -1,16 +1,84 @@
+/* User Info Card Container */
 .user-info-user-container {
-    border: 3px solid #C72F48;
-    border-radius: 17px;
+  border: 3px solid #C72F48;
+  border-radius: 17px;
+  padding: 20px; /* Add padding for inner spacing */
+  margin-bottom: 10px; /* Space between user cards */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #2e3b4e; /* Slightly darker background */
 }
+
+/* User image */
+.user-info-user-container img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+/* User Info Text (Name, Email, Role) */
+.user-info-user-container .user-details {
+  flex: 1;
+}
+
+.user-info-user-container .user-details p {
+  margin: 0;
+  color: #fff;
+}
+
+/* User Name (Big Font) */
+.user-info-user-container .user-details .user-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* User Role (Below Name) */
+.user-info-user-container .user-details .user-role {
+  font-size: 0.9rem;
+  color: #C72F48; /* Slightly different color for role */
+  margin-top: 5px;
+}
+
 /* Remove focus outline for the modal */
 .MuiBox-root:focus {
-    outline: none;
-  }
-  /* Scrollable User List */
+  outline: none;
+}
+
+/* Scrollable User List */
 .user-list-container {
-    max-height: calc(100vh - 150px); /* Adjust height as needed */
-    overflow-y: auto; /* Enable vertical scroll */
-    border-radius: 0.5rem; /* Match existing design */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
+  max-height: calc(100vh - 150px); /* Adjust height as needed */
+  overflow-y: auto; /* Enable vertical scroll */
+  border-radius: 0.5rem; /* Match existing design */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px; /* Padding for better spacing */
+}
+
+/* For smooth scroll animation */
+.user-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.user-list-container::-webkit-scrollbar-thumb {
+  background-color: rgba(200, 47, 72, 0.6);
+  border-radius: 10px;
+}
+/* User info card hover effect */
+.user-info-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  /* Default background */
+  border-radius: 8px;
+}
+
+.user-info-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #8B1F3A, #1d1013); 
+}
+
+/* Modal styles */
+.error-message {
+  font-size: 14px;
+  color: #e74c3c;
+}

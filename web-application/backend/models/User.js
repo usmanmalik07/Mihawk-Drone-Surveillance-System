@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Define the user schema
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -19,7 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'operator', 'observer'], 
+    enum: ['admin', 'operator', 'observer'], // Allowed roles
     required: true,
   },
   permissions: {
@@ -36,7 +37,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// Middleware to update the `updatedAt` field on save
+// Middleware to update the `updatedAt` field before saving
 userSchema.pre('save', function (next) {
   this.updatedAt = Date.now();
   next();

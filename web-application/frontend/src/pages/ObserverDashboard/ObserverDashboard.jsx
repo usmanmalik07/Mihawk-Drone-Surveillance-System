@@ -28,7 +28,7 @@ const ObserverDashboardPage = () => {
           <div className="user-info">
             <h4>Name: <span>John Doe</span></h4>
             <h4>Email: <span>johndoe@example.com</span></h4>
-            <h4>Role: <span>Admin</span></h4>
+            <h4>Role: <span>Observer</span></h4>
           </div>
         </div>
 
