@@ -1,65 +1,81 @@
+/* Footer Component */
 .lp-footer {
-    background-color: rgb(23, 24, 32);
-    color: white;
-    display: grid;
-    grid-template-columns: 3fr 2fr 2fr;
-    justify-content: space-between;
-    column-gap: 5vw;
-    margin: auto 5vw;
-  }
-  
-  a {
-    font-size: 13px;
-    text-decoration: none;
-    color: white;
-  }
- 
-  .footer-company,
-  .footer-links {
-    display: flex;
-    flex-direction: column;
-  }
-  
+  background-color: rgb(23, 24, 32);
+  color: white;
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr;
+  justify-content: space-between;
+  column-gap: 5vw;
+  margin: 0 auto;  /* Ensure no additional margins */
+  padding: 20px 5vw; /* Padding adjusted for proper spacing */
+  width: 100%;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+}
 
-  .footer-follow-us-logos {
-    display: flex;
-    align-items: center;
+/* Reset body padding and margin, and ensure it takes full height */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Full height */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex-grow: 1; /* Ensures content pushes the footer down */
+  padding-bottom: 20px;  /* Optional, add some bottom padding if needed */
+}
+
+/* Links styles */
+a {
+  font-size: 13px;
+  text-decoration: none;
+  color: white;
+}
+
+.footer-company,
+.footer-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-follow-us-logos {
+  display: flex;
+  align-items: center;
+}
+
+.footer-follow-us img {
+  width: 20px;
+  height: 20px;
+  margin-right: 1vw;
+}
+
+.footer-links a:hover {
+  color: #c92d45; /* Red color on hover */
+}
+
+/* Mobile adjustments */
+@media only screen and (max-width: 786px) {
+  .lp-footer {
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
   }
-  .footer-follow-us img {
-    width: 20px;
-    height: 20px;
-    margin-right: 1vw;
+  .footer-links {
+    margin-top: 20px;
   }
-  .footer-links a:hover {
-    color: #c92d45; /* Change to red on hover */
+}
+
+@media only screen and (max-width: 600px) {
+  .lp-footer {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-  
-  @media only screen and (max-width: 786px) {
-    .lp-footer {
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
-    }
-    .lp-footer:nth-child(4) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .footer-links {
-      margin-top: 20px;
-    }
+  .footer-links {
+    margin-top: 20px;
   }
-  @media only screen and (max-width: 600px) {
-    .lp-footer {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .lp-footer:nth-child(4) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .footer-links {
-      margin-top: 20px;
-    }
-  }
-  
+}
