@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./AdminDashboard.css";
+import Footer from "../../components/Footer/Footer";
 
 const AdminDashboardPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -37,7 +38,7 @@ const AdminDashboardPage = () => {
     }
   };
 
-  return (
+  return (<>
     <div className="dashboard-container">
       {/* Sidebar */}
       <div className="sidebar">
@@ -118,7 +119,10 @@ const AdminDashboardPage = () => {
           </div>
         </div>
       </div>
+
     </div>
+    <Footer/>
+    </>
   );
 };
 
