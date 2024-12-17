@@ -28,11 +28,11 @@ const AdminDashboardPage = () => {
 
     switch (selectedModel) {
       case "v8n":
-        return "http://192.168.56.1:8000/video_feed?model=yolov8n";
+        return "http://172.30.64.1:8000/video_feed?model=yolov8n";
       case "v11":
-        return "http://192.168.56.1:8000/video_feed?model=yolov8s";
+        return "http://172.30.64.1:8000/video_feed?model=yolov8s";
       case "cv":
-        return "http://192.168.56.1:8000/video_feed?model=rcnn";
+        return "http://172.30.64.1:8000/video_feed?model=rcnn";
       default:
         return "https://via.placeholder.com/800x450?text=No+Stream+Available";
     }
