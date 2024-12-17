@@ -150,13 +150,13 @@ const ContactUs = () => {
       <div className='h-[1px] bg-[#b1b1b1] mt-5 mb-4'></div>
       <div>
         <div className='my-2'>
-        <i class="fa-solid fa-envelope mr-1" style={{color: "rgb(199, 47, 72)"}}></i> buzzsols1122@gmail.com
+        <i class="fa-solid fa-envelope mr-1" style={{color: "rgb(199, 47, 72)"}}></i> contact@buzz-sol.com
         </div>
         <div className='my-2'>
         <i class="fa-solid fa-phone mr-1" style={{color: "rgb(199, 47, 72)"}}></i> +92 321 5211814
         </div>
         <div className='my-2'>
-        <i class="fa-brands fa-linkedin mr-1" style={{color: "rgb(199, 47, 72)"}}></i> <a style={{color:"white", fontSize: "inherit"}} href="www.linkedin.com/company/buzz-sol/">Buzz Solutions</a>
+        <i class="fa-brands fa-linkedin mr-1" style={{color: "rgb(199, 47, 72)"}}></i> <a style={{color:"white", fontSize: "inherit"}} href="www.linkedin.com/company">Mihawk</a>
         </div>
       </div>
       <div className='h-[1px] bg-[#b1b1b1] mt-4'></div>
