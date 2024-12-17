@@ -1,4 +1,4 @@
-/* Footer Component */
+/* Footer Container */
 .lp-footer {
   background-color: rgb(23, 24, 32);
   color: white;
@@ -10,38 +10,41 @@
   padding: 20px 5vw; /* Padding adjusted for proper spacing */
   width: 100%;
   text-align: center;
-  position: relative;
-  bottom: 0;
 }
 
-/* Reset body padding and margin, and ensure it takes full height */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%; /* Full height */
-}
-
-body {
+/* Adjust the footer-den-info to stack the GIF and text vertically */
+.footer-den-info {
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  /* Stack the GIF and text vertically */
+  align-items: center; /* Center-align the content */
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
-.main-content {
-  flex-grow: 1; /* Ensures content pushes the footer down */
-  padding-bottom: 20px;  /* Optional, add some bottom padding if needed */
-}
-
-/* Links styles */
-a {
-  font-size: 13px;
-  text-decoration: none;
+.footer-den-info p {
+  margin-top: 10px;
+  font-size: 18px;
   color: white;
+  font-weight: bold;
 }
 
-.footer-company,
+/* Footer Links Section */
 .footer-links {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center; /* Center text */
+}
+
+/* Follow Us Section */
+.footer-follow-us {
+  display: flex;
+  flex-direction: column; /* Stack Follow Us items vertically */
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .footer-follow-us-logos {
@@ -50,8 +53,8 @@ a {
 }
 
 .footer-follow-us img {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   margin-right: 1vw;
 }
 
@@ -59,23 +62,20 @@ a {
   color: #c92d45; /* Red color on hover */
 }
 
-/* Mobile adjustments */
-@media only screen and (max-width: 786px) {
-  .lp-footer {
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-  }
-  .footer-links {
-    margin-top: 20px;
-  }
+/* Ensuring proper alignment and spacing between Quick Links and Follow Us */
+.lp-footer .footer-links,
+.lp-footer .footer-follow-us {
+  align-items: center; /* Align items at the center */
+  text-align: center; /* Make sure text inside is centered */
 }
 
-@media only screen and (max-width: 600px) {
+/* Mobile Layout Adjustments */
+@media only screen and (max-width: 786px) {
   .lp-footer {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    padding: 10px;
   }
-  .footer-links {
-    margin-top: 20px;
+
+  .footer-den-info {
+    margin-bottom: 15px;
   }
 }

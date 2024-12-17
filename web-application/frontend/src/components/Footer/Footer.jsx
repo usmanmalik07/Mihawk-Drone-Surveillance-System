@@ -28,7 +28,7 @@ const Footer = () => {
     <div className="lp-footer py-14">
       <div className="footer-den-info">
         <img
-          src={require("../../assets/white_and_red.png")}
+          src={require("../../assets/dro.gif")}
           className="w-24 mb-2"
           alt=""
         />
@@ -63,10 +63,10 @@ const Footer = () => {
         <div>
           <div
             className="my-2 mt-3 text-sm cursor-pointer"
-            onClick={() => handleCopy("buzzsols1122@gmail.com")}
+            onClick={() => handleCopy("contact@mihawk.com")}
           >
             <i className="fa-solid fa-envelope mr-1" style={{ color: "rgb(199, 47, 72)" }}></i>{" "}
-            contact@buzz-sol.com
+            contact@miwahk.com
           </div>
           <div
             className="my-2 text-sm cursor-pointer"
