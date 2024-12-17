@@ -1,65 +1,81 @@
+/* Footer Container */
 .lp-footer {
-    background-color: rgb(23, 24, 32);
-    color: white;
-    display: grid;
-    grid-template-columns: 3fr 2fr 2fr;
-    justify-content: space-between;
-    column-gap: 5vw;
-    margin: auto 5vw;
-  }
-  
-  a {
-    font-size: 13px;
-    text-decoration: none;
-    color: white;
-  }
- 
-  .footer-company,
-  .footer-links {
-    display: flex;
-    flex-direction: column;
-  }
-  
+  background-color: rgb(23, 24, 32);
+  color: white;
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr;
+  justify-content: space-between;
+  column-gap: 5vw;
+  margin: 0 auto;  /* Ensure no additional margins */
+  padding: 20px 5vw; /* Padding adjusted for proper spacing */
+  width: 100%;
+  text-align: center;
+}
 
-  .footer-follow-us-logos {
-    display: flex;
-    align-items: center;
+/* Adjust the footer-den-info to stack the GIF and text vertically */
+.footer-den-info {
+  display: flex;
+  flex-direction: column;  /* Stack the GIF and text vertically */
+  align-items: center; /* Center-align the content */
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.footer-den-info p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}
+
+/* Footer Links Section */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center; /* Center text */
+}
+
+/* Follow Us Section */
+.footer-follow-us {
+  display: flex;
+  flex-direction: column; /* Stack Follow Us items vertically */
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer-follow-us-logos {
+  display: flex;
+  align-items: center;
+}
+
+.footer-follow-us img {
+  width: 30px;
+  height: 30px;
+  margin-right: 1vw;
+}
+
+.footer-links a:hover {
+  color: #c92d45; /* Red color on hover */
+}
+
+/* Ensuring proper alignment and spacing between Quick Links and Follow Us */
+.lp-footer .footer-links,
+.lp-footer .footer-follow-us {
+  align-items: center; /* Align items at the center */
+  text-align: center; /* Make sure text inside is centered */
+}
+
+/* Mobile Layout Adjustments */
+@media only screen and (max-width: 786px) {
+  .lp-footer {
+    padding: 10px;
   }
-  .footer-follow-us img {
-    width: 20px;
-    height: 20px;
-    margin-right: 1vw;
+
+  .footer-den-info {
+    margin-bottom: 15px;
   }
-  .footer-links a:hover {
-    color: #c92d45; /* Change to red on hover */
-  }
-  
-  @media only screen and (max-width: 786px) {
-    .lp-footer {
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
-    }
-    .lp-footer:nth-child(4) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .footer-links {
-      margin-top: 20px;
-    }
-  }
-  @media only screen and (max-width: 600px) {
-    .lp-footer {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .lp-footer:nth-child(4) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .footer-links {
-      margin-top: 20px;
-    }
-  }
-  
+}

@@ -12,6 +12,7 @@ import AdminDashboardPage from './pages/AdminDashboard/AdminDashboard';
 import OperatorDashboardPage from './pages/OperatorDashboard/OperatorDashboard';
 import ObserverDashboardPage from './pages/ObserverDashboard/ObserverDashboard';
 import UserInfo from './pages/UserInfo/UserInfo';
+import ReportPage from './pages/Report/ReportPage';
 function App() {
   return (
     <Router>
@@ -29,6 +30,8 @@ function App() {
           <Route path="/operator-dashboard" element={<OperatorDashboardPage />} />
           <Route path="/observer-dashboard" element={<ObserverDashboardPage />} />
           <Route path="/user-info" element={<UserInfo />} />
+          <Route path="/report" element={<ReportPage />} />
+          
 
 
 

@@ -1,73 +1,102 @@
-/* src/components/ReviewCarousel/ReviewCarousel.css */
+/* Container for the video carousel */
+.video-carousel {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  /* background: linear-gradient(45deg, rgb(44, 44, 44), rgb(120, 27, 43)); */
+  border-radius: 15px;
+  /* box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); */
+  height: auto; /* Allow container to adjust based on video content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; /* For positioning the arrows */
+}
 
-.review-carousel {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 30px 20px;
-    background: linear-gradient(45deg, rgb(199, 47, 72), rgb(120, 27, 43));
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-    height: auto; /* Set to auto to allow container to adjust to content */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .review-carousel:hover {
-    animation: transform 0.4s ease-in-out; /* Apply the background transition on hover */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    transform: scale(1.03); /* Smooth box-shadow effect on hover */
-  }
-  
-  .review-slide {
-    text-align: center;
-    color: #f0f0f0;
-    padding: 20px;
-  }
-  
-  .review-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .review-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 4px solid #fff;
-    margin-bottom: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  .review-text-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 20px; /* Add padding to prevent text from touching the edges */
-    text-align: center; /* Center-align the text */
-  }
-  
-  .review-text {
-    font-size: 1.2em;
-    line-height: 1.5;
-    margin-bottom: 15px;
-    color: #ffffff;
-    word-wrap: break-word; /* Ensure long words break properly */
-  }
-  
-  .review-author {
-    font-size: 1em;
-    color: #ffcccc;
-    margin-top: -5px;
-  }
-  .my-8{
-    margin-top: 5vw;
-    margin-bottom: 5vw;
-    margin-left: 5vw;
-    margin-right: 5vw;
-  }
-  .geo {
-    font-size: 35px ;
-    font-weight: bold ;
-  }
-  
+/* Hover effect for video carousel */
+.video-carousel:hover {
+  animation: transform 0.4s ease-in-out; /* Apply the background transition on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.03); /* Smooth box-shadow effect on hover */
+}
+
+/* Styling for individual video slides */
+.video-slide {
+  text-align: center;
+  color: #f0f0f0;
+  padding: 20px;
+}
+
+/* Video element styling */
+.carousel-video {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling for the Next/Previous arrows */
+.slick-prev, .slick-next {
+  font-size: 0; /* Hide text (Next/Previous) */
+  color: transparent;
+  background-color: rgba(0, 0, 0, 0.3); /* Transparent black background */
+  border-radius: 50%;
+  padding: 10px;
+  z-index: 10; /* Ensure arrows are above the videos */
+  width: 40px;
+  height: 40px;
+}
+
+/* Hover effect for arrows */
+.slick-prev:hover, .slick-next:hover {
+  background-color: rgba(0, 0, 0, 0.5); /* Darker background on hover */
+}
+
+/* Positioning the previous arrow */
+.slick-prev {
+  left: 10px;
+}
+
+/* Positioning the next arrow */
+.slick-next {
+  right: 10px;
+}
+
+/* Adjust the dots (optional) */
+.slick-dots {
+  bottom: 10px; /* Position the dots closer to the carousel */
+}
+
+.slick-dots li button:before {
+  color: #fff; /* White color for the dots */
+}
+
+.slick-dots li.slick-active button:before {
+  color: rgb(199, 47, 72); /* Highlight active dot */
+}
+
+/* Custom styles for the heading */
+.my-8 {
+  margin-top: 5vw;
+  margin-bottom: 5vw;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+.geo {
+  font-size: 35px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+/* Styling the section title */
+h3 {
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 30px;
+}
+
+h3 span {
+  color: rgb(199, 47, 72);
+}

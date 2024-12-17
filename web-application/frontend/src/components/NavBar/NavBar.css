@@ -57,6 +57,34 @@
     left: 0;
     transition: width 0.3s ease-in-out;
 }
+/* Navbar brand custom styles */
+.navbar-brand-custom {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between GIF and text */
+  }
+  
+  .logo-gif {
+    width: 100px; /* Increase the size of the GIF */
+    height: auto;
+    
+  }
+  
+  @font-face {
+    font-family: 'CyGun';
+    src: url('../../assets/cygun.ttf') format('truetype'); /* Adjust path if needed */
+  }
+  
+  .mihawk-text {
+    font-size: 2.5rem; /* Large font size */
+    font-family: 'CyGun', sans-serif; /* Use the CyGun font */
+    color: #C72F48; /* Neon-like color */
+    font-weight: bold;
+    letter-spacing: 3px; /* Slight spacing for futuristic look */
+    text-transform: uppercase; /* All caps for a bold look */
+    /* Neon glow effect */
+  }
+  
 
 .nav-link:hover {
     color: #C72F48; /* Change color on hover */

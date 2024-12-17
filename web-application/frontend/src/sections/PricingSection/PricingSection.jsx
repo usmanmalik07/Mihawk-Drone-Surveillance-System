@@ -1,106 +1,83 @@
 import React, { useState } from 'react';
-import { FaCode, FaMobileAlt, FaBrain, FaCogs, FaVideo, FaPaintBrush } from 'react-icons/fa'; // Importing icons
+import { FaVideo, FaBullhorn, FaRobot, FaCloud, FaBrain, FaBell, FaLock, FaPlug } from 'react-icons/fa';
 import "./PricingSection.css";
 import { Link } from 'react-router-dom';
 
 export const servicesPricingData = [
   {
-    title: "Full Stack Development",
-    description: "Building robust web applications with both front-end and back-end technologies.",
-    price: 199,
-    icon: <FaCode />, // Add the icon here
-    details: [
-      "Responsive design",
-      "8 hours/day",
-      "Deployment",
-      "Customize",
-      "API integration",
-      "Database setup",
-      "Security & Authentication",
-      "Performance optimization"
-    ]
-  },
-  {
-    title: "Mobile App Development",
-    description: "Creating user-friendly mobile applications for iOS and Android platforms.",
-    price: 299,
-    icon: <FaMobileAlt />, // Add the icon here
-    details: [
-      "Cross-platform",
-      "Full app deployment",
-      "API integration",
-      "Push notifications",
-      "App store submission",
-      "Offline functionality",
-      "User authentication",
-      "In-app purchases"
-    ]
-  },
-  {
-    title: "Machine Learning",
-    description: "Leveraging algorithms and data to build predictive models and intelligent systems.",
-    price: 399,
-    icon: <FaBrain />, // Add the icon here
-    details: [
-      "Model training",
-      "Data preprocessing",
-      "AI integrations",
-      "Custom ML solutions",
-      "Predictive analytics",
-      "Deep learning models",
-      "Data visualization",
-      "Cloud-based deployment"
-    ]
-  },
-  {
-    title: "GHL Automation",
-    description: "Automating processes and workflows using Go High Level for streamlined operations.",
-    price: 149,
-    icon: <FaCogs />, // Add the icon here
-    details: [
-      "Automated workflows",
-      "Custom pipelines",
-      "CRM integration",
-      "Reports & analytics",
-      "Email marketing automation",
-      "SMS campaigns",
-      "Appointment scheduling",
-      "Funnel management"
-    ]
-  },
-  {
-    title: "Video Editing",
-    description: "Producing engaging video content with professional editing techniques and tools.",
-    price: 99,
+    title: "Video Streaming",
+    description: "Delivering high-quality video with minimal latency for smooth, uninterrupted surveillance.",
     icon: <FaVideo />, // Add the icon here
     details: [
-      "Professional editing",
-      "Transitions & effects",
-      "4K resolution",
-      "Color grading",
-      "Audio synchronization",
-      "Motion graphics",
-      "Storyboarding",
-      "Video optimization for platforms"
+      "Real-time streaming",
+      "Low-latency video feed",
+      "Resolution support",
+      "Cross-device compatibility",
+      "Adaptive streaming based on bandwidth"
     ]
   },
   {
-    title: "Graphic Designing",
-    description: "Crafting visually appealing designs for branding, marketing, and more.",
-    price: 89,
-    icon: <FaPaintBrush />, // Add the icon here
+    title: "Real-Time Monitoring",
+    description: "Providing 24/7 surveillance with continuous video feed and real-time event detection.",
+    icon: <FaBullhorn />, // Add the icon here
     details: [
-      "Logo design",
-      "Custom illustrations",
-      "Branding",
-      "Marketing materials",
-      "Social media assets",
-      "UI/UX design",
-      "Packaging design",
-      "Typography"
+      "24/7 surveillance",
+      "Multi-camera monitoring",
+      "Real-time movement detection",
+      "Live video display",
+      "Recording for later review"
+    ]
+  },
+  {
+    title: "Suspicious Activity",
+    description: "Detecting abnormal behaviors in real-time using AI and machine learning for enhanced accuracy.",
+    icon: <FaRobot />, // Add the icon here
+    details: [
+      "Real-time abnormal behavior detection",
+      "AI-powered analysis",
+      "Instant alerts to authorities",
+      "Reduced false positives",
+      "Customizable detection algorithms"
+    ]
+  },
+  {
+    title: "Cloud Infrastructure",
+    description: "Scalable cloud solutions for storing large amounts of surveillance data securely.",
+    icon: <FaCloud />, // Add the icon here
+    details: [
+      "Scalable cloud storage",
+      "Remote access to footage",
+      "High availability & reliability",
+      "Data encryption",
+      "Seamless integration with IT systems"
+    ]
+  },
+  {
+    title: "AI-Powered Analytics",
+    description: "Using AI to analyze video feeds in real-time and generate actionable insights.",
+    icon: <FaBrain />, // Add the icon here
+    details: [
+      "Real-time video analysis",
+      "Pattern recognition (movement, behavior)",
+      "Actionable insights for decision-making",
+      "Continuous improvement through machine learning",
+      "Reduced manual intervention"
+    ]
+  },
+  {
+    title: "Automated Alerts",
+    description: "Generating real-time alerts for security teams and authorities upon detecting threats.",
+    icon: <FaBell />, // Add the icon here
+    details: [
+      "Instant notifications",
+      "Customizable alert thresholds",
+      "Multiple alert methods (SMS, email, app)",
+      "Real-time response management",
+      "Emergency alerts for critical incidents"
     ]
   }
 ];
+
 
 const PricingSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -108,7 +85,7 @@ const PricingSection = () => {
   return (
     <div className="my-8 mx-0" style={{ color: "white"}}>
       <h3 className="2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl text-2xl font-semibold mb-3" style={ {color:'#fff'}}>
-        Services <span style={{ color: "rgb(199,47,72)" }}>Pricing</span>
+        Services <span style={{ color: "rgb(199,47,72)" }}>Detail</span>
       </h3>
       <div className="pricing-card-container">
         {servicesPricingData.map((service, index) => (
@@ -147,7 +124,7 @@ const PricingSection = () => {
                 {hoveredIndex === index ? (
                   <span className='text-2xl font-semibold'>Book Now</span>
                 ) : (
-                  <><span className='text-2xl font-semibold'>{service.price}</span>$</>
+                  <><span className='text-2xl font-semibold'>{"Learn More"}</span></>
                 )}
               </div>
             </Link>

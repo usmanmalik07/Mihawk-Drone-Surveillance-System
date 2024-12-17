@@ -18,31 +18,31 @@ const CountUpBar = () => {
                             <CountUp start={0} end={10} duration={2} />+
                         </p>
                     )}
-                    <p className="countup-label text-base font-light">Active Employees</p>
+                    <p className="countup-label text-base font-light">Active Drones</p>
                 </div>
                 <div className="countup-separator md:w-[1px] md:h-[40px] w-[40px] h-[1px]" />
                 <div className="countup-item flex flex-col justify-center items-center ">
                     {counterOn && (
                         <p className="countup-value text-2xl font-medium">
-                            <CountUp start={0} end={28} duration={2} />
+                            <CountUp start={0} end={453} duration={2} />
                         </p>
                     )}
-                    <p className="countup-label text-base font-light">Active Projects</p>
+                    <p className="countup-label text-base font-light">Alerts Generated</p>
                 </div>
                 <div className="countup-separator md:w-[1px] md:h-[40px] w-[40px] h-[1px]" />
                 <div className="countup-item flex flex-col justify-center items-center ">
                     {counterOn && (
                         <p className="countup-value text-2xl font-medium">
-                            <CountUp start={0} end={103} duration={2} />
+                            <CountUp start={0} end={7454} duration={2} />
                         </p>
                     )}
-                    <p className="countup-label text-base font-light">Completed Projects</p>
+                    <p className="countup-label text-base font-light">Monitoring Hours</p>
                 </div>
                 <div className="countup-separator md:w-[1px] md:h-[40px] w-[40px] h-[1px]" />
                 <div className="countup-item flex flex-col justify-center items-center ">
                     {counterOn && (
                         <p className="countup-value text-2xl font-medium">
-                            <CountUp start={0} end={31} duration={2} />
+                            <CountUp start={0} end={6} duration={2} />
                         </p>
                     )}
                     <p className="countup-label text-base font-light">Returning Clients</p>

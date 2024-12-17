@@ -10,8 +10,13 @@ function NavBar() {
   const [showNavbar, setShowNavbar] = useState(true);
   const [expanded, setExpanded] = useState(false); // Track whether navbar is expanded
   const lastScrollY = useRef(0); // Use useRef to store scroll position across renders
+  
+  // Define routes where the Login button should not be displayed
+  const noLoginRoutes = ['/admin-dashboard', '/observer-dashboard', '/operator-dashboard', '/user-info'];
 
-  // Effect to handle scroll changes on the home page
+  // Define routes where the navbar should not hide on scroll
+  const noHideRoutes = ['/admin-dashboard', '/observer-dashboard', '/operator-dashboard', '/user-info'];
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 500) {
@@ -19,7 +24,7 @@ function NavBar() {
       } else {
         setNavbarBackground(false);
       }
-
+  
       // Determine if we should show or hide the navbar
       if (window.scrollY > lastScrollY.current) {
         setShowNavbar(false); // User is scrolling down, hide the navbar
@@ -28,18 +33,19 @@ function NavBar() {
       }
       lastScrollY.current = window.scrollY; // Update the lastScrollY ref
     };
-
-    if (['/', '/services', '/book-an-appointment', '/contact-us'].includes(location.pathname)) {
+  
+    if (!noHideRoutes.includes(location.pathname)) {
+      // Only add the scroll event listener if the current route is not in the noHideRoutes list
       window.addEventListener('scroll', handleScroll);
       setNavbarBackground(window.scrollY > 500); // Set initial background on page load
     } else {
       setNavbarBackground(true); // Always apply background for non-home pages
     }
-
+  
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [location.pathname]);
+  }, [location.pathname, noHideRoutes]); // Add noHideRoutes to dependency array
 
   // Function to handle link click and close the navbar on mobile
   const handleLinkClick = () => {
@@ -71,14 +77,13 @@ function NavBar() {
       style={{ padding: '20px 5vw', zIndex: '1000' }}
     >
       <div className="d-flex align-items-center w-100">
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/" className="navbar-brand-custom d-flex align-items-center">
           <img
-            style={{ position: 'relative', bottom: '2px' }}
-            src={require('../../assets/untitled_design__9_.png')}
-            width="100"
-            height="auto"
-            alt="Buzz Solutions logo"
+            src={require('../../assets/dro.gif')} // Your GIF file path
+            alt="Mihawk Logo GIF"
+            className="logo-gif"
           />
+          <span className="mihawk-text">Mihawk</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -111,10 +116,22 @@ function NavBar() {
               as={Link}
               to="/contact-us"
               onClick={handleLinkClick} // Close the navbar after clicking the link
-              className="px-3"
+              className={`px-3 ${location.pathname === '/contact-us' ? 'active' : ''}`}
             >
-              <button className="btn gradient-button">Contact</button>
+              <span>Contact Us</span>
             </Nav.Link>
+
+            {/* Conditionally render the login button */}
+            {!noLoginRoutes.includes(location.pathname) && (
+              <Nav.Link
+                as={Link}
+                to="/login"
+                onClick={handleLinkClick} // Close the navbar after clicking the link
+                className="px-3"
+              >
+                <button className="btn gradient-button">Login</button>
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </div>

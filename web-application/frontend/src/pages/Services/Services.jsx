@@ -12,7 +12,7 @@ const Services = () => {
   }, []); // Empty dependency array to ensure this runs only once when the component mounts
 
   return (<>
-  
+    
     <div className="services-container">
         <PricingCard/>
     </div>

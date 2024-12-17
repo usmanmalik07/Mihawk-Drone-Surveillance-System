@@ -28,12 +28,12 @@ const Footer = () => {
     <div className="lp-footer py-14">
       <div className="footer-den-info">
         <img
-          src={require("../../assets/buzzsols-logo-white.png")}
+          src={require("../../assets/dro.gif")}
           className="w-24 mb-2"
           alt=""
         />
         <p className="w-full mt-2">
-          Where technology meets <span style={{ color: "rgb(199, 47, 72)" }}>buzz</span>
+          Eyes Above, Safety <span style={{ color: "rgb(199, 47, 72)" }}>Below</span>
         </p>
       </div>
       <div className="footer-links">
@@ -52,6 +52,9 @@ const Footer = () => {
         <Link to="/contact-us" className="pt-1" onClick={scrollToTop}>
           Contact Us
         </Link>
+        <Link to="/login" className="pt-1" onClick={scrollToTop}>
+          Login
+        </Link>
       </div>
       <div className="footer-follow-us">
         <h5 className="font-medium mb-2" style={{ color: "rgb(199, 47, 72)" }}>
@@ -60,10 +63,10 @@ const Footer = () => {
         <div>
           <div
             className="my-2 mt-3 text-sm cursor-pointer"
-            onClick={() => handleCopy("buzzsols1122@gmail.com")}
+            onClick={() => handleCopy("contact@mihawk.com")}
           >
             <i className="fa-solid fa-envelope mr-1" style={{ color: "rgb(199, 47, 72)" }}></i>{" "}
-            buzzsols1122@gmail.com
+            contact@miwahk.com
           </div>
           <div
             className="my-2 text-sm cursor-pointer"
@@ -76,11 +79,11 @@ const Footer = () => {
             <i className="fa-brands fa-linkedin mr-1" style={{ color: "rgb(199, 47, 72)" }}></i>
             <a
               style={{ color: "white", fontSize: "inherit" }}
-              href="https://www.linkedin.com/company/buzz-sol/"
+              href="https://www.linkedin.com/company"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Buzz Solutions
+              Mihawk
             </a>
           </div>
         </div>

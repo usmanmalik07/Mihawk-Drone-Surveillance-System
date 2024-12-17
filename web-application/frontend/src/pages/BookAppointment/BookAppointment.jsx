@@ -343,13 +343,13 @@ const handleCloseSnackbar = () => {
               Submit
             </Button> */}
             <Button
-            // className="bg-[#C72F48] hover:bg-[#a92339] border-[#C72F48] hover:border-[#a92339] w-[350px] text-2xl mb-2"
-            className='mt-3 bn4 border-none hover:border-none w-[350px] py-2 text-base'
-            variant="primary"
-            type="submit"
-            >
-            Submit
-          </Button>
+              className="mt-3 bn4 border-none hover:border-none w-[350px] py-2 text-base mb-4"  // Added mb-4 to add a gap between the button and footer
+              variant="primary"
+              type="submit"
+              >
+               Submit
+              </Button>
+
           </div>
         </form>
       </div>
