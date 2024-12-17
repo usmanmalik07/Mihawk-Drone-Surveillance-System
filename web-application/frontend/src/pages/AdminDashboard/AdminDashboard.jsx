@@ -39,7 +39,7 @@ const AdminDashboardPage = () => {
         <div className="video-section">
           <h3 className="video-title">Live Video Feed</h3>
           <div className="video-player">
-          <img src="http://127.0.0.1:8000/video_feed" className="stream" alt="Live Video Stream" />
+          <img src="http://192.168.100.14:8000/video_feed" className="stream" alt="Live Video Stream" />
 
           </div>
         </div>
