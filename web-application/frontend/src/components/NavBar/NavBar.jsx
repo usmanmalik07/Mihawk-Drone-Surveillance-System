@@ -4,13 +4,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useLocation } from 'react-router-dom';
 
+
 function NavBar() {
   const location = useLocation(); // Get the current route
   const [navbarBackground, setNavbarBackground] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [expanded, setExpanded] = useState(false); // Track whether navbar is expanded
   const lastScrollY = useRef(0); // Use useRef to store scroll position across renders
-
+  const noLoginRoutes = ['/admin-dashboard','/observer-dashboard','/operator-dashboard', '/user-info'];
   // Effect to handle scroll changes on the home page
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +30,7 @@ function NavBar() {
       lastScrollY.current = window.scrollY; // Update the lastScrollY ref
     };
 
-    if (['/', '/services', '/book-an-appointment', '/contact-us'].includes(location.pathname)) {
+    if (['/', '/services', '/book-an-appointment', '/contact-us','/login'].includes(location.pathname)) {
       window.addEventListener('scroll', handleScroll);
       setNavbarBackground(window.scrollY > 500); // Set initial background on page load
     } else {
@@ -71,14 +72,13 @@ function NavBar() {
       style={{ padding: '20px 5vw', zIndex: '1000' }}
     >
       <div className="d-flex align-items-center w-100">
-        <Navbar.Brand href="/">
+      <Navbar.Brand href="/" className="navbar-brand-custom d-flex align-items-center">
           <img
-            style={{ position: 'relative', bottom: '2px' }}
-            src={require('../../assets/white_and_red.png')}
-            width="100"
-            height="auto"
-            alt="Buzz Solutions logo"
+            src={require('../../assets/dro.gif')} // Your GIF file path
+            alt="Mihawk Logo GIF"
+            className="logo-gif"
           />
+          <span className="mihawk-text">Mihawk</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -111,10 +111,22 @@ function NavBar() {
               as={Link}
               to="/contact-us"
               onClick={handleLinkClick} // Close the navbar after clicking the link
-              className="px-3"
+              className={`px-3 ${location.pathname === '/contact-us' ? 'active' : ''}`}
             >
-              <button className="btn gradient-button">Contact</button>
+             <span>Contact Us</span> 
             </Nav.Link>
+            
+            {!noLoginRoutes.includes(location.pathname) && (
+              <Nav.Link
+                as={Link}
+                to="/login"
+                onClick={handleLinkClick} // Close the navbar after clicking the link
+                className="px-3"
+              >
+                <button className="btn gradient-button">Login</button>
+              </Nav.Link>
+            )}
+                          
           </Nav>
         </Navbar.Collapse>
       </div>
