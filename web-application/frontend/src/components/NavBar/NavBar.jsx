@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useLocation } from 'react-router-dom';
 
+
 function NavBar() {
   const location = useLocation(); // Get the current route
   const [navbarBackground, setNavbarBackground] = useState(false);
@@ -71,14 +72,13 @@ function NavBar() {
       style={{ padding: '20px 5vw', zIndex: '1000' }}
     >
       <div className="d-flex align-items-center w-100">
-        <Navbar.Brand href="/">
+      <Navbar.Brand href="/" className="navbar-brand-custom d-flex align-items-center">
           <img
-            style={{ position: 'relative', bottom: '2px' }}
-            src={require('../../assets/white_and_red.png')}
-            width="100"
-            height="auto"
-            alt="Buzz Solutions logo"
+            src={require('../../assets/dro.gif')} // Your GIF file path
+            alt="Mihawk Logo GIF"
+            className="logo-gif"
           />
+          <span className="mihawk-text">Mihawk</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-auto" />
         <Navbar.Collapse id="basic-navbar-nav">
