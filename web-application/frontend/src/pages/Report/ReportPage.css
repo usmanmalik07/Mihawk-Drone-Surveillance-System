@@ -1,0 +1,41 @@
+.report-page {
+    background-color: #0d0d11; /* Dark background to match the theme */
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .report-title {
+    font-size: 2rem;
+    color: #e63946; /* Red color for title */
+    margin-bottom: 20px;
+  }
+  
+  .detections-container {
+    max-height: 500px; /* Set a max height to make it scrollable */
+    overflow-y: auto;
+    background-color: #1b1b22;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  }
+  
+  .detection-item {
+    background-color: #27272f; /* Slightly lighter background for items */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+  }
+  
+  .detection-name {
+    font-weight: bold;
+    color: #e63946;
+  }
+  
+  .detection-time {
+    color: #b0b0b0;
+  }
+  
