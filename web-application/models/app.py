@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Query
-from fastapi.responses import StreamingResponse, HTMLResponse
+from fastapi.responses import JSONResponse  # Import JSONResponse
 from ultralytics import YOLO
 import cv2
 import threading
@@ -8,12 +8,36 @@ import uvicorn
 import torch
 import torchvision.transforms as T
 from torchvision.models.detection import fasterrcnn_resnet50_fpn
+from datetime import datetime
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
+from fastapi.responses import StreamingResponse  # <-- Add this import
+
+
 
 # FastAPI application
 app = FastAPI()
 
+# Define the allowed origins (in this case, your frontend URL)
+origins = [
+    "http://localhost:3000",  # React app running on localhost:3000
+    "http://127.0.0.1:3000",  # Localhost variant
+]
+
+# Add the CORSMiddleware to FastAPI
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Allows all origins listed in the 'origins' list
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
+
 # Thread-safe Queue for frames
 frame_queue = queue.Queue(maxsize=10)
+
+# Detected items list (item, timestamp)
+detected_items = []
 
 # RTSP settings
 rtsp_url = "rtsp://@192.168.100.5:1945"  # Replace with your RTSP URL
@@ -33,6 +57,10 @@ models["rcnn"].eval()
 # Preprocessing for Faster R-CNN
 transform = T.ToTensor()
 
+def store_detection(item_name):
+    """Store the detected item and its timestamp."""
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    detected_items.append({"item": item_name, "timestamp": timestamp})
 
 def get_rtsp_frame(rtsp_url):
     """Capture frames from RTSP stream and add to the queue."""
@@ -55,14 +83,15 @@ def get_rtsp_frame(rtsp_url):
             frame_queue.put(frame_resized)
     cap.release()
 
-
 def process_frame_yolo(frame, model_name):
     """Run YOLOv8 model detection on a single frame."""
     model = models[model_name]
     results = model(frame)  # Run inference
+    if results:
+        for result in results[0].boxes.xywh:
+            store_detection("Detected Object")  # Example of detection
     annotated_frame = results[0].plot()  # Annotate frame with predictions
     return annotated_frame
-
 
 def process_frame_rcnn(frame):
     """Run Faster R-CNN detection on a single frame."""
@@ -72,12 +101,10 @@ def process_frame_rcnn(frame):
     # Perform inference
     outputs = models["rcnn"](tensor_frame)
 
-    # Draw bounding boxes
+    # Detect objects and store
     for box in outputs[0]['boxes'].detach().numpy():
-        (x1, y1, x2, y2) = map(int, box)
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        store_detection("Faster R-CNN Detected Object")  # Example of detection
     return frame
-
 
 def generate_frames(model_name):
     """Generate processed frames for video feed."""
@@ -98,6 +125,11 @@ def generate_frames(model_name):
         except queue.Empty:
             print("Frame queue is empty. Waiting for frames...")
 
+# Route to get detections for the report page (returns JSON now)
+@app.get("/get_detections")
+async def get_detections():
+    """API to get the list of detected items with timestamps."""
+    return JSONResponse(content={"detections": detected_items})  # Return JSON response
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
@@ -117,12 +149,12 @@ async def home():
             <li><a href="/video_feed?model=yolov8n">YOLOv8n</a></li>
             <li><a href="/video_feed?model=yolov8s">YOLOv8s</a></li>
             <li><a href="/video_feed?model=rcnn">Faster R-CNN</a></li>
+            <li><a href="/get_detections">View Detection Report</a></li>
         </ul>
     </body>
     </html>
     """
     return html_content
-
 
 @app.get("/video_feed")
 async def video_feed(model: str = Query("yolov8n", description="Model name: yolov8n, yolov8s, or rcnn")):
@@ -131,7 +163,6 @@ async def video_feed(model: str = Query("yolov8n", description="Model name: yolo
         return HTMLResponse("<h1>Invalid model selected. Use 'yolov8n', 'yolov8s', or 'rcnn'.</h1>", status_code=400)
 
     return StreamingResponse(generate_frames(model), media_type="multipart/x-mixed-replace; boundary=frame")
-
 
 if __name__ == "__main__":
     # Start RTSP stream capture thread
