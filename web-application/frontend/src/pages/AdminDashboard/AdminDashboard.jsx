@@ -72,10 +72,10 @@ const AdminDashboardPage = () => {
           />
           <div className="user-info">
             <h4>
-              Name: <span>John Doe</span>
+              Name: <span>Admin 1</span>
             </h4>
             <h4>
-              Email: <span>johndoe@example.com</span>
+              Email: <span>Admin@gmail.com</span>
             </h4>
             <h4>
               Role: <span>Admin</span>
