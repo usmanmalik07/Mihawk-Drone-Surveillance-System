@@ -1,18 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import "./OperatorDashboard.css";
+import Footer from "../../components/Footer/Footer";
 
-const OperatorDashboardPage = () => {
-  return (
+const AdminDashboardPage = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedModel, setSelectedModel] = useState("v8n");
+  const [loading, setLoading] = useState(false); // Loading state
+
+  // Function to toggle play/stop
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  // Function to handle model change
+  const handleModelChange = (event) => {
+    const model = event.target.value;
+    setSelectedModel(model);
+    setLoading(true); // Set loading to true when changing model
+    console.log(`Switching to ${model}`);
+  };
+
+  // Dynamically set the video feed URL based on selected model
+  const getVideoFeedSrc = () => {
+    if (!isPlaying) {
+      return "https://via.placeholder.com/800x450?text=Stream+Stopped"; // Placeholder image
+    }
+
+    switch (selectedModel) {
+      case "v8n":
+        return "http://192.168.56.1:8000/video_feed?model=yolov8n";
+      case "v11":
+        return "http://192.168.56.1:8000/video_feed?model=yolov8s";
+      case "cv":
+        return "http://192.168.56.1:8000/video_feed?model=rcnn";
+      default:
+        return "https://via.placeholder.com/800x450?text=No+Stream+Available";
+    }
+  };
+
+  return (<>
     <div className="dashboard-container">
       {/* Sidebar */}
       <div className="sidebar">
         <h3 className="sidebar-title">Dashboard</h3>
         <ul className="sidebar-menu">
           <li>Overview</li>
-          <li>Reports</li>
+          <li>
+            <a href="/report" className="sidebar-link">
+            Reports
+            </a>
+          </li>
           <li>Results</li>
           <li>Analytics</li>
           <li>Settings</li>
+          
         </ul>
       </div>
 
@@ -26,28 +67,63 @@ const OperatorDashboardPage = () => {
             className="user-image"
           />
           <div className="user-info">
-            <h4>Name: <span>John Doe</span></h4>
-            <h4>Email: <span>johndoe@example.com</span></h4>
-            <h4>Role: <span>Operator</span></h4>
+            <h4>
+              Name: <span>Operator 1</span>
+            </h4>
+            <h4>
+              Email: <span>Operator@gmail.com</span>
+            </h4>
+            <h4>
+              Role: <span>Operator</span>
+            </h4>
           </div>
         </div>
 
         {/* Video Section */}
         <div className="video-section">
           <h3 className="video-title">Live Video Feed</h3>
+
+          {/* Play/Stop Button and Dropdown */}
+          <div className="video-controls">
+            <button
+              className={`play-stop-button ${isPlaying ? "stop" : "play"}`}
+              onClick={togglePlay}
+            >
+              {isPlaying ? "Stop" : "Play"}
+            </button>
+            <select
+              className="model-dropdown"
+              value={selectedModel}
+              onChange={handleModelChange}
+            >
+              <option value="v8n">yolov8n</option>
+              <option value="v11">yolov8s</option>
+              <option value="cv">RCNN</option>
+            </select>
+          </div>
+
+          {/* Video Player */}
           <div className="video-player">
-            <video controls>
-              <source
-                src="https://www.w3schools.com/html/mov_bbb.mp4"
-                type="video/mp4"
+            {loading ? ( // Display loading text while loading
+              <div className="loading-indicator">
+                <p>Loading Stream...</p>
+              </div>
+            ) : (
+              <img
+                src={getVideoFeedSrc()}
+                className="stream"
+                alt={isPlaying ? "Live Video Stream" : "Stream Stopped"}
+                onLoad={() => setLoading(false)} // Set loading to false when image is loaded
               />
-              Your browser does not support the video tag.
-            </video>
+            )}
           </div>
         </div>
       </div>
+
     </div>
+    <Footer/>
+    </>
   );
 };
 
-export default OperatorDashboardPage;
+export default AdminDashboardPage;

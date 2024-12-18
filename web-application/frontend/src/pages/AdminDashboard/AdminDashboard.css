@@ -8,10 +8,10 @@ body {
 
 /* Dashboard Container */
 .dashboard-container {
-  margin-top: 130px;
+  margin-top: 40px;
   display: flex;
   height: 100vh;
-  margin-bottom: 200px;
+  margin-bottom: 300px;
 }
 
 /* Sidebar */

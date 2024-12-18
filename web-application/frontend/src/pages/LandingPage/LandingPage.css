@@ -8,6 +8,7 @@ html, body {
 }
 body{
     overflow-x: hidden;
+    background-color: #171820;
     
 }
 * {
@@ -21,7 +22,7 @@ body{
     animation: shake 1s linear infinite; /* Shortened duration for each cycle and infinite repetition */
     animation-iteration-count: 2;
     color: #c92d45;
-     /* Number of times the shake repeats within 5 seconds */
+    margin-bottom: 30px;      /* Number of times the shake repeats within 5 seconds */
 }
 
 /* Define the keyframes for the shake animation */

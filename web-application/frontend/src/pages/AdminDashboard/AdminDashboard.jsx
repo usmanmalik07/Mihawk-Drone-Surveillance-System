@@ -72,10 +72,10 @@ const AdminDashboardPage = () => {
           />
           <div className="user-info">
             <h4>
-              Name: <span>John Doe</span>
+              Name: <span>Admin 1</span>
             </h4>
             <h4>
-              Email: <span>johndoe@example.com</span>
+              Email: <span>Admin@gmail.com</span>
             </h4>
             <h4>
               Role: <span>Admin</span>
@@ -101,8 +101,8 @@ const AdminDashboardPage = () => {
               onChange={handleModelChange}
             >
               <option value="v8n">yolov8n</option>
-              <option value="v11">yolov11</option>
-              <option value="cv">OpenCV</option>
+              <option value="v11">yolov8s</option>
+              <option value="cv">RCNN</option>
             </select>
           </div>
 
