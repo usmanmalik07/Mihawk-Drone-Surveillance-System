@@ -101,7 +101,7 @@ const AdminDashboardPage = () => {
               onChange={handleModelChange}
             >
               <option value="v8n">yolov8n</option>
-              <option value="v11">yolov11</option>
+              <option value="v11">yolov8s</option>
               <option value="cv">OpenCV</option>
             </select>
           </div>
