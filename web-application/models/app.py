@@ -1,19 +1,14 @@
-from fastapi import FastAPI, Query
-from fastapi.responses import JSONResponse  # Import JSONResponse
+import torch
+import torchvision.transforms as T
 from ultralytics import YOLO
 import cv2
 import threading
 import queue
+from fastapi import FastAPI, Query
+from fastapi.responses import JSONResponse, HTMLResponse, StreamingResponse
 import uvicorn
-import torch
-import torchvision.transforms as T
-from torchvision.models.detection import fasterrcnn_resnet50_fpn
 from datetime import datetime
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
-from fastapi.responses import StreamingResponse  # <-- Add this import
-
-
 
 # FastAPI application
 app = FastAPI()
@@ -44,17 +39,17 @@ rtsp_url = "rtsp://@192.168.100.5:1945"  # Replace with your RTSP URL
 frame_width = 640
 frame_height = 480
 
+# Device selection (GPU if available, otherwise CPU)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 # Load models
 models = {
     "yolov8n": YOLO("yolov8n.pt"),  # YOLOv8n model
     "yolov8s": YOLO("yolov8s.pt"),  # YOLOv8s model
-    "rcnn": fasterrcnn_resnet50_fpn(pretrained=True)  # Faster R-CNN model
+    "yolov5": YOLO("yolov5s.pt"),  # YOLOv5 model (small version)
 }
 
-# Set Faster R-CNN to evaluation mode
-models["rcnn"].eval()
-
-# Preprocessing for Faster R-CNN
+# Preprocessing for YOLOv5
 transform = T.ToTensor()
 
 def store_detection(item_name):
@@ -84,7 +79,7 @@ def get_rtsp_frame(rtsp_url):
     cap.release()
 
 def process_frame_yolo(frame, model_name):
-    """Run YOLOv8 model detection on a single frame."""
+    """Run YOLOv5 or YOLOv8 model detection on a single frame."""
     model = models[model_name]
     results = model(frame)  # Run inference
     if results:
@@ -93,29 +88,14 @@ def process_frame_yolo(frame, model_name):
     annotated_frame = results[0].plot()  # Annotate frame with predictions
     return annotated_frame
 
-def process_frame_rcnn(frame):
-    """Run Faster R-CNN detection on a single frame."""
-    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
-    tensor_frame = transform(frame_rgb).unsqueeze(0)  # Convert to tensor
-
-    # Perform inference
-    outputs = models["rcnn"](tensor_frame)
-
-    # Detect objects and store
-    for box in outputs[0]['boxes'].detach().numpy():
-        store_detection("Faster R-CNN Detected Object")  # Example of detection
-    return frame
-
 def generate_frames(model_name):
     """Generate processed frames for video feed."""
     while True:
         try:
             frame = frame_queue.get(timeout=5)  # Fetch a frame from the queue
 
-            if model_name == "rcnn":
-                processed_frame = process_frame_rcnn(frame)  # Faster R-CNN detection
-            else:
-                processed_frame = process_frame_yolo(frame, model_name)  # YOLOv8 detection
+            # Process using the selected YOLO model
+            processed_frame = process_frame_yolo(frame, model_name)
 
             # Encode frame as JPEG
             _, buffer = cv2.imencode('.jpg', processed_frame, [cv2.IMWRITE_JPEG_QUALITY, 70])
@@ -143,12 +123,12 @@ async def home():
         <title>Drone Surveillance System</title>
     </head>
     <body>
-        <h1>YOLO and Faster R-CNN Detection Streams</h1>
+        <h1>YOLO Detection Streams</h1>
         <p>Choose a video feed:</p>
         <ul>
             <li><a href="/video_feed?model=yolov8n">YOLOv8n</a></li>
             <li><a href="/video_feed?model=yolov8s">YOLOv8s</a></li>
-            <li><a href="/video_feed?model=rcnn">Faster R-CNN</a></li>
+            <li><a href="/video_feed?model=yolov5">YOLOv5</a></li>
             <li><a href="/get_detections">View Detection Report</a></li>
         </ul>
     </body>
@@ -157,10 +137,10 @@ async def home():
     return html_content
 
 @app.get("/video_feed")
-async def video_feed(model: str = Query("yolov8n", description="Model name: yolov8n, yolov8s, or rcnn")):
+async def video_feed(model: str = Query("yolov8n", description="Model name: yolov8n, yolov8s, or yolov5")):
     """Route for the video stream with dynamic model selection."""
     if model not in models:
-        return HTMLResponse("<h1>Invalid model selected. Use 'yolov8n', 'yolov8s', or 'rcnn'.</h1>", status_code=400)
+        return HTMLResponse("<h1>Invalid model selected. Use 'yolov8n', 'yolov8s', or 'yolov5'.</h1>", status_code=400)
 
     return StreamingResponse(generate_frames(model), media_type="multipart/x-mixed-replace; boundary=frame")
 
