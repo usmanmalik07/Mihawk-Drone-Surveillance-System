@@ -102,7 +102,7 @@ const AdminDashboardPage = () => {
             >
               <option value="v8n">yolov8n</option>
               <option value="v11">yolov8s</option>
-              <option value="cv">OpenCV</option>
+              <option value="cv">RCNN</option>
             </select>
           </div>
 
