@@ -42,7 +42,7 @@ const About = () => {
           We blend innovation with precision to deliver state-of-the-art drone surveillance solutions. Our technology is designed to empower safety, ensuring rapid detection and response to potential threats. By merging intelligence and efficiency, we transform modern surveillance into a proactive force, safeguarding communities and redefining security standards.
         </p>
         <div className='read-more-button'>
-          <Link to="https://www.linkedin.com/company/buzz-sol" className="text-decoration-none text-inherit">
+          <Link to="https://www.linkedin.com/in/usman-malik-827147245/" className="text-decoration-none text-inherit">
             <span>Discover More</span>
           </Link>
         </div>
