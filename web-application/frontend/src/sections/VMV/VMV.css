@@ -1,17 +1,21 @@
 .vmv-container {
-    margin: 10vh 5vw;
+    margin: 0; /* Remove any extra margin */
+    padding: 0 5vw 40px; /* Add padding on left, right, and bottom to create gap */
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Two columns */
-    grid-template-rows: repeat(3, auto); /* Three rows, with 'auto' height */
+    grid-template-rows: repeat(2, auto); /* Adjust rows based on content */
     gap: 30px; /* Space between grid items */
+    background-color: #171820; /* Gray background */
+    width: 100%; /* Ensure full width */
+    
 }
 
 .our-vision,
 .our-value,
 .our-mission {
-    position: relative; /* Ensures that the box shadow applies relative to each element */
-    border-radius: 10px; /* Optional: Add rounded corners to enhance the glow effect */
-    transition: box-shadow 0.3s ease; /* Smooth transition on hover */
+    position: relative;
+    border-radius: 10px; /* Rounded corners */
+    transition: box-shadow 0.3s ease;
 }
 
 .our-vision {
@@ -20,22 +24,21 @@
     background-color: #c72f48;
     padding: 30px;
     color: white;
-    box-shadow: 0 0 10px 3px rgba(199, 47, 72, 0.6); /* Subtle outer glow with matching color */
+    box-shadow: 0 0 10px 3px rgba(199, 47, 72, 0.6);
 }
 
 .our-value {
     grid-column: 2;
-    grid-row: span 2; /* Spans 2 rows */
+    grid-row: span 2;
     background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGw5OW14a3V5ZHRoczV1amsxOGppNGw1MHVvNDNuMm9udzU1NmZ2biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7b8jdNUoFBdcoILjjv/giphy.webp');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     padding: 30px;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.6); /* Darker glow for image background */
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.6);
 }
 
 .our-mission {
@@ -44,33 +47,33 @@
     background-color: #3a3a3a;
     padding: 30px;
     color: white;
-    box-shadow: 0 0 10px 3px rgba(58, 58, 58, 0.6); /* Subtle outer glow with matching gray */
+    box-shadow: 0 0 10px 3px rgba(58, 58, 58, 0.6);
 }
 
-/* Glow effect on hover with matching colors */
+/* Hover effect */
 .our-vision:hover {
-    box-shadow: 0 0 15px 5px rgba(199, 47, 72, 0.8); /* Stronger glow with same color */
+    box-shadow: 0 0 15px 5px rgba(199, 47, 72, 0.8);
 }
 
 .our-value:hover {
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.8); /* Stronger glow with darker black */
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.8);
 }
 
 .our-mission:hover {
-    box-shadow: 0 0 15px 5px rgba(58, 58, 58, 0.8); /* Stronger glow with same gray */
+    box-shadow: 0 0 15px 5px rgba(58, 58, 58, 0.8);
 }
 
-/* Media query for screens with max-width of 786px */
+/* Media query for responsiveness */
 @media (max-width: 786px) {
     .vmv-container {
-        grid-template-columns: 1fr; /* One column */
-        grid-template-rows: auto; /* One row */
+        grid-template-columns: 1fr; /* Stack items vertically on smaller screens */
+        grid-template-rows: auto; 
     }
 
     .our-vision,
     .our-value,
     .our-mission {
-        grid-column: 1; /* All elements take the full width */
-        grid-row: auto; /* Stacks elements vertically */
+        grid-column: 1; /* Full width for each section */
+        grid-row: auto;
     }
 }

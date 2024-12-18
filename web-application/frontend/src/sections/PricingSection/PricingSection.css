@@ -21,6 +21,9 @@
   }
 }
 
+.my-8{
+  background-color: #0D0D11;
+}
 
 @keyframes backgroundTransition {   
   0% {

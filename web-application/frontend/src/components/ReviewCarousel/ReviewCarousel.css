@@ -1,16 +1,31 @@
+/* Outer wrapper for the video carousel (gray background) */
+.video-carousel-wrapper {
+  background-color: #171820; /* Gray background */
+  padding: 20px 0; /* Padding to create space on top and bottom */
+  box-sizing: border-box;
+  margin-bottom: 20px; /* Add margin to create some gap after the carousel */
+}
+
 /* Container for the video carousel */
 .video-carousel {
   max-width: 800px;
   margin: 50px auto;
   padding: 30px 20px;
-  /* background: linear-gradient(45deg, rgb(44, 44, 44), rgb(120, 27, 43)); */
   border-radius: 15px;
-  /* box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); */
   height: auto; /* Allow container to adjust based on video content */
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative; /* For positioning the arrows */
+  background-color: transparent; /* Keep the video carousel background transparent */
+}
+
+/* Additional gray background for the section below gallery */
+.my-8 {
+  background-color: #171820; /* Gray background */
+  padding: 20px 0; /* Padding around */
+  margin-top: 0; /* Adds space from the video carousel */
+  margin-bottom: 0;
 }
 
 /* Hover effect for video carousel */
@@ -75,13 +90,6 @@
 }
 
 /* Custom styles for the heading */
-.my-8 {
-  margin-top: 5vw;
-  margin-bottom: 5vw;
-  margin-left: 5vw;
-  margin-right: 5vw;
-}
-
 .geo {
   font-size: 35px;
   font-weight: bold;
