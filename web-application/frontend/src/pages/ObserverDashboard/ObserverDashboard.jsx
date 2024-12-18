@@ -89,8 +89,8 @@ const AdminDashboardPage = () => {
               value={selectedModel}
               onChange={handleModelChange}
             >
-              <option value="v8n">Yolo v8n</option>
-              <option value="v11">Yolo v8s</option>
+              <option value="v8n">yolov8n</option>
+              <option value="v11">yolov8s</option>
               <option value="cv">RCNN</option>
             </select>
           </div>
