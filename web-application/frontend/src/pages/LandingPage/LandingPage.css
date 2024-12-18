@@ -12,13 +12,14 @@ body{
 * {
     margin: 0;
     padding: 0;
+    
   }
   .blinking-text {
     display: inline-block; /* Ensure the element behaves as an inline-block for the animation */
     animation: shake 1s linear infinite; /* Shortened duration for each cycle and infinite repetition */
     animation-iteration-count: 2;
     color: #c92d45;
-    margin-bottom: 30px; /* Number of times the shake repeats within 5 seconds */
+     /* Number of times the shake repeats within 5 seconds */
 }
 
 /* Define the keyframes for the shake animation */
