@@ -8,10 +8,12 @@ html, body {
 }
 body{
     overflow-x: hidden;
+    
 }
 * {
     margin: 0;
     padding: 0;
+    
     
   }
   .blinking-text {
