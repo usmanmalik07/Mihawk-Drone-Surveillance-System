@@ -52,7 +52,8 @@ const LandingPage = () => {
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
-          height: "100%", // Ensures the text is vertically centered
+          height: "100%",
+          backgroundColor: '#171820', // Ensures the text is vertically centered
         }}
       >
         <div className='hero-text 2xl:text-8xl xl:text-7xl lg:text-6xl md:text-5xl text-4xl pt-8'
