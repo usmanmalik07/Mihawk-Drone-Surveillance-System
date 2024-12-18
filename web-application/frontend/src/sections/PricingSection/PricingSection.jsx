@@ -83,7 +83,7 @@ const PricingSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="my-8 mx-0" style={{ color: "white"}}>
+    <div className="my-8" style={{ color: "white"}}>
       <h3 className="2xl:text-6xl xl:text-5xl lg:text-4xl md:text-3xl text-2xl font-semibold mb-3" style={ {color:'#fff'}}>
         Services <span style={{ color: "rgb(199,47,72)" }}>Detail</span>
       </h3>
