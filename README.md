@@ -13,4 +13,4 @@ Github Repository for our final year project Mihawk
   ### 40% Implementation + Presentation
   
 
-## Deliverables : 40% Presentation on 16th December 2024...
+## Deliverables : 40% Presentation on 16th December 2024..
