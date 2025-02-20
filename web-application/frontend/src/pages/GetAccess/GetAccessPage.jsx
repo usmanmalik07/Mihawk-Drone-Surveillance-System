@@ -30,6 +30,8 @@ const GetAccessPage = () => {
         (response) => {
           console.log("Email sent successfully!", response);
           setFormSubmitted(true);
+          // ✅ Clear the form
+          setFormData({ name: "", email: "", note: "" });
         },
         (error) => {
           console.error("Failed to send email:", error);
