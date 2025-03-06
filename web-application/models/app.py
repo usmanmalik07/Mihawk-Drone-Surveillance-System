@@ -48,9 +48,11 @@ models = {
     "yolov8s": YOLO("yolov8s.pt"),  # YOLOv8s model
     "yolov5": YOLO("yolov5s.pt"),  # YOLOv5 model (small version)
 }
-
+model = models["yolov8n"]
+model.train(data='../models/data.yaml', epochs=50, imgsz=640)
 # Preprocessing for YOLOv5
 transform = T.ToTensor()
+
 
 def store_detection(item_name):
     """Store the detected item and its timestamp."""
