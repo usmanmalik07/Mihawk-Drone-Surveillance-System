@@ -1,40 +1,71 @@
 import React, { useState, useEffect } from "react";
-import "./ReportPage.css"; // You can style the Report page here
+import "./ReportPage.css";
 
 function ReportPage() {
   const [detections, setDetections] = useState([]);
 
   useEffect(() => {
-    // Fetch detection data from FastAPI
     const fetchDetections = async () => {
       try {
         const response = await fetch("http://localhost:8000/get_detections");
-        const data = await response.json(); // Assuming FastAPI returns JSON
-        setDetections(data.detections); // Store detections
+        const data = await response.json();
+        setDetections(data.detections);
       } catch (error) {
         console.error("Error fetching detections:", error);
       }
     };
-
     fetchDetections();
   }, []);
 
   return (
-    <div className="report-page">
-      <h1 className="report-title">Detection Report</h1>
+    <div className="report-page-container">
+      {/* Sidebar (as given by you) */}
+      <div className="sidebar">
+        <h3 className="sidebar-title">Dashboard</h3>
+        <ul className="sidebar-menu">
+          <li>Overview</li>
+          <li>
+            <a href="/report" className="sidebar-link">Reports</a>
+          </li>
+          <li>Results</li>
+          <li>Analytics</li>
+          <li>Settings</li>
+          <li>
+            <a href="/user-info" className="sidebar-link">Manage Users</a>
+          </li>
+        </ul>
+      </div>
 
-      {/* Scrollable container for detections */}
-      <div className="detections-container">
-        {detections.length > 0 ? (
-          detections.map((detection, index) => (
-            <div key={index} className="detection-item">
-              <span className="detection-name">{detection.item}</span>
-              <span className="detection-time">{detection.timestamp}</span>
-            </div>
-          ))
-        ) : (
-          <p>No detections available.</p>
-        )}
+      {/* Main Report Content */}
+      <div className="report-content">
+        <h1 className="report-title">Detection Report</h1>
+        <div className="detections-container">
+          {detections.length > 0 ? (
+            <table className="detections-table">
+              <thead>
+                <tr>
+                  <th>Object Detected</th>
+                  <th>Time</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {detections.map((detection, index) => {
+                  const dateTime = new Date(detection.timestamp);
+                  return (
+                    <tr key={index}>
+                      <td>{detection.item || "Unknown"}</td>
+                      <td>{dateTime.toLocaleTimeString()}</td>
+                      <td>{dateTime.toLocaleDateString()}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          ) : (
+            <p className="no-detections">No detections available.</p>
+          )}
+        </div>
       </div>
     </div>
   );
