@@ -36,8 +36,8 @@ detected_items = []
 
 # RTSP settings
 rtsp_url = "rtsp://@192.168.100.5:1945"  # Replace with your RTSP URL
-frame_width = 640
-frame_height = 480
+frame_width = 720
+frame_height = 720
 
 # Device selection (GPU if available, otherwise CPU)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -48,8 +48,8 @@ models = {
     "yolov8s": YOLO("yolov8s.pt"),  # YOLOv8s model
     "yolov5": YOLO("yolov5s.pt"),  # YOLOv5 model (small version)
 }
-model = models["yolov8n"]
-model.train(data='../models/data.yaml', epochs=50, imgsz=640)
+# model = models["yolov8n"]
+# model.train(data='../models/data.yaml', epochs=50, imgsz=640)
 # Preprocessing for YOLOv5
 transform = T.ToTensor()
 
