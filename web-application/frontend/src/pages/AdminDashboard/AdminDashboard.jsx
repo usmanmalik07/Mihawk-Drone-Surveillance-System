@@ -26,11 +26,11 @@ const AdminDashboardPage = () => {
 
     switch (selectedModel) {
       case "v8n":
-        return "http://192.168.100.57:8000/video_feed?model=yolov8n";
+        return "http://192.168.56.1:8000/video_feed?model=yolov8n";
       case "v11":
-        return "http://192.168.100.57:8000/video_feed?model=yolov8s";
+        return "http://192.168.56.1:8000/video_feed?model=yolov8s";
       case "cv":
-        return "http://192.168.100.57:8000/video_feed?model=yolov5";
+        return "http://192.168.56.1:8000/video_feed?model=yolov5";
       default:
         return "https://via.placeholder.com/800x450?text=No+Stream+Available";
     }
@@ -83,7 +83,7 @@ const AdminDashboardPage = () => {
           </div>
 
           {/* Video Section */}
-          <div className="video-section">
+          <div className="video-section" styles={{padding: "200px"}}>
             <h3 className="video-title">Live Video Feed</h3>
 
             {/* Play/Stop Button and Dropdown */}
@@ -113,10 +113,11 @@ const AdminDashboardPage = () => {
                 alt={isPlaying ? "Live Video Stream" : "Stream Stopped"}
               />
             </div>
+            
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer/>
     </>
   );
 };
