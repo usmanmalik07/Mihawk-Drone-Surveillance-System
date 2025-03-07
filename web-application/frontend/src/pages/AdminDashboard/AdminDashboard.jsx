@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./AdminDashboard.css";
+import Sidebar from "../../components/Sidebar/Sidebar"; // 💡 Sidebar ko import kiya
 import Footer from "../../components/Footer/Footer";
 
 const AdminDashboardPage = () => {
@@ -21,7 +22,7 @@ const AdminDashboardPage = () => {
   // Dynamically set the video feed URL based on selected model
   const getVideoFeedSrc = () => {
     if (!isPlaying) {
-      return "https://via.placeholder.com/800x450?text=Stream+Stopped"; // Placeholder image
+      return "https://via.placeholder.com/800x450?text=Stream+Stopped";
     }
 
     switch (selectedModel) {
@@ -38,27 +39,10 @@ const AdminDashboardPage = () => {
 
   return (
     <>
+    <div className="main">
+    <div className="Side"><Sidebar /></div>
       <div className="dashboard-container">
-        {/* Sidebar */}
-        <div className="sidebar">
-          <h3 className="sidebar-title">Dashboard</h3>
-          <ul className="sidebar-menu">
-            <li>Overview</li>
-            <li>
-              <a href="/report" className="sidebar-link">
-                Reports
-              </a>
-            </li>
-            <li>Results</li>
-            <li>Analytics</li>
-            <li>Settings</li>
-            <li>
-              <a href="/user-info" className="sidebar-link">
-                Manage Users
-              </a>
-            </li>
-          </ul>
-        </div>
+        
 
         {/* Main Content */}
         <div className="main-content">
@@ -83,7 +67,7 @@ const AdminDashboardPage = () => {
           </div>
 
           {/* Video Section */}
-          <div className="video-section" styles={{padding: "200px"}}>
+          <div className="video-section">
             <h3 className="video-title">Live Video Feed</h3>
 
             {/* Play/Stop Button and Dropdown */}
@@ -113,11 +97,13 @@ const AdminDashboardPage = () => {
                 alt={isPlaying ? "Live Video Stream" : "Stream Stopped"}
               />
             </div>
-            
           </div>
         </div>
       </div>
-      <Footer/>
+      
+      </div>
+      <Footer />
+      
     </>
   );
 };
