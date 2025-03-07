@@ -44,7 +44,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load models
 models = {
-    "yolov8n": YOLO("yolov8n.pt"),  # YOLOv8n model
+    "yolov8n": YOLO("best.pt"),  # YOLOv8n model
     "yolov8s": YOLO("yolov8s.pt"),  # YOLOv8s model
     "yolov5": YOLO("yolov5s.pt"),  # YOLOv5 model (small version)
 }

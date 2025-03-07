@@ -39,7 +39,7 @@ const AdminDashboardPage = () => {
   return (
     <>
       <div className="dashboard-container">
-        {/* Sidebar */}
+        {/* Sidebar
         <div className="sidebar">
           <h3 className="sidebar-title">Dashboard</h3>
           <ul className="sidebar-menu">
@@ -50,7 +50,6 @@ const AdminDashboardPage = () => {
               </a>
             </li>
             <li>Results</li>
-            <li>Analytics</li>
             <li>Settings</li>
             <li>
               <a href="/user-info" className="sidebar-link">
@@ -58,7 +57,7 @@ const AdminDashboardPage = () => {
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Main Content */}
         <div className="main-content">
