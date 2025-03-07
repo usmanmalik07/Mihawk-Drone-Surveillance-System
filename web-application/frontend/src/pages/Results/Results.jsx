@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Results.css";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto"; // Chart.js ko import karna zaroori hai
+import Sidebar from "../../components/Sidebar/Sidebar"; // Sidebar ko import kiya
+import Footer from "../../components/Footer/Footer";
 
 const Results = () => {
   // Dummy Data for Reports
@@ -30,27 +32,11 @@ const Results = () => {
   };
 
   return (
+    <div className="footer">
+    <div className="main">
+    <div className="Side"><Sidebar /></div>
     <div className="results-page">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <h3 className="sidebar-title">Dashboard</h3>
-        <ul className="sidebar-menu">
-          <li>Overview</li>
-          <li>
-            <a href="/report" className="sidebar-link">
-              Reports
-            </a>
-          </li>
-          <li>Results</li>
-          <li>Analytics</li>
-          <li>Settings</li>
-          <li>
-            <a href="/user-info" className="sidebar-link">
-              Manage Users
-            </a>
-          </li>
-        </ul>
-      </div>
+      
 
       {/* Main Content */}
       <div className="reports-container">
@@ -109,6 +95,12 @@ const Results = () => {
         </div>
       </div>
     </div>
+    <Footer />
+    </div>
+    
+    </div>
+    
+    
   );
 };
 

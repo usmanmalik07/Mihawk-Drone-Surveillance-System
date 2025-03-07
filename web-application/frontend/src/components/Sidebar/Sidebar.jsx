@@ -15,7 +15,7 @@ const Sidebar = () => {
             Reports
           </Link>
         </li>
-        <li><Link to="/result" className="sidebar-link">
+        <li><Link to="/results" className="sidebar-link">
             Analytics
           </Link></li>
         <li>Settings</li>

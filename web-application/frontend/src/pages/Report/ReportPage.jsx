@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./ReportPage.css";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 function ReportPage() {
   const [detections, setDetections] = useState([]);
@@ -18,23 +19,10 @@ function ReportPage() {
   }, []);
 
   return (
+    <div className="main">
+    <div className="Side"><Sidebar /></div>
     <div className="report-page-container">
-      Sidebar (as given by you)
-      <div className="sidebar">
-        <h3 className="sidebar-title">Dashboard</h3>
-        <ul className="sidebar-menu">
-          <li>Overview</li>
-          <li>
-            <a href="/report" className="sidebar-link">Reports</a>
-          </li>
-          <li>Results</li>
-          <li>Analytics</li>
-          <li>Settings</li>
-          <li>
-            <a href="/user-info" className="sidebar-link">Manage Users</a>
-          </li>
-        </ul>
-      </div>
+      
 
       {/* Main Report Content */}
       <div className="report-content">
@@ -67,6 +55,7 @@ function ReportPage() {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }
