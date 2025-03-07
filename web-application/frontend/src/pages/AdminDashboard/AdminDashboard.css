@@ -100,9 +100,9 @@
 /* Video Section */
 .video-section {
   
-  width: 100%;
-  height: 100%;
-  flex-grow: 1;
+  width: 700px;
+  height: 700px;
+  
 }
 
 .video-title {
@@ -113,7 +113,7 @@
 
 .stream {
   width: 100%;
-  height: 100%;
+  height: 100px;
   /* rotate: 90%; */
 }
 .loading-indicator {

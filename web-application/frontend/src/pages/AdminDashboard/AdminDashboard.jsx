@@ -21,22 +21,21 @@ const AdminDashboardPage = () => {
 
   // Dynamically set the video feed URL based on selected model
   const getVideoFeedSrc = () => {
-    if (!isPlaying) {
-      return "https://via.placeholder.com/800x450?text=Stream+Stopped";
-    }
+  if (!isPlaying) {
+    return "../../assets/nostream.jpg";
+  }
 
-    switch (selectedModel) {
-      case "v8n":
-        return "http://192.168.56.1:8000/video_feed?model=yolov8n";
-      case "v11":
-        return "http://192.168.56.1:8000/video_feed?model=yolov8s";
-      case "cv":
-        return "http://192.168.56.1:8000/video_feed?model=yolov5";
-      default:
-        return "https://via.placeholder.com/800x450?text=No+Stream+Available";
-    }
-  };
-
+  switch (selectedModel) {
+    case "v8n":
+      return "http://192.168.56.1:8001/video_feed?model=yolov8n";
+    case "v11":
+      return "http://192.168.56.1:8001/video_feed?model=yolov8s";
+    case "cv":
+      return "http://192.168.56.1:8001/video_feed?model=yolov5";
+    default:
+      return "../../assets/nostream.jpg";
+  }
+}
   return (
     <>
     <div className="main">
@@ -51,7 +50,7 @@ const AdminDashboardPage = () => {
             <img
               src="https://via.placeholder.com/50"
               alt="User"
-              
+
               className="user-image"
             />
             <div className="user-info">
@@ -101,9 +100,9 @@ const AdminDashboardPage = () => {
           </div>
         </div>
       </div>
-      
-      </div>
       <Footer />
+      </div>
+      
       
     </>
   );
