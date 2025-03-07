@@ -43,22 +43,23 @@ const Sidebar = () => {
               Analytics
             </Link>
           </li>
-          <li><Link to="/" className="sidebar-link">
+          <li>
+            <Link to="/" className="sidebar-link">
               Settings
-            </Link></li>
+            </Link>
+          </li>
           <li>
             <Link to="/user-info" className="sidebar-link">
               Manage Users
             </Link>
           </li>
         </ul>
-      </div>
 
-      {/* Main Content
-      <div className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
-        <h1>Main Content</h1>
-        <p>This is the main content area.</p>
-      </div> */}
+        {/* Logout Button */}
+        <div className="logout-container">
+          <button className="logout-btn">Logout</button>
+        </div>
+      </div>
     </>
   );
 };
