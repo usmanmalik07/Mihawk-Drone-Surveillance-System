@@ -4,6 +4,8 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import './UserInfo.css'; // Import the CSS file for styling
+import Sidebar from '../../components/Sidebar/Sidebar'; // Import the Sidebar component
+import Footer from '../../components/Footer/Footer';
 
 // Modal style
 const modalStyle = {
@@ -189,6 +191,8 @@ const UserInfo = () => {
   };
 
   return (
+    <div className="main">
+    <div className="Side"><Sidebar /></div>
     <div style={{ padding: '95px 0 0', margin: '0 5vw' }}>
       {/* Search Bar and Create User Button */}
       <div className="flex items-center justify-between mb-4">
@@ -353,6 +357,8 @@ const UserInfo = () => {
           </form>
         </Box>
       </Modal>
+    </div>
+  <Footer />  
     </div>
   );
 };

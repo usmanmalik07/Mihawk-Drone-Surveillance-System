@@ -51,6 +51,7 @@ const AdminDashboardPage = () => {
             <img
               src="https://via.placeholder.com/50"
               alt="User"
+              
               className="user-image"
             />
             <div className="user-info">

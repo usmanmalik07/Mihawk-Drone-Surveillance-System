@@ -7,14 +7,17 @@ const Sidebar = () => {
     <div className="sidebar">
       <h3 className="sidebar-title">Dashboard</h3>
       <ul className="sidebar-menu">
-        <li>Overview</li>
+        <li><Link to="/admin-dashboard" className="sidebar-link">
+            Overview
+          </Link></li>
         <li>
           <Link to="/report" className="sidebar-link">
             Reports
           </Link>
         </li>
-        <li>Results</li>
-        <li>Analytics</li>
+        <li><Link to="/results" className="sidebar-link">
+            Analytics
+          </Link></li>
         <li>Settings</li>
         <li>
           <Link to="/user-info" className="sidebar-link">
