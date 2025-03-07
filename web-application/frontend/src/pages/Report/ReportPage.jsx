@@ -19,7 +19,7 @@ function ReportPage() {
 
   return (
     <div className="report-page-container">
-      {/* Sidebar (as given by you) */}
+      Sidebar (as given by you)
       <div className="sidebar">
         <h3 className="sidebar-title">Dashboard</h3>
         <ul className="sidebar-menu">
