@@ -151,4 +151,4 @@ if __name__ == "__main__":
     threading.Thread(target=get_rtsp_frame, args=(rtsp_url,), daemon=True).start()
 
     # Run FastAPI server
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8001)
