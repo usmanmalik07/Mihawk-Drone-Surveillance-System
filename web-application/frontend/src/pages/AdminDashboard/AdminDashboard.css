@@ -56,13 +56,7 @@
     }
 }
 
-/* Main Content */
-.main-content {
-  flex-grow: 1;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
+
 
 /* User Details */
 .user-details {
@@ -92,13 +86,7 @@
   font-weight: bold;
 }
 
-/* Video Section */
-.video-section {
-  
-  width: 700px;
-  height: 700px;
-  
-}
+
 
 .video-title {
   margin-bottom: 1rem;
@@ -108,8 +96,9 @@
 
 .stream {
   width: 100%;
-  height: 100px;
-  /* rotate: 90%; */
+  height: auto; /* Allow the video to scale proportionally */
+  max-height: 100%; /* Ensure it doesn't exceed the container height */
+  border-radius: 10px; /* Match the container's border radius */
 }
 .loading-indicator {
   display: flex;
@@ -121,21 +110,47 @@
 }
 
 
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Video Section */
+.video-section {
+  width: 100%; /* Use 100% width instead of fixed width */
+  min-height: 600px; /* Use min-height instead of fixed height */
+  margin-bottom: 20px; /* Add margin to separate from footer */
+}
 .video-player {
   display: block;
   background-color: #1b1b22;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-  
+  height: 500px; /* Set a fixed height for the video player */
+  overflow: hidden; /* Prevent overflow */
 }
 
+/* Video Element */
 .video-player video {
   width: 100%;
+  min-height: 600px;
   border-radius: 10px;
-  margin-bottom: 200px;
 }
 
+/* Footer */
+footer {
+  margin-top: auto; /* Push footer to the bottom */
+  padding: 20px;
+  background-color: #27272f;
+  color: white;
+  text-align: center;
+}
 
 
 .video-controls {
