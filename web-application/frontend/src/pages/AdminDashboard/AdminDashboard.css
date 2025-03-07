@@ -141,15 +141,7 @@
   margin-bottom: 200px;
 }
 
-/* Sidebar Link */
-.sidebar-link {
-  padding-top: 5px;
-  margin: 1rem 0;
-  font-size: 1rem;
-  color: #b0b0b0;
-  cursor: pointer;
-  transition: color 0.3s;
-}
+
 
 .video-controls {
   display: flex;
