@@ -1,28 +1,35 @@
 import React, { useState } from "react";
 import "./AdminDashboard.css";
-import Sidebar from "../../components/Sidebar/Sidebar"; // 💡 Sidebar ko import kiya
+import Sidebar from "../../components/Sidebar/Sidebar";
 import Footer from "../../components/Footer/Footer";
+import NoStreamImage from "../../assets/nostream.jpg"; 
 
 const AdminDashboardPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedModel, setSelectedModel] = useState("v8n");
+  const [videoError, setVideoError] = useState(false);
+
+  // Profile Picture URL (Fixed)
+  const pfp = "https://via.placeholder.com/50";
 
   // Function to toggle play/stop
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
+    setVideoError(false); // Reset error when toggling
   };
 
   // Function to handle model change
   const handleModelChange = (event) => {
     const model = event.target.value;
     setSelectedModel(model);
+    setVideoError(false); // Reset error when changing model
     console.log(`Switching to ${model}`);
   };
 
   // Dynamically set the video feed URL based on selected model
   const getVideoFeedSrc = () => {
-    if (!isPlaying) {
-      return "../../assets/nostream.jpg";
+    if (!isPlaying || videoError) {
+      return NoStreamImage; // Show "No Video" image
     }
 
     switch (selectedModel) {
@@ -33,7 +40,7 @@ const AdminDashboardPage = () => {
       case "cv":
         return "http://192.168.56.1:8001/video_feed?model=yolov5";
       default:
-        return "../../assets/nostream.jpg";
+        return NoStreamImage;
     }
   };
 
@@ -49,7 +56,7 @@ const AdminDashboardPage = () => {
             {/* User Details */}
             <div className="user-details">
               <img
-                src="https://via.placeholder.com/50"
+                src={pfp} // ✅ Fixed Profile Picture
                 alt="User"
                 className="user-image"
               />
@@ -91,11 +98,15 @@ const AdminDashboardPage = () => {
 
               {/* Video Player */}
               <div className="video-player">
+              <div className="video-wrapper">
                 <img
                   src={getVideoFeedSrc()}
                   className="stream"
-                  alt={isPlaying ? "Live Video Stream" : "Stream Stopped"}
+                  alt={isPlaying ? "Live Video Stream" : "No Video Available"}
+                  onError={() => setVideoError(true)} // Handle broken video stream
                 />
+                {videoError && <p className="error-message">Error loading stream</p>}
+              </div>
               </div>
             </div>
           </div>
