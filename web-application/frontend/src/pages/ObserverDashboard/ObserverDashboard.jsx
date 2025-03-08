@@ -1,122 +1,120 @@
 import React, { useState } from "react";
 import "./ObserverDashboard.css";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import Footer from "../../components/Footer/Footer";
+import NoStreamImage from "../../assets/nostream.jpg"; 
 
-const AdminDashboardPage = () => {
+const ObserverDashboardPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedModel, setSelectedModel] = useState("v8n");
-  const [loading, setLoading] = useState(false); // Loading state
+  const [videoError, setVideoError] = useState(false);
+
+  // Profile Picture URL (Fixed)
+  const pfp = "https://via.placeholder.com/50";
 
   // Function to toggle play/stop
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
+    setVideoError(false); // Reset error when toggling
   };
 
   // Function to handle model change
   const handleModelChange = (event) => {
     const model = event.target.value;
     setSelectedModel(model);
-    setLoading(true); // Set loading to true when changing model
+    setVideoError(false); // Reset error when changing model
     console.log(`Switching to ${model}`);
   };
 
   // Dynamically set the video feed URL based on selected model
   const getVideoFeedSrc = () => {
-    if (!isPlaying) {
-      return "https://via.placeholder.com/800x450?text=Stream+Stopped"; // Placeholder image
+    if (!isPlaying || videoError) {
+      return NoStreamImage; // Show "No Video" image
     }
 
     switch (selectedModel) {
       case "v8n":
-        return "http://192.168.100.57:8000/video_feed?model=yolov8n";
+        return "http://192.168.56.1:8001/video_feed?model=yolov8n";
       case "v11":
-        return "http://192.168.100.57:8000/video_feed?model=yolov8s";
+        return "http://192.168.56.1:8001/video_feed?model=yolov8s";
       case "cv":
-        return "http://192.168.100.57:8000/video_feed?model=yolov5";
+        return "http://192.168.56.1:8001/video_feed?model=yolov5";
       default:
-        return "https://via.placeholder.com/800x450?text=No+Stream+Available";
+        return NoStreamImage;
     }
   };
 
-  return (<>
-    <div className="dashboard-container">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <h3 className="sidebar-title">Dashboard</h3>
-        <ul className="sidebar-menu">
-          <li>Overview</li>
-          <li>Results</li>
-          <li>Settings</li>
-        </ul>
-      </div>
-
-      {/* Main Content */}
-      <div className="main-content">
-        {/* User Details */}
-        <div className="user-details">
-          <img
-            src="https://via.placeholder.com/50"
-            alt="User"
-            className="user-image"
-          />
-          <div className="user-info">
-            <h4>
-              Name: <span>Observer 1</span>
-            </h4>
-            <h4>
-              Email: <span>observer@gmail.com</span>
-            </h4>
-            <h4>
-              Role: <span>Observer</span>
-            </h4>
-          </div>
+  return (
+    <div>
+      <div className="main">
+        <div className="Side">
+          <Sidebar />
         </div>
-
-        {/* Video Section */}
-        <div className="video-section">
-          <h3 className="video-title">Live Video Feed</h3>
-
-          {/* Play/Stop Button and Dropdown */}
-          <div className="video-controls">
-            <button
-              className={`play-stop-button ${isPlaying ? "stop" : "play"}`}
-              onClick={togglePlay}
-            >
-              {isPlaying ? "Stop" : "Play"}
-            </button>
-            <select
-              className="model-dropdown"
-              value={selectedModel}
-              onChange={handleModelChange}
-            >
-              <option value="v8n">yolov8n</option>
-              <option value="v11">yolov8s</option>
-              <option value="cv">yolov5</option>
-            </select>
-          </div>
-
-          {/* Video Player */}
-          <div className="video-player">
-            {loading ? ( // Display loading text while loading
-              <div className="loading-indicator">
-                <p>Loading Stream...</p>
-              </div>
-            ) : (
+        <div className="dashboard-container">
+          {/* Main Content */}
+          <div className="main-content">
+            {/* User Details */}
+            <div className="user-details">
               <img
-                src={getVideoFeedSrc()}
-                className="stream"
-                alt={isPlaying ? "Live Video Stream" : "Stream Stopped"}
-                onLoad={() => setLoading(false)} // Set loading to false when image is loaded
+                src={pfp} // ✅ Fixed Profile Picture
+                alt="User"
+                className="user-image"
               />
-            )}
+              <div className="user-info">
+                <h4>
+                  Name: <span>Observer 1</span>
+                </h4>
+                <h4>
+                  Email: <span>Observer@gmail.com</span>
+                </h4>
+                <h4>
+                  Role: <span>Observer</span>
+                </h4>
+              </div>
+            </div>
+
+            {/* Video Section */}
+            <div className="video-section">
+              <h3 className="video-title">Live Video Feed</h3>
+
+              {/* Play/Stop Button and Dropdown */}
+              <div className="video-controls">
+                <button
+                  className={`play-stop-button ${isPlaying ? "stop" : "play"}`}
+                  onClick={togglePlay}
+                >
+                  {isPlaying ? "Stop" : "Play"}
+                </button>
+                <select
+                  className="model-dropdown"
+                  value={selectedModel}
+                  onChange={handleModelChange}
+                >
+                  <option value="v8n">yolov8n</option>
+                  <option value="v11">yolov8s</option>
+                  <option value="cv">yolov5</option>
+                </select>
+              </div>
+
+              {/* Video Player */}
+              <div className="video-player">
+              <div className="video-wrapper">
+                <img
+                  src={getVideoFeedSrc()}
+                  className="stream"
+                  alt={isPlaying ? "Live Video Stream" : "No Video Available"}
+                  onError={() => setVideoError(true)} // Handle broken video stream
+                />
+                {videoError && <p className="error-message">Error loading stream</p>}
+              </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
+      <Footer />
     </div>
-    <Footer/>
-    </>
   );
 };
 
-export default AdminDashboardPage;
+export default ObserverDashboardPage;
