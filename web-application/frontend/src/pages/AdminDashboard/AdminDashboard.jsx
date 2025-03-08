@@ -3,6 +3,9 @@ import "./AdminDashboard.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Footer from "../../components/Footer/Footer";
 import NoStreamImage from "../../assets/nostream.jpg"; 
+import Chatbot from "../../components/Chatbot/Chatbot";
+
+
 
 const AdminDashboardPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -46,8 +49,11 @@ const AdminDashboardPage = () => {
 
   return (
     <div>
+    
       <div className="main">
+      
         <div className="Side">
+        
           <Sidebar />
         </div>
         <div className="dashboard-container">
@@ -112,7 +118,9 @@ const AdminDashboardPage = () => {
           </div>
         </div>
       </div>
+      
       <Footer />
+      <Chatbot />
     </div>
   );
 };

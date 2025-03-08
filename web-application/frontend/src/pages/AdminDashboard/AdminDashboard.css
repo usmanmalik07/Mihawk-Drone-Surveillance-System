@@ -6,11 +6,15 @@
   padding: 0;
 }
 
-body {
-  background-color: #121212; /* Dark background */
+/* Apply Background to Whole Page */
+html, body {
+  background: url('../../assets/background.gif') no-repeat center center fixed;
+  background-size: cover;
   color: white;
+  height: 100%;
+  width: 100%;
+  
 }
-
 
 /* Main Dashboard */
 .dashboard-container {
@@ -23,7 +27,7 @@ body {
 .user-details {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(8, 8, 8, 0.1);
   padding: 1.5rem;
   border-radius: 15px;
   margin-bottom: 2rem;
@@ -51,12 +55,14 @@ body {
 /* Video Section */
 .video-section {
   width: 100%;
-  height: auto;
   padding: 20px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(8px);
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .video-title {
@@ -72,16 +78,18 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
-  background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
-  
+  width: 100%;
+  max-width: 600px;
 }
 
 .play-stop-button {
   padding: 12px 24px;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
   border: none;
-  
+  height: 60px;
+  width: 120px;
   cursor: pointer;
   border-radius: 15px;
   transition: all 0.3s ease-in-out;
@@ -107,9 +115,13 @@ body {
   font-size: 16px;
   border: none;
   border-radius: 10px;
-  background: #e63946;
+  font-weight: bold; 
   color: white;
   cursor: pointer;
+  height: 60px;
+  width: 120px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Video Player */
@@ -120,14 +132,40 @@ body {
   background-color: #1b1b22;
   padding: 15px;
   border-radius: 15px;
-  
+  width: 100%;
+  height: 80vh; /* Adjust for full coverage */
+  position: relative;
 }
 
+/* Video Stream */
 .stream {
   width: 100%;
-  max-height: 600px;
+  height: 100%;
   border-radius: 10px;
-  object-fit: contain;
+  object-fit: cover; /* Ensures the video/image fills the space */
+}
+
+/* Error Handling for No Stream Image */
+.video-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.video-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures "No Stream" image covers full video area */
+}
+
+.error-message {
+  position: absolute;
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 /* Footer */
@@ -147,14 +185,27 @@ footer {
     padding: 10px;
   }
 
-  
+  .video-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .play-stop-button, .model-dropdown {
+    width: 100%;
+  }
+
+  .video-player {
+    height: 60vh;
+  }
 }
 
 @media (max-width: 600px) {
-  
-
   .dashboard-container {
     margin-left: 0;
     padding: 10px;
+  }
+
+  .video-player {
+    height: 50vh;
   }
 }
