@@ -5,14 +5,14 @@
     right: 20px;
     background: linear-gradient(135deg, #e63946, #b71c1c);
     color: white;
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 35px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s;
 }
@@ -158,4 +158,24 @@
 .chatbot-messages::-webkit-scrollbar-thumb {
     background: #e63946;
     border-radius: 10px;
+}
+.chatbot-help {
+    position: fixed;
+    bottom: 90px; /* Position above the chatbot icon */
+    right: 30px;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    opacity: 3;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none; /* Prevents interaction */
+    z-index: 1000;
+}
+
+/* JavaScript-controlled class */
+.chatbot-help.show {
+    opacity: 0;
+    pointer-events: auto;
 }
