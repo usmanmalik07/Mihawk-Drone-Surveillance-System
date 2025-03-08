@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // SPA navigation ke liye
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Sidebar.css"; // Styling import
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleLogout = () => {
+    // Perform any logout-related actions (e.g., clearing auth tokens)
+    navigate("/"); // Redirect to the landing screen
   };
 
   return (
@@ -57,7 +63,7 @@ const Sidebar = () => {
 
         {/* Logout Button */}
         <div className="logout-container">
-          <button className="logout-btn">Logout</button>
+          <button className="logout-btn" onClick={handleLogout}>Logout</button>
         </div>
       </div>
     </>
