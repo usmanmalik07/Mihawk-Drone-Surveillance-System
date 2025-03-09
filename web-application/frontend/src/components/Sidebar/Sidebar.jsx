@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Sidebar.css";
+import axios from "axios";
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -27,10 +28,24 @@ const Sidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("userRole"); // Clear role on logout
-    navigate("/"); // Redirect to login
-  };
+  const handleLogout = async () => {
+    try {
+        await axios.get("http://localhost:5000/api/users/logout", {
+            withCredentials: true, // ✅ Ensure cookies are included
+        });
+
+        // ✅ Clear authentication data
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("userRole");
+
+        // ✅ Redirect to login page
+        navigate("/login", { replace: true });
+
+        console.log("User logged out successfully.");
+    } catch (error) {
+        console.error("Logout failed:", error);
+    }
+};
 
   return (
     <>
