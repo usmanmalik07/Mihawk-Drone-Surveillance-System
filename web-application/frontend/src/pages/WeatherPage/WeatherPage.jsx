@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 import axios from "axios";
 import "leaflet/dist/leaflet.css";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 // Custom Mihawk-Themed Marker Icon
 const customIcon = new Icon({
@@ -18,7 +19,6 @@ const WeatherComponent = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const API_KEY = "YOUR_API_KEY"; // 🔥 Replace with your WeatherAPI key
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -60,6 +60,8 @@ const WeatherComponent = () => {
   };
 
   return (
+    <div>
+    <Sidebar />
     <div>
       {position ? (
         <MapContainer center={position} zoom={12} style={{ height: "500px", width: "100%" }}>
@@ -122,6 +124,7 @@ const WeatherComponent = () => {
           {error ? error : "Fetching your location..."}
         </p>
       )}
+    </div>
     </div>
   );
 };
