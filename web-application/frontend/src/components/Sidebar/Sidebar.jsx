@@ -8,6 +8,7 @@ const Sidebar = () => {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+    
   };
 
   const handleLogout = () => {
