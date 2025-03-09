@@ -131,7 +131,7 @@ const AdminDashboardPage = () => {
       </div>
 
       <Chatbot />
-      <WeatherComponent />
+      
       <Footer />
     </div>
   );
