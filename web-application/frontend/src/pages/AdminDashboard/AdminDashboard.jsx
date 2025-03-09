@@ -7,6 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import Chatbot from "../../components/Chatbot/Chatbot";
 import NoStreamImage from "../../assets/stream.png";
 import { FaUser, FaVideo, FaCog, FaMoon, FaSun } from "react-icons/fa";
+import WeatherComponent from "../WeatherPage/WeatherPage";
 
 const AdminDashboardPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -130,6 +131,7 @@ const AdminDashboardPage = () => {
       </div>
 
       <Chatbot />
+      <WeatherComponent />
       <Footer />
     </div>
   );

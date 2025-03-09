@@ -15,6 +15,7 @@ import UserInfo from './pages/UserInfo/UserInfo';
 import ReportPage from './pages/Report/ReportPage';
 import Results from './pages/Results/Results';
 import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
+import WeatherComponent from './pages/WeatherPage/WeatherPage';
 function App() {
   return (
     <Router>
@@ -37,6 +38,7 @@ function App() {
           <Route path="/admin-dashboard" element={<ProtectedRoute element={<AdminDashboardPage />} allowedRoles={["admin"]} />} />
           <Route path="/operator-dashboard" element={<ProtectedRoute element={<OperatorDashboardPage />} allowedRoles={["operator"]} />} />
           <Route path="/observer-dashboard" element={<ProtectedRoute element={<ObserverDashboardPage />} allowedRoles={["observer"]} />} />
+          <Route path="/weather" element={<WeatherComponent />} />
 
 
 

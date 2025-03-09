@@ -40,6 +40,11 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
+            <Link to="/weather" className="sidebar-link">
+              Weather
+            </Link>
+          </li>
+          <li>
             <Link to="/report" className="sidebar-link">
               Reports
             </Link>
@@ -54,6 +59,7 @@ const Sidebar = () => {
               Settings
             </Link>
           </li>
+          
           <li>
             <Link to="/user-info" className="sidebar-link">
               Manage Users
