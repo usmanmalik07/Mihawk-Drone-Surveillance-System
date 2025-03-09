@@ -5,6 +5,7 @@ import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Footer from "../../components/Footer/Footer";
+import "./Weather.css"; // Add this CSS file for styling
 
 const customIcon = new Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/128/684/684908.png",
@@ -19,6 +20,7 @@ const WeatherComponent = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [prevCoords, setPrevCoords] = useState(null);
+  const [showDetails, setShowDetails] = useState(false); // Toggle detailed weather
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -60,6 +62,10 @@ const WeatherComponent = () => {
     }
   };
 
+  const toggleDetails = () => {
+    setShowDetails(!showDetails);
+  };
+
   return (
     <div style={{ display: "flex", height: "120vh" }}>
       <Sidebar />
@@ -75,19 +81,7 @@ const WeatherComponent = () => {
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
               <Marker position={position} icon={customIcon}>
                 <Popup>
-                  <div
-                    style={{
-                      width: "230px",
-                      padding: "14px",
-                      backgroundColor: "#1A1A1A",
-                      borderRadius: "12px",
-                      boxShadow: "0px 6px 12px rgba(255, 0, 0, 0.5)",
-                      textAlign: "center",
-                      fontFamily: "Arial, sans-serif",
-                      color: "white",
-                      border: "2px solid red",
-                    }}
-                  >
+                  <div className="weather-popup">
                     {error ? (
                       <p style={{ color: "red", fontWeight: "bold" }}>{error}</p>
                     ) : loading ? (
@@ -115,6 +109,30 @@ const WeatherComponent = () => {
             <p style={{ textAlign: "center", color: "white", fontSize: "18px" }}>
               {error ? error : "Fetching your location..."}
             </p>
+          )}
+
+          {/* Weather Panel on Top Right */}
+          {weather && (
+            <div className="weather-panel" onClick={toggleDetails}>
+              <h3>{weather.location.name}</h3>
+              <p>🌡 {weather.current.temp_c}°C</p>
+              <p>{weather.current.condition.text}</p>
+            </div>
+          )}
+
+          {/* Detailed Weather Modal */}
+          {showDetails && weather && (
+            <div className="weather-modal">
+              <div className="modal-content">
+                <h3>{weather.location.name}, {weather.location.country}</h3>
+                <p>🌡 Temperature: {weather.current.temp_c}°C</p>
+                <p>💧 Humidity: {weather.current.humidity}%</p>
+                <p>🌬 Wind: {weather.current.wind_kph} km/h</p>
+                <p>🌞 Feels Like: {weather.current.feelslike_c}°C</p>
+                <p>☁ Condition: {weather.current.condition.text}</p>
+                <button onClick={toggleDetails}>Close</button>
+              </div>
+            </div>
           )}
         </div>
         <Footer />
