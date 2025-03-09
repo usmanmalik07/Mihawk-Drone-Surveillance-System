@@ -25,27 +25,22 @@ function NavBar() {
         setNavbarBackground(false);
       }
   
-      // Determine if we should show or hide the navbar
+      // Hide navbar when scrolling down, show when scrolling up
       if (window.scrollY > lastScrollY.current) {
-        setShowNavbar(false); // User is scrolling down, hide the navbar
+        setShowNavbar(false); // Hide navbar when scrolling down
       } else {
-        setShowNavbar(true); // User is scrolling up, show the navbar
+        setShowNavbar(true); // Show navbar when scrolling up
       }
-      lastScrollY.current = window.scrollY; // Update the lastScrollY ref
+      lastScrollY.current = window.scrollY;
     };
   
-    if (!noHideRoutes.includes(location.pathname)) {
-      // Only add the scroll event listener if the current route is not in the noHideRoutes list
-      window.addEventListener('scroll', handleScroll);
-      setNavbarBackground(window.scrollY > 500); // Set initial background on page load
-    } else {
-      setNavbarBackground(true); // Always apply background for non-home pages
-    }
+    window.addEventListener('scroll', handleScroll);
+    setNavbarBackground(window.scrollY > 500); // Set initial background on page load
   
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [location.pathname, noHideRoutes]); // Add noHideRoutes to dependency array
+  }, [location.pathname]); // Removed `noHideRoutes` check// Add noHideRoutes to dependency array
 
   // Function to handle link click and close the navbar on mobile
   const handleLinkClick = () => {

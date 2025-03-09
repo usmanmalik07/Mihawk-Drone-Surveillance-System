@@ -35,7 +35,7 @@ frame_queue = queue.Queue(maxsize=10)
 detected_items = []
 
 # RTSP settings
-rtsp_url = "rtsp://@192.168.137.230:1945"  # Replace with your RTSP URL
+rtsp_url = "rtsp://@192.168.100.5:1945"  # Replace with your RTSP URL
 frame_width = 640
 frame_height = 480
 
@@ -44,13 +44,15 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load models
 models = {
-    "yolov8n": YOLO("yolov8n.pt"),  # YOLOv8n model
+    "yolov8n": YOLO("best.pt"),  # YOLOv8n model
     "yolov8s": YOLO("yolov8s.pt"),  # YOLOv8s model
     "yolov5": YOLO("yolov5s.pt"),  # YOLOv5 model (small version)
 }
-
+# model = models["yolov8n"]
+# model.train(data='../models/data.yaml', epochs=50, imgsz=640)
 # Preprocessing for YOLOv5
 transform = T.ToTensor()
+
 
 def store_detection(item_name):
     """Store the detected item and its timestamp."""
@@ -149,4 +151,4 @@ if __name__ == "__main__":
     threading.Thread(target=get_rtsp_frame, args=(rtsp_url,), daemon=True).start()
 
     # Run FastAPI server
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8001)

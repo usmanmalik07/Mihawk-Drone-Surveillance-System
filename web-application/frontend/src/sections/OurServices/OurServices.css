@@ -50,3 +50,13 @@
     padding: 0 5vw 20px;  /* Added bottom padding for mobile as well */
   }
 }
+@media only screen and (min-width: 787px){
+    
+  .our-services-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    background-color: transparent; /* Make sure background is transparent */
+  }
+}

@@ -1,0 +1,131 @@
+/* Sidebar Styles */
+
+  
+  
+
+  /* Main Content Adjustments */
+  .results-page {
+    display: flex;
+  }
+  
+  .reports-container {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    padding: 20px;
+    background: #121212; /* Dark Theme */
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.2);
+  }
+  
+  /* Heading */
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ff3b3b; /* Red Accent */
+  }
+  
+  /* Tabs */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .tabs button {
+    background: transparent;
+    border: 2px solid #ff3b3b;
+    color: #ff3b3b;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .tabs button.active {
+    background: #ff3b3b;
+    color: white;
+  }
+  
+  .tabs button:hover {
+    background: rgba(255, 59, 59, 0.8);
+  }
+  
+  /* Chart Container Fix */
+  .chart-container {
+    width: 100%;
+    height: auto;
+    background: #1c1c1c;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Canvas Fix */
+  .chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 350px;
+  }
+  
+  /* Table Styles */
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    background: #1c1c1c;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 59, 59, 0.5);
+  }
+  
+  th {
+    background-color: #ff3b3b;
+    color: white;
+  }
+  
+  td {
+    color: #fff;
+  }
+  
+  .view-btn {
+    background-color: #ff3b3b;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .view-btn:hover {
+    background-color: rgba(255, 59, 59, 0.8);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 180px;
+    }
+  
+    .reports-container {
+      width: calc(100% - 180px);
+      margin-left: 180px;
+    }
+  }
+  

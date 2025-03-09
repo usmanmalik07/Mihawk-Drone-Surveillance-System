@@ -1,0 +1,5 @@
+train: D:/Mihawk-Drone-Surveillance-System/web-application/models/guns-knives-yolo/train/images
+val: D:/Mihawk-Drone-Surveillance-System/web-application/models/guns-knives-yolo/valid/images
+test: D:/Mihawk-Drone-Surveillance-System/web-application/models/guns-knives-yolo/test/images
+nc: 2  # Number of classes
+names: ['gun', 'knife']

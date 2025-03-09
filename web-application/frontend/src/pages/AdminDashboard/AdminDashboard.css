@@ -1,5 +1,7 @@
-/* General Styles */
-body {
+/* Global Styles */
+* {
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #0d0d11; /* Dark background */
@@ -26,6 +28,7 @@ body {
 }
 
 
+
 .sidebar-title {
   padding-top: 50px;
   font-size: 1.5rem;
@@ -39,48 +42,45 @@ body {
   padding: 0;
 }
 
-.sidebar-menu li {
-  padding-top: 5px;
-  margin: 1rem 0;
-  font-size: 1rem;
-  color: #b0b0b0;
-  cursor: pointer;
-  transition: color 0.3s;
+/* Apply Background to Whole Page */
+html, body {
+  background: url('../../assets/background.gif') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
 }
 
-.sidebar-menu li:hover {
-  color: #e63946;
+/* Main Dashboard */
+.dashboard-container {
+  margin-left: 50px;
+  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
 }
 
-/* Main Content */
-.main-content {
-  flex-grow: 1;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-/* User Details */
+/* User Details - Glass Effect */
 .user-details {
   display: flex;
   align-items: center;
-  background-color: #27272f;
-  padding: 1rem;
-  border-radius: 10px;
+  background: rgba(8, 8, 8, 0.1);
+  padding: 1.5rem;
+  border-radius: 15px;
   margin-bottom: 2rem;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
 }
 
 .user-image {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  margin-right: 1rem;
+  margin-right: 1.2rem;
+  border: 2px solid #e63946;
 }
 
 .user-info h4 {
-  margin: 0.5rem 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .user-info span {
@@ -88,94 +88,176 @@ body {
   font-weight: bold;
 }
 
-/* Video Section */
+/* 🎥 Video Section */
 .video-section {
-  flex-grow: 1;
-}
-
-.video-title {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  color: #e63946;
-}
-
-.stream {
   width: 100%;
-  height: 70%;
-  rotate: 90%;
+  max-width: 1200px; /* Prevents it from being too wide */
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto; /* Center the section */
+  overflow: hidden; /* Prevents overflow */
 }
-.loading-indicator {
+
+/* 🎬 Video Player */
+.video-player {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 450px;
-  font-size: 1.5rem;
-  color: #e63946;
-}
-
-
-.video-player {
   background-color: #1b1b22;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-}
-
-.video-player video {
+  padding: 15px;
+  border-radius: 15px;
   width: 100%;
+  max-width: 1000px; /* Prevents excessive width */
+  height: 50vh; /* Ensures proper height */
+  position: relative;
+  overflow: hidden; /* Prevents content from overflowing */
+}
+
+/* Video Stream */
+.stream {
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
+  object-fit: contain; /* Ensures video fits inside the container */
 }
 
-/* Sidebar Link */
-.sidebar-link {
-  padding-top: 5px;
-  margin: 1rem 0;
-  font-size: 1rem;
-  color: #b0b0b0;
-  cursor: pointer;
-  transition: color 0.3s;
+/* 📌 Error Handling for No Stream Image */
+.video-wrapper {
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.video-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensures "No Stream" image fits properly */
+}
+
+/* ❌ Error Message */
+.error-message {
+  position: absolute;
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* 🎛️ Video Controls */
 .video-controls {
   display: flex;
-  justify-content: space-between; /* Spread items to opposite ends */
-  align-items: center; /* Vertically center the items */
-  margin-bottom: 20px;
-  padding: 0 20px; 
-
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
 }
 
 .play-stop-button {
-  padding: 10px 20px;
-  margin: 10px 20px;
-  font-size: 16px;
+  padding: 12px 24px;
+  font-size: 20px;
+  font-weight: bold;
   border: none;
+  height: 60px;
+  width: 120px;
   cursor: pointer;
-  border-radius: 15px; /* Make the button rounded */
-  transition: background-color 0.3s, transform 0.2s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .play-stop-button.play {
-  background-color: green;
+  background: linear-gradient(135deg, #4caf50, #388e3c);
   color: white;
 }
 
 .play-stop-button.stop {
-  background-color: red;
+  background: linear-gradient(135deg, #e63946, #b71c1c);
   color: white;
 }
+
 .play-stop-button:hover {
-  opacity: 0.8;
-  transform: scale(1.05)
+  transform: scale(1.05);
 }
 
+/* 🎚️ Model Dropdown */
 .model-dropdown {
-  
-  padding: 10;
+  padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold; 
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  color: black;
+  height: 60px;
+  width: 120px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.model-dropdown option {
+  background-color: #1b1b22;  
+  color: white; 
+}
+
+/* 📊 Footer Metrics */
+.metrics-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.stats-container,
+.system-metrics {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .video-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .play-stop-button, .model-dropdown {
+    width: 100%;
+  }
+
+  .video-player {
+    height: 40vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-container {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .video-player {
+    height: 35vh;
+  }
 }
