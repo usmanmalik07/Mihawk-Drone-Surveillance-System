@@ -8,7 +8,6 @@ import Chatbot from "../../components/Chatbot/Chatbot";
 import NoStreamImage from "../../assets/stream.png";
 import { FaUser, FaVideo, FaCog, FaMoon, FaSun } from "react-icons/fa";
 
-
 const AdminDashboardPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedModel, setSelectedModel] = useState("v8n");
