@@ -7,7 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import Chatbot from "../../components/Chatbot/Chatbot";
 import NoStreamImage from "../../assets/stream.png";
 import { FaUser, FaVideo, FaCog, FaMoon, FaSun } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+
 
 const AdminDashboardPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
