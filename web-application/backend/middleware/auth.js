@@ -21,10 +21,17 @@ const authorizeRole = (roles) => (req, res, next) => {
     }
     next();
 };
+
 // Middleware to log out user by clearing JWT from cookies
 const logout = (req, res) => {
-  res.clearCookie('jwt', { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
-  res.json({ message: 'Logged out successfully' });
+    res.clearCookie('token', { 
+        httpOnly: true, 
+        secure: process.env.NODE_ENV === 'production', 
+        sameSite: 'Strict',
+        path: "/" // ✅ Ensures proper deletion
+    });
+
+    res.status(200).json({ message: 'Logged out successfully' });
 };
 
 module.exports = { authenticateToken, authorizeRole, logout };
