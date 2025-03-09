@@ -5,6 +5,10 @@ import Footer from "../../components/Footer/Footer";
 import Chatbot from "../../components/Chatbot/Chatbot";
 import NoStreamImage from "../../assets/stream.png";
 import { FaUser, FaVideo, FaCog, FaBell, FaMoon, FaSun } from "react-icons/fa";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
 
 const AdminDashboardPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -16,7 +20,7 @@ const AdminDashboardPage = () => {
 
   // Profile Picture URL (Fixed)
   const pfp = "https://via.placeholder.com/50";
-
+  const navigate = useNavigate();
   // Toggle Play/Stop
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
@@ -43,6 +47,18 @@ const AdminDashboardPage = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+  const handleLogout = async () => {
+    try {
+      await axios.get("http://localhost:5000/api/users/logout", {
+        withCredentials: true, // Ensure cookies are included
+      });
+
+      // Redirect to login page
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   // Get Video Feed URL
   const getVideoFeedSrc = () => {
@@ -54,6 +70,7 @@ const AdminDashboardPage = () => {
       default: return NoStreamImage;
     }
   };
+  
 
   return (
     <div>
