@@ -48,6 +48,7 @@
 
 /* Horizontal Bar (Stats Section) */
 .stats-container {
+  margin-top: 17rem;
   display: flex;
   justify-content: space-between;
   padding: 20px;
