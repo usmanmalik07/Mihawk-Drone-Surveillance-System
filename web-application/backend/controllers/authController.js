@@ -15,7 +15,6 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
     
     try {
-        console.log("Login request received for:", email);
 
         // Check if user exists
         const user = await User.findOne({ email });

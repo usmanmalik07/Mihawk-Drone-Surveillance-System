@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 // Middleware to authenticate user using JWT stored in cookies
 const authenticateToken = (req, res, next) => {
-    const token = req.cookies?.token; // ✅ Use cookies instead of headers
+    const token = req.cookies?.token; // 
     if (!token) return res.status(401).json({ message: 'Access denied, token missing' });
 
     try {
