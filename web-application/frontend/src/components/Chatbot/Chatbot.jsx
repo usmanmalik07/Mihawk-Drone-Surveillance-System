@@ -55,6 +55,8 @@ const Chatbot = () => {
 
   return (
     <div>
+     {/* Floating Help Message (Only visible when chatbot is closed) */}
+     {!isOpen && <div className="chatbot-help">Do you need help?</div>}
       {/* Chatbot Floating Icon */}
       <div className="chatbot-icon" onClick={toggleChat}>
         <FaRobot />
