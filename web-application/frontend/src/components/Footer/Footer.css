@@ -1,6 +1,6 @@
 /* Footer Container */
 .lp-footer {
-  background-color: transparent !important;
+  background-color: rgb(23, 24, 32);
   color: white;
   display: grid;
   grid-template-columns: 3fr 2fr 2fr;
@@ -77,6 +77,5 @@
 
   .footer-den-info {
     margin-bottom: 15px;
-    background-color: transparent !important;
   }
 }
