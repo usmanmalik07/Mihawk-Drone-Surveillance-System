@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./AdminDashboard.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Footer from "../../components/Footer/Footer";
 import Chatbot from "../../components/Chatbot/Chatbot";
 import NoStreamImage from "../../assets/stream.png";
-import { FaUser, FaVideo, FaCog, FaBell, FaMoon, FaSun } from "react-icons/fa";
-import axios from "axios";
+import { FaUser, FaVideo, FaCog, FaMoon, FaSun } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
-
 
 const AdminDashboardPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -17,10 +16,10 @@ const AdminDashboardPage = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [cpuUsage, setCpuUsage] = useState(35); // Simulated data
   const [ramUsage, setRamUsage] = useState(58); // Simulated data
-
+  const navigate = useNavigate();
   // Profile Picture URL (Fixed)
   const pfp = "https://via.placeholder.com/50";
-  const navigate = useNavigate();
+
   // Toggle Play/Stop
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
@@ -48,6 +47,7 @@ const AdminDashboardPage = () => {
     return () => clearInterval(interval);
   }, []);
   
+
   const handleLogout = async () => {
     try {
       await axios.get("http://localhost:5000/api/users/logout", {
@@ -65,30 +65,25 @@ const AdminDashboardPage = () => {
   const getVideoFeedSrc = () => {
     if (!isPlaying || videoError) return NoStreamImage;
     switch (selectedModel) {
-      case "v8n": return "http://192.168.56.1:8001/video_feed?model=yolov8n";
-      case "v11": return "http://192.168.56.1:8001/video_feed?model=yolov8s";
-      case "cv": return "http://192.168.56.1:8001/video_feed?model=yolov5";
-      default: return NoStreamImage;
+      case "v8n":
+        return "http://192.168.56.1:8001/video_feed?model=yolov8n";
+      case "v11":
+        return "http://192.168.56.1:8001/video_feed?model=yolov8s";
+      case "cv":
+        return "http://192.168.56.1:8001/video_feed?model=yolov5";
+      default:
+        return NoStreamImage;
     }
   };
   
   
 
   return (
-    <div>
-    <div >
+    <div className="admin-dashboard">
       <Sidebar />
       <h2>Admin Dashboard</h2>
 
       <div className="dashboard-container">
-        {/* Header */}
-        <div className="dashboard-header">
-          
-          
-        </div>
-
-        
-
         {/* Video Section */}
         <div className="video-section">
           <h3>Live Video Feed</h3>
@@ -101,15 +96,15 @@ const AdminDashboardPage = () => {
               <option value="v11">YOLOv8s</option>
               <option value="cv">YOLOv5</option>
             </select>
-            
           </div>
           <div className="video-player">
             <img src={getVideoFeedSrc()} alt={isPlaying ? "Live Stream" : "No Stream"} />
             {videoError && <p className="error-message">Error loading stream</p>}
           </div>
         </div>
-         {/* Stats Section */}
-      <div className="stats-container">
+
+        {/* Stats Section */}
+        <div className="stats-container">
           <div className="stat-card">
             <FaUser className="stat-icon" />
             <h3>Users</h3>
@@ -134,11 +129,9 @@ const AdminDashboardPage = () => {
           <p>RAM Usage: {ramUsage}%</p>
         </div>
       </div>
-     
+
       <Chatbot />
       <Footer />
-      
-    </div>
     </div>
   );
 };

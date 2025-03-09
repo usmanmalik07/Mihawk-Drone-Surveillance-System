@@ -3,6 +3,42 @@
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
   margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0d0d11; /* Dark background */
+  color: #fff;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  margin-top: 40px;
+  display: flex;
+  height: 100vh;
+  margin-bottom: 300px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #1b1b22; /* Sidebar background */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure the sidebar extends to the full height */
+  box-sizing: border-box; /* Include padding in height */
+}
+
+
+
+.sidebar-title {
+  padding-top: 50px;
+  font-size: 1.5rem;
+  color: #e63946;
+  margin-bottom: 1rem;
+}
+
+.sidebar-menu {
+  padding-top: 250px;
+  list-style: none;
   padding: 0;
 }
 

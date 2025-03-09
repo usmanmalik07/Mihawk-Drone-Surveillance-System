@@ -36,8 +36,8 @@ detected_items = []
 
 # RTSP settings
 rtsp_url = "rtsp://@192.168.100.5:1945"  # Replace with your RTSP URL
-frame_width = 720
-frame_height = 720
+frame_width = 640
+frame_height = 480
 
 # Device selection (GPU if available, otherwise CPU)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
