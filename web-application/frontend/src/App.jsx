@@ -16,6 +16,8 @@ import ReportPage from './pages/Report/ReportPage';
 import Results from './pages/Results/Results';
 import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
 import SettingsPage from './pages/Settings/Settings';
+import WeatherComponent from './pages/WeatherPage/WeatherPage';
+
 function App() {
   return (
     <Router>
