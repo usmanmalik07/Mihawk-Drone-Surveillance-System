@@ -40,11 +40,13 @@ const AdminDashboardPage = () => {
     if (!isPlaying || videoError) return NoStreamImage;
     switch (selectedModel) {
       case "v8n":
-        return "http://192.168.56.1:8001/video_feed?model=yolov8n";
+        return "http://192.168.56.1:8002/video_feed?model=yolov8n";
       case "v11":
-        return "http://192.168.56.1:8001/video_feed?model=yolov8s";
+        return "http://192.168.56.1:8002/video_feed?model=yolov8s";
       case "cv":
-        return "http://192.168.56.1:8001/video_feed?model=yolov5";
+        return "http://192.168.56.1:8002/video_feed?model=yolov5";
+      case "trained":
+        return "http://192.168.56.1:8002/video_feed?model=trained";  
       default:
         return NoStreamImage;
     }
@@ -110,7 +112,7 @@ const AdminDashboardPage = () => {
   return (
     <div className="admin-dashboard">
       <Sidebar />
-      <h2>Admin Dashboard</h2>
+      <h2 className="heading">Admin Dashboard</h2>
 
       <div className="dashboard-container">
         {/* Top Section: Video Player and System Performance */}
@@ -123,6 +125,7 @@ const AdminDashboardPage = () => {
                 {isPlaying ? "Stop" : "Play"}
               </button>
               <select className="model-dropdown" value={selectedModel} onChange={handleModelChange}>
+                <option value="trained">Trained Model</option>
                 <option value="v8n">YOLOv8n</option>
                 <option value="v11">YOLOv8s</option>
                 <option value="cv">YOLOv5</option>
