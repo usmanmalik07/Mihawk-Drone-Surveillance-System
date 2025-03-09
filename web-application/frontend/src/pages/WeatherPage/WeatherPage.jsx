@@ -4,6 +4,7 @@ import { Icon } from "leaflet";
 import axios from "axios";
 import "leaflet/dist/leaflet.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import Footer from "../../components/Footer/Footer";
 
 // Custom Mihawk-Themed Marker Icon
 const customIcon = new Icon({
@@ -125,6 +126,7 @@ const WeatherComponent = () => {
         </p>
       )}
     </div>
+    <Footer />
     </div>
   );
 };
