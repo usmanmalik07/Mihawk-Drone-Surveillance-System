@@ -44,7 +44,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load models
 models = {
-    "yolov8n": YOLO("best.pt"),  # YOLOv8n model
+    "yolov8n": YOLO("yolov8n.pt"),  # YOLOv8n model
+    "trained": YOLO("best.pt"),  # YOLOv8n model
     "yolov8s": YOLO("yolov8s.pt"),  # YOLOv8s model
     "yolov5": YOLO("yolov5s.pt"),  # YOLOv5 model (small version)
 }
@@ -139,10 +140,10 @@ async def home():
     return html_content
 
 @app.get("/video_feed")
-async def video_feed(model: str = Query("yolov8n", description="Model name: yolov8n, yolov8s, or yolov5")):
+async def video_feed(model: str = Query("yolov8n", description="Model name: yolov8n, yolov8s, or yolov5,trained")):
     """Route for the video stream with dynamic model selection."""
     if model not in models:
-        return HTMLResponse("<h1>Invalid model selected. Use 'yolov8n', 'yolov8s', or 'yolov5'.</h1>", status_code=400)
+        return HTMLResponse("<h1>Invalid model selected. Use 'Trained', 'yolov8n', 'yolov8s', or 'yolov5'.</h1>", status_code=400)
 
     return StreamingResponse(generate_frames(model), media_type="multipart/x-mixed-replace; boundary=frame")
 
@@ -151,4 +152,4 @@ if __name__ == "__main__":
     threading.Thread(target=get_rtsp_frame, args=(rtsp_url,), daemon=True).start()
 
     # Run FastAPI server
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    uvicorn.run(app, host="0.0.0.0", port=8002)

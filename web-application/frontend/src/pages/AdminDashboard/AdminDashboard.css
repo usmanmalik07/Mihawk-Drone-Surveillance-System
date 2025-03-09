@@ -2,31 +2,56 @@
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 40px;
+  
+  margin-top: 0px;
   margin-bottom: 20px;
   height: 100%; 
 }
-
-/* Top Section: Video Player and System Performance */
-.top-section {
-  display: flex;
-  gap: 20px;
-  height: 80%; /* Increased height by 40% (from 70% to 80%) */
+.heading {
+  font-size: 60px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px; /* Reduce space below heading */
 }
 
-/* Video Section (70% width) */
 .video-section {
   flex: 0.7;
-  padding: 20px;
+  padding: 10px; /* Reduce padding */
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(8px);
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  height: 50rem; /* Take full height of parent */
+  height: 50rem;
+  margin-top: 0px; /* Remove extra space */
 }
+/* 🎚️ Model Dropdown */
+.model-dropdown {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold; 
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  height: 60px;
+  width: 120px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.model-dropdown option {
+  background-color: #1b1b22;  
+  color: white; 
+}
+/* Top Section: Video Player and System Performance */
+.top-section {
+  display: flex;
+  
+  height: 80%; /* Increased height by 40% (from 70% to 80%) */
+}
+
 
 /* System Performance Chart (30% width) */
 .system-performance {
@@ -48,6 +73,7 @@
 
 /* Horizontal Bar (Stats Section) */
 .stats-container {
+  margin-top: 17rem;
   display: flex;
   justify-content: space-between;
   padding: 20px;
