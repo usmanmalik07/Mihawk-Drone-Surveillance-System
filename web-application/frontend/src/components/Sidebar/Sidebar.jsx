@@ -50,7 +50,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/" className="sidebar-link">
+            <Link to="/settings" className="sidebar-link">
               Settings
             </Link>
           </li>
