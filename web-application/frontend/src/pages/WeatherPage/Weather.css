@@ -1,0 +1,5 @@
+/* Hide default left-side zoom control */
+.leaflet-top.leaflet-left {
+    display: none !important;
+  }
+  
