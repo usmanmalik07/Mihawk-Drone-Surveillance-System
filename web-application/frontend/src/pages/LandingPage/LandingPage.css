@@ -1,6 +1,6 @@
 
 html, body {
-    background-color: #171820;/* Default text color */
+    background-color: transparent !important;/* Default text color */
     margin: 0;
     padding: 0;
     height: 100%;
@@ -8,7 +8,7 @@ html, body {
 }
 body{
     overflow-x: hidden;
-    background-color: #171820;
+    background-color: transparent;
     
 }
 * {

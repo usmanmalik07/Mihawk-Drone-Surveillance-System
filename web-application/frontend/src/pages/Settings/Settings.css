@@ -1,0 +1,81 @@
+/* Settings Page */
+.settings-page {
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 1000px; /* Enlarged form width */
+    margin: 40px auto; /* Increased margin */
+  }
+  
+  .settings-title {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem; /* Larger title */
+    margin-bottom: 30px;
+  }
+  
+  .settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Increased spacing between form groups */
+  }
+  
+  .settings-form .form-group {
+    margin-bottom: 20px; /* Increased spacing */
+  }
+  
+  .settings-form label {
+    display: block;
+    color: white;
+    font-size: 1.2rem; /* Larger label text */
+    margin-bottom: 10px;
+  }
+  
+  .settings-form .input-group {
+    display: grid;
+    align-items: center;
+    gap: 10px; /* Space between input and button */
+  }
+  
+  .settings-form input {
+    width: 100%;
+    padding: 15px; /* Larger input padding */
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1.1rem; /* Larger input text */
+  }
+  
+  .settings-form input.editable {
+    background: rgba(255, 255, 255, 0.2); /* Highlight editable fields */
+  }
+  
+  .settings-form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .settings-form .edit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    background: #e63946;
+    color: white;
+    font-size: 1rem; /* Button text size */
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .settings-form .edit-button:hover {
+    background: #b71c1c;
+  }
+  
+  .settings-form .message {
+    color: #4caf50;
+    text-align: center;
+    font-size: 1.1rem; /* Larger message text */
+    margin-top: 15px;
+  }
