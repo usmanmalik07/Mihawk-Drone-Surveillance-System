@@ -1,106 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Results.css";
 import { Bar } from "react-chartjs-2";
-import "chart.js/auto"; // Chart.js ko import karna zaroori hai
-import Sidebar from "../../components/Sidebar/Sidebar"; // Sidebar ko import kiya
+import "chart.js/auto";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import Footer from "../../components/Footer/Footer";
 
 const Results = () => {
-  // Dummy Data for Reports
   const [reportType, setReportType] = useState("daily"); // "daily" or "weekly"
-  
-  const dailyData = {
-    labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    datasets: [
-      {
-        label: "Detections per Day",
-        data: [12, 19, 8, 15, 22, 10, 5], // Dummy values
-        backgroundColor: "#007bff",
-      },
-    ],
-  };
+  const [detectionCounts, setDetectionCounts] = useState({}); // Store counts of detections
 
-  const weeklyData = {
-    labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+  useEffect(() => {
+    const fetchDetections = async () => {
+      try {
+        const response = await fetch("http://localhost:8002/get_detections"); // Backend API
+        const data = await response.json();
+        
+        // Process data: Count occurrences of each detected object
+        const counts = data.detections.reduce((acc, detection) => {
+          acc[detection.item] = (acc[detection.item] || 0) + 1;
+          return acc;
+        }, {});
+
+        setDetectionCounts(counts);
+      } catch (error) {
+        console.error("Error fetching detections:", error);
+      }
+    };
+
+    fetchDetections();
+  }, []);
+
+  // Prepare chart data
+  const chartData = {
+    labels: Object.keys(detectionCounts), // Detected object names
     datasets: [
       {
-        label: "Detections per Week",
-        data: [65, 78, 45, 90], // Dummy values
-        backgroundColor: "#28a745",
+        label: "Detection Count",
+        data: Object.values(detectionCounts), // Counts
+        backgroundColor: "#007bff",
       },
     ],
   };
 
   return (
     <div className="footer">
-    <div className="main">
-    <div className="Side"><Sidebar /></div>
-    <div className="results-page">
-      
+      <div className="main">
+        <div className="Side"><Sidebar /></div>
+        <div className="results-page">
+          <div className="reports-container">
+            <h2>Detection Reports</h2>
 
-      {/* Main Content */}
-      <div className="reports-container">
-        <h2>Reports</h2>
+            {/* Chart Display */}
+            <div className="chart-container">
+              <Bar data={chartData} />
+            </div>
 
-        {/* Tabs for switching Daily/Weekly */}
-        <div className="tabs">
-          <button className={reportType === "daily" ? "active" : ""} onClick={() => setReportType("daily")}>
-            Daily
-          </button>
-          <button className={reportType === "weekly" ? "active" : ""} onClick={() => setReportType("weekly")}>
-            Weekly
-          </button>
+            {/* Report Table */}
+            <div className="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Detection Name</th>
+                    <th>Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(detectionCounts).map(([item, count], index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{item}</td>
+                      <td>{count}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-
-        {/* Chart Display */}
-        <div className="chart-container">
-          <Bar data={reportType === "daily" ? dailyData : weeklyData} />
-        </div>
-
-        {/* Report Table */}
-        <div className="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Date</th>
-                <th>Detections</th>
-                <th>Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              {(reportType === "daily"
-                ? [
-                    { date: "2025-03-01", detections: 12 },
-                    { date: "2025-03-02", detections: 19 },
-                    { date: "2025-03-03", detections: 8 },
-                  ]
-                : [
-                    { date: "Week 1", detections: 65 },
-                    { date: "Week 2", detections: 78 },
-                    { date: "Week 3", detections: 45 },
-                  ]
-              ).map((item, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{item.date}</td>
-                  <td>{item.detections}</td>
-                  <td>
-                    <button className="view-btn">View</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <Footer />
       </div>
     </div>
-    <Footer />
-    </div>
-    
-    </div>
-    
-    
   );
 };
 

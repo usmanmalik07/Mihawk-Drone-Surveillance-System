@@ -9,6 +9,8 @@ from fastapi.responses import JSONResponse, HTMLResponse, StreamingResponse
 import uvicorn
 from datetime import datetime
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import WebSocket, WebSocketDisconnect
+import json
 
 # FastAPI application
 app = FastAPI()
@@ -36,15 +38,16 @@ detected_items = []
 
 # RTSP settings
 rtsp_url = "rtsp://@192.168.100.5:1945"  # Replace with your RTSP URL
-frame_width = 720
-frame_height = 720
+frame_width = 640
+frame_height = 480
 
 # Device selection (GPU if available, otherwise CPU)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load models
 models = {
-    "yolov8n": YOLO("best.pt"),  # YOLOv8n model
+    "yolov8n": YOLO("yolov8n.pt"),  # YOLOv8n model
+    "trained": YOLO("best.pt"),  # YOLOv8n model
     "yolov8s": YOLO("yolov8s.pt"),  # YOLOv8s model
     "yolov5": YOLO("yolov5s.pt"),  # YOLOv5 model (small version)
 }
@@ -52,7 +55,36 @@ models = {
 # model.train(data='../models/data.yaml', epochs=50, imgsz=640)
 # Preprocessing for YOLOv5
 transform = T.ToTensor()
+# Store connected WebSockets
+connected_clients = []
 
+@app.websocket("/ws/detections")
+async def websocket_endpoint(websocket: WebSocket):
+    """WebSocket endpoint to send real-time detections to frontend."""
+    await websocket.accept()
+    connected_clients.append(websocket)
+    try:
+        while True:
+            await websocket.receive_text()  # Keep connection alive
+    except WebSocketDisconnect:
+        connected_clients.remove(websocket)
+
+
+def store_detection(item_name):
+    """Store detected items and notify connected WebSocket clients."""
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    detection = {"item": item_name, "timestamp": timestamp}
+    detected_items.append(detection)
+
+    # Send real-time update to connected clients
+    for client in connected_clients:
+        try:
+            # Send detection data as JSON
+            json_data = json.dumps(detection)
+            import asyncio
+            asyncio.create_task(client.send_text(json_data))
+        except:
+            pass  # Handle client disconnection
 
 def store_detection(item_name):
     """Store the detected item and its timestamp."""
@@ -81,12 +113,16 @@ def get_rtsp_frame(rtsp_url):
     cap.release()
 
 def process_frame_yolo(frame, model_name):
-    """Run YOLOv5 or YOLOv8 model detection on a single frame."""
+    """Run YOLO model detection and extract object names."""
     model = models[model_name]
     results = model(frame)  # Run inference
-    if results:
-        for result in results[0].boxes.xywh:
-            store_detection("Detected Object")  # Example of detection
+
+    if results and len(results[0].boxes) > 0:
+        for box in results[0].boxes:
+            class_id = int(box.cls[0])  # Get class ID
+            item_name = model.names[class_id]  # Convert class ID to object name
+            store_detection(item_name)  # Store and send update
+
     annotated_frame = results[0].plot()  # Annotate frame with predictions
     return annotated_frame
 
@@ -139,10 +175,10 @@ async def home():
     return html_content
 
 @app.get("/video_feed")
-async def video_feed(model: str = Query("yolov8n", description="Model name: yolov8n, yolov8s, or yolov5")):
+async def video_feed(model: str = Query("yolov8n", description="Model name: yolov8n, yolov8s, or yolov5,trained")):
     """Route for the video stream with dynamic model selection."""
     if model not in models:
-        return HTMLResponse("<h1>Invalid model selected. Use 'yolov8n', 'yolov8s', or 'yolov5'.</h1>", status_code=400)
+        return HTMLResponse("<h1>Invalid model selected. Use 'Trained', 'yolov8n', 'yolov8s', or 'yolov5'.</h1>", status_code=400)
 
     return StreamingResponse(generate_frames(model), media_type="multipart/x-mixed-replace; boundary=frame")
 
@@ -151,4 +187,4 @@ if __name__ == "__main__":
     threading.Thread(target=get_rtsp_frame, args=(rtsp_url,), daemon=True).start()
 
     # Run FastAPI server
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    uvicorn.run(app, host="0.0.0.0", port=8002)

@@ -14,6 +14,9 @@ import ObserverDashboardPage from './pages/ObserverDashboard/ObserverDashboard';
 import UserInfo from './pages/UserInfo/UserInfo';
 import ReportPage from './pages/Report/ReportPage';
 import Results from './pages/Results/Results';
+import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
+import WeatherComponent from './pages/WeatherPage/WeatherPage';
+import SettingsPage from './pages/Settings/Settings';
 function App() {
   return (
     <Router>
@@ -27,20 +30,26 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/recover-password" element={<RecoverPassword />} />
           <Route path="/get-access" element={<GetAccessPage />} />
-          <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
+          {/* <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
           <Route path="/operator-dashboard" element={<OperatorDashboardPage />} />
-          <Route path="/observer-dashboard" element={<ObserverDashboardPage />} />
+          <Route path="/observer-dashboard" element={<ObserverDashboardPage />} /> */}
           <Route path="/user-info" element={<UserInfo />} />
           <Route path="/report" element={<ReportPage />} />
           <Route path="/results" element={<Results />} />
-          
+          <Route path="/admin-dashboard" element={<ProtectedRoute element={<AdminDashboardPage />} allowedRoles={["admin"]} />} />
+          <Route path="/operator-dashboard" element={<ProtectedRoute element={<OperatorDashboardPage />} allowedRoles={["operator"]} />} />
+          <Route path="/observer-dashboard" element={<ProtectedRoute element={<ObserverDashboardPage />} allowedRoles={["observer"]} />} />
+          <Route path="/weather" element={<WeatherComponent />} />
+          <Route path="/settings" element={<SettingsPage />} />
 
 
 
-        </Routes>
-      </div>
-    </Router>
-  );
-}
+
+
+          </Routes>
+        </div>
+      </Router>
+    );
+  }
 
 export default App;

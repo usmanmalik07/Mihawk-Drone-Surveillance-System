@@ -179,3 +179,23 @@
     opacity: 0;
     pointer-events: auto;
 }
+.chatbot-help {
+    position: fixed;
+    bottom: 90px; /* Position above the chatbot icon */
+    right: 30px;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    opacity: 3;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none; /* Prevents interaction */
+    z-index: 1000;
+}
+
+/* JavaScript-controlled class */
+.chatbot-help.show {
+    opacity: 0;
+    pointer-events: auto;
+}
