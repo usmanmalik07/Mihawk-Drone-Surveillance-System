@@ -9,9 +9,9 @@ Github Repository for our final year project Mihawk
 ## Implementation started
 
 ## Deliverables Completed : 
-  ### Idea Defense
-  ### 40% Implementation + Presentation
-  ### 60% Implementation + Presentation
+  ### -> Idea Defense
+  ### -> 40% Implementation + Presentation
+  ### -> 60% Implementation + Presentation
   
 
 ## Deliverables : 
