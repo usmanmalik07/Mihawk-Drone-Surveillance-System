@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
-import "./ReportPage.css";
+import DetectionPopup from "../../components/DetectionPopup/DetectionPopup";
+import { useDetectionAlert } from "../DetectionAlert/DetectionAlertContext";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 function ReportPage() {
   const [detections, setDetections] = useState([]);
+  const { showDetectionAlert } = useDetectionAlert();
 
   useEffect(() => {
-    // Fetch past detections from the backend
     const fetchDetections = async () => {
       try {
-        const response = await fetch("http://localhost:8002/get_detections"); // Update with your backend port
+        const response = await fetch("http://localhost:8002/get_detections");
         const data = await response.json();
         setDetections(data.detections);
       } catch (error) {
@@ -18,12 +19,11 @@ function ReportPage() {
     };
     fetchDetections();
 
-    // WebSocket connection for real-time updates
     const socket = new WebSocket("ws://localhost:8002/ws/detections");
 
     socket.onmessage = (event) => {
       const newDetection = JSON.parse(event.data);
-      setDetections((prev) => [newDetection, ...prev]); // Add new detection to the top
+      showDetectionAlert(newDetection); // Show popup
     };
 
     socket.onerror = (error) => {
@@ -31,10 +31,29 @@ function ReportPage() {
     };
 
     return () => socket.close();
-  }, []);
+  }, [showDetectionAlert]);
+
+  const handleConfirm = async (confirmedDetection) => {
+    try {
+      await fetch("http://localhost:8002/save_detection", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(confirmedDetection),
+      });
+      setDetections((prev) => [confirmedDetection, ...prev]);
+    } catch (err) {
+      console.error("Error saving detection:", err);
+    }
+  };
+
+  const handleReject = (rejectedDetection) => {
+    // No need to update backend, just skip adding it to the list
+    console.log("Rejected:", rejectedDetection);
+  };
 
   return (
     <div className="main">
+      <DetectionPopup onConfirm={handleConfirm} onReject={handleReject} />
       <div className="Side"><Sidebar /></div>
       <div className="report-page-container">
         <div className="report-content">
@@ -73,3 +92,4 @@ function ReportPage() {
 }
 
 export default ReportPage;
+  
