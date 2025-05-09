@@ -1,7 +1,7 @@
-import DetectionPopup from "../../components/DetectionPopup/DetectionPopup";
-import { useDetectionAlert } from "../DetectionAlert/DetectionAlertContext";
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import DetectionPopup from "../../components/DetectionPopup/DetectionPopup";
+import { useDetectionAlert } from "../DetectionAlert/DetectionAlertContext";
 
 function ReportPage() {
   const [detections, setDetections] = useState([]);
@@ -17,20 +17,39 @@ function ReportPage() {
         console.error("Error fetching detections:", error);
       }
     };
+
     fetchDetections();
 
     const socket = new WebSocket("ws://localhost:8002/ws/detections");
 
     socket.onmessage = (event) => {
       const newDetection = JSON.parse(event.data);
-      showDetectionAlert(newDetection); // Show popup
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const locationEnhancedDetection = {
+            ...newDetection,
+            location: {
+              lat: position.coords.latitude,
+              lon: position.coords.longitude,
+            },
+          };
+          showDetectionAlert(locationEnhancedDetection);
+        },
+        (error) => {
+          console.warn("Location access denied or failed:", error);
+          showDetectionAlert(newDetection);
+        }
+      );
     };
 
     socket.onerror = (error) => {
       console.error("WebSocket error:", error);
     };
 
-    return () => socket.close();
+    return () => {
+      socket.close();
+    };
   }, [showDetectionAlert]);
 
   const handleConfirm = async (confirmedDetection) => {
@@ -47,14 +66,16 @@ function ReportPage() {
   };
 
   const handleReject = (rejectedDetection) => {
-    // No need to update backend, just skip adding it to the list
-    console.log("Rejected:", rejectedDetection);
+    console.log("Rejected detection:", rejectedDetection);
+    // Do not add to state; nothing else required
   };
 
   return (
     <div className="main">
       <DetectionPopup onConfirm={handleConfirm} onReject={handleReject} />
-      <div className="Side"><Sidebar /></div>
+      <div className="Side">
+        <Sidebar />
+      </div>
       <div className="report-page-container">
         <div className="report-content">
           <h1 className="report-title">Detection Report</h1>
@@ -92,4 +113,3 @@ function ReportPage() {
 }
 
 export default ReportPage;
-  

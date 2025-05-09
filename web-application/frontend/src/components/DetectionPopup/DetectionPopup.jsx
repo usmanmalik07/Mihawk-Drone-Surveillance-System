@@ -13,7 +13,13 @@ const DetectionPopup = ({ onConfirm, onReject }) => {
       <div className="popup">
         <h2>New Detection</h2>
         <p><strong>Item:</strong> {detection.item || "Unknown"}</p>
-        <p><strong>Time:</strong> {new Date(detection.timestamp).toLocaleString()}</p>
+          <p><strong>Time:</strong> {new Date(detection.timestamp).toLocaleString()}</p>
+
+          {detection.location && (
+            <p>
+              <strong>Location:</strong> {detection.location.lat.toFixed(4)}, {detection.location.lon.toFixed(4)}
+            </p>
+          )}
         <div className="popup-actions">
           <button
             className="real-btn"
