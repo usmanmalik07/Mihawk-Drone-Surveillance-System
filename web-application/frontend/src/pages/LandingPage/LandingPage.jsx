@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import "./LandingPage.css";
 import About from '../../sections/About/About';
 import Services from '../../sections/OurServices/OurServices';
@@ -15,12 +15,36 @@ import VMV from '../../sections/VMV/VMV';
 
 
 
+
 const LandingPage = () => {
 
   // Scroll to top when the component is mounted
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to the top of the page
-  }, []); // Empty dependency array to ensure this runs only once when the component mounts
+    window.scrollTo(0, 0); 
+  }, []);
+  
+  const navigate = useNavigate(); 
+
+  const handleLoginRedirect = () => {
+    const authToken = localStorage.getItem("authToken");
+    const userRole = localStorage.getItem("userRole");
+  
+    if (authToken && userRole) {
+    
+      if (userRole === "admin") {
+        navigate("/admin-dashboard");
+      } else if (userRole === "operator") {
+        navigate("/operator-dashboard");
+      } else if (userRole === "observer") {
+        navigate("/observer-dashboard");
+      } else {
+        navigate("/"); 
+      }
+    } else {
+      
+      navigate("/login");
+    }
+  };
 
   return (
     <div
@@ -75,7 +99,7 @@ const LandingPage = () => {
                 Our Services
               </span>
             </Link>
-            <Link to="/login" className="text-decoration-none text-inherit">
+            <Link as="button" className="text-decoration-none text-inherit"  onClick={handleLoginRedirect} >
               <span className="bn3 mt-3">
                 Login
               </span>

@@ -5,12 +5,12 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function NavBar() {
-  const location = useLocation(); // Get the current route
-  const navigate = useNavigate(); // ✅ Use navigate for redirection
+  const location = useLocation(); 
+  const navigate = useNavigate(); 
   const [navbarBackground, setNavbarBackground] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
-  const [expanded, setExpanded] = useState(false); // Track whether navbar is expanded
-  const lastScrollY = useRef(0); // Store scroll position across renders
+  const [expanded, setExpanded] = useState(false); 
+  const lastScrollY = useRef(0); 
 
   // Define routes where the Login button should not be displayed
   const noLoginRoutes = [
