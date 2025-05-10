@@ -9,8 +9,12 @@ Github Repository for our final year project Mihawk
 ## Implementation started
 
 ## Deliverables Completed : 
-  ### Idea Defense
-  ### 40% Implementation + Presentation
+  ### -> Idea Defense
+  ### -> 40% Implementation + Presentation
+  ### -> 60% Implementation + Presentation
   
 
-## Deliverables : 40% Presentation on 16th December 2024..
+## Deliverables : 
+  ### 40% Presentation on 16th December 2024..
+  ### 60% Presentation on 10th March 2025
+
