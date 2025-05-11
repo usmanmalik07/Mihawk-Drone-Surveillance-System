@@ -34,11 +34,11 @@ const ObserverDashboardPage = () => {
 
     switch (selectedModel) {
       case "v8n":
-        return "http://192.168.56.1:8001/video_feed?model=yolov8n";
+        return "http://192.168.100.14:8003/video_feed?model=yolov8n";
       case "v11":
-        return "http://192.168.56.1:8001/video_feed?model=yolov8s";
+        return "http://192.168.100.14:8003/video_feed?model=yolov8s";
       case "cv":
-        return "http://192.168.56.1:8001/video_feed?model=yolov5";
+        return "http://192.168.100.14:8003/video_feed?model=yolov5";
       default:
         return NoStreamImage;
     }

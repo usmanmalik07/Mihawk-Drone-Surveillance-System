@@ -37,7 +37,7 @@ frame_queue = queue.Queue(maxsize=10)
 detected_items = []
 
 # RTSP settings
-rtsp_url = "rtsp://@192.168.100.5:1945"  # Replace with your RTSP URL
+rtsp_url = "rtsp://@192.168.100.4:1945"  # Replace with your RTSP URL
 frame_width = 640
 frame_height = 480
 
