@@ -1,86 +1,192 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./AdminDashboard.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Footer from "../../components/Footer/Footer";
-import Chatbot from "../../components/Chatbot/Chatbot";
-import NoStreamImage from "../../assets/stream.png";
-import { FaUser, FaVideo, FaCog, FaMoon, FaSun } from "react-icons/fa";
-import WeatherComponent from "../WeatherPage/WeatherPage";
-import { Chart, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from "chart.js";
+import React, { useState, useEffect, useRef } from 'react';
+import './AdminDashboard.css';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import Footer from '../../components/Footer/Footer';
+import Chatbot from '../../components/Chatbot/Chatbot';
+import NoStreamImage from '../../assets/stream.png';
+import { FaUser, FaVideo, FaCog } from 'react-icons/fa';
+import { Chart, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+import DetectionPopup from '../../components/DetectionPopup/DetectionPopup';
+import { useDetectionAlert } from '../DetectionAlert/DetectionAlertContext';
+import alertSound from '../../assets/alert.mp3';
 
-// Register Chart.js components
 Chart.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const AdminDashboardPage = () => {
+const AdminDashboard = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("v8n");
+  const [selectedModel, setSelectedModel] = useState("trained");
   const [videoError, setVideoError] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const [cpuUsage, setCpuUsage] = useState(35); // Simulated data
-  const [ramUsage, setRamUsage] = useState(58); // Simulated data
-  const navigate = useNavigate();
-  const chartRef = useRef(null); // Ref for the chart
+  const [cpuUsage, setCpuUsage] = useState(35);
+  const [ramUsage, setRamUsage] = useState(58);
+  const [verifying, setVerifying] = useState(false);
+  const chartRef = useRef(null);
+  const audioPlayer = useRef(null);
+  const { detection, showDetectionAlert, clearDetectionAlert } = useDetectionAlert();
 
-  // Toggle Play/Stop
+  // Initialize audio player
+  useEffect(() => {
+    audioPlayer.current = new Audio(alertSound);
+    audioPlayer.current.volume = 0.3;
+  }, []);
+
+  // WebSocket connection with reconnect
+  useEffect(() => {
+    let ws;
+    let reconnectAttempts = 0;
+    const maxReconnectAttempts = 5;
+    const reconnectDelay = 3000;
+
+    const connect = () => {
+      ws = new WebSocket("ws://localhost:8003/ws/detections");
+
+      ws.onopen = () => {
+        console.log("WebSocket connected");
+        reconnectAttempts = 0;
+        // Start ping-pong
+        const pingInterval = setInterval(() => {
+          if (ws.readyState === WebSocket.OPEN) {
+            ws.send("ping");
+          }
+        }, 20000);
+      };
+
+      ws.onmessage = (event) => {
+        if (event.data === "pong") return;
+        
+        try {
+          const detectionData = JSON.parse(event.data);
+          console.log("Detection received:", detectionData);
+          
+          audioPlayer.current.play().catch(e => console.log("Audio play prevented:", e));
+          
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              showDetectionAlert({
+                ...detectionData,
+                location: {
+                  lat: position.coords.latitude,
+                  lon: position.coords.longitude,
+                },
+              });
+            },
+            (error) => {
+              console.warn("Location access denied:", error);
+              showDetectionAlert(detectionData);
+            }
+          );
+        } catch (error) {
+          console.error("Error processing detection:", error);
+        }
+      };
+
+      ws.onerror = (error) => {
+        console.error("WebSocket error:", error);
+      };
+
+      ws.onclose = () => {
+        console.log("WebSocket disconnected");
+        if (reconnectAttempts < maxReconnectAttempts) {
+          setTimeout(connect, reconnectDelay);
+          reconnectAttempts++;
+        }
+      };
+    };
+
+    connect();
+
+    return () => {
+      if (ws) ws.close();
+    };
+  }, [showDetectionAlert]);
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
     setVideoError(false);
   };
 
-  // Change Model
   const handleModelChange = (event) => {
     setSelectedModel(event.target.value);
     setVideoError(false);
   };
 
-  // Get Video Feed URL
   const getVideoFeedSrc = () => {
     if (!isPlaying || videoError) return NoStreamImage;
     switch (selectedModel) {
-      case "v8n":
-        return "http://192.168.160.1:8003/video_feed?model=yolov8n";
-      case "v11":
-        return "http://192.168.160.1:8003/video_feed?model=yolov8s";
-      case "cv":
-        return "http://192.168.160.1:8003/video_feed?model=yolov5";
-      case "trained":
-        return "http://192.168.160.1:8003/video_feed?model=trained";  
-      default:
-        return NoStreamImage;
+      case "v8n": return "http://192.168.100.14:8003/video_feed?model=yolov8n";
+      case "v11": return "http://192.168.100.14:8003/video_feed?model=yolov8s";
+      case "cv": return "http://192.168.100.14:8003/video_feed?model=yolov5";
+      case "trained": return "http://192.168.100.14:8003/video_feed?model=trained";
+      default: return NoStreamImage;
     }
   };
 
-  // Simulated CPU & RAM usage updates
+  const handleVerify = async (isReal) => {
+  setVerifying(true);
+  try {
+    // 1. Create FormData object
+    const formData = new FormData();
+    formData.append('user_email', 'admin@example.com'); // Replace with actual user email
+    formData.append('is_real', isReal.toString()); // Convert boolean to string
+
+    // 2. Make the request
+    const response = await fetch(
+      `http://localhost:8003/verify_threat/${detection._id}`,
+      {
+        method: "POST",
+        body: formData
+        // Don't set Content-Type header - browser will set it automatically
+        // with the correct boundary for FormData
+      }
+    );
+
+    // 3. Handle response
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.detail || "Verification failed");
+    }
+
+    // 4. Clear the alert on success
+    clearDetectionAlert();
+    
+    // Optional: Refresh threats list
+    // fetchThreats(); 
+
+  } catch (err) {
+    console.error("Verification error:", err.message);
+    // Optional: Show error to user
+    // setError(err.message); 
+  } finally {
+    setVerifying(false);
+  }
+};
+
+  // System metrics simulation
   useEffect(() => {
     const interval = setInterval(() => {
-      setCpuUsage(Math.floor(Math.random() * 50) + 30); // Random between 30-80%
-      setRamUsage(Math.floor(Math.random() * 40) + 50); // Random between 50-90%
+      setCpuUsage(Math.floor(Math.random() * 50) + 30);
+      setRamUsage(Math.floor(Math.random() * 40) + 50);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  // Initialize or update the chart
+  // Chart initialization
   useEffect(() => {
     if (chartRef.current) {
-      const ctx = chartRef.current.getContext("2d");
-      const chart = new Chart(ctx, {
+      const chart = new Chart(chartRef.current.getContext("2d"), {
         type: "bar",
         data: {
-          labels: ["CPU Usage", "RAM Usage"], // Labels for the bars
+          labels: ["CPU Usage", "RAM Usage"],
           datasets: [
             {
-              label: "CPU (%)", // Label for CPU
-              data: [cpuUsage, 0], // Only CPU data (RAM is 0 for this dataset)
-              backgroundColor: "#e63946", // Red for CPU
+              label: "CPU (%)",
+              data: [cpuUsage, 0],
+              backgroundColor: "#e63946",
               borderColor: "#b71c1c",
               borderWidth: 1,
             },
             {
-              label: "RAM (%)", // Label for RAM
-              data: [0, ramUsage], // Only RAM data (CPU is 0 for this dataset)
-              backgroundColor: "#4caf50", // Green for RAM
+              label: "RAM (%)",
+              data: [0, ramUsage],
+              backgroundColor: "#4caf50",
               borderColor: "#388e3c",
               borderWidth: 1,
             },
@@ -89,22 +195,10 @@ const AdminDashboardPage = () => {
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100,
-            },
-          },
-          plugins: {
-            legend: {
-              display: true, // Show legend for both CPU and RAM
-              position: "top", // Place legend at the top
-            },
-          },
+          scales: { y: { beginAtZero: true, max: 100 } },
+          plugins: { legend: { display: true, position: "top" } },
         },
       });
-  
-      // Cleanup chart on component unmount
       return () => chart.destroy();
     }
   }, [cpuUsage, ramUsage]);
@@ -115,9 +209,7 @@ const AdminDashboardPage = () => {
       <h2 className="heading">Admin Dashboard</h2>
 
       <div className="dashboard-container">
-        {/* Top Section: Video Player and System Performance */}
         <div className="top-section">
-          {/* Video Player (70% width) */}
           <div className="video-section">
             <h3>Live Video Feed</h3>
             <div className="video-controls">
@@ -137,7 +229,6 @@ const AdminDashboardPage = () => {
             </div>
           </div>
 
-          {/* System Performance Chart (30% width) */}
           <div className="system-performance">
             <h3>System Performance</h3>
             <div className="chart-container">
@@ -146,7 +237,18 @@ const AdminDashboardPage = () => {
           </div>
         </div>
 
-        {/* Horizontal Bar (Stats Section) */}
+        {/* Detection Popup positioned between top-section and stats */}
+        <div className="popup-container">
+          {detection && (
+            <DetectionPopup 
+              detection={detection}
+              onConfirm={() => handleVerify(true)}
+              onReject={() => handleVerify(false)}
+              verifying={verifying}
+            />
+          )}
+        </div>
+
         <div className="stats-container">
           <div className="stat-card">
             <FaUser className="stat-icon" />
@@ -172,4 +274,4 @@ const AdminDashboardPage = () => {
   );
 };
 
-export default AdminDashboardPage;
+export default AdminDashboard;
