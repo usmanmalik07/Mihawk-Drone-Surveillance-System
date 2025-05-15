@@ -2,6 +2,13 @@ const express = require('express');
 const { createUser, getUsers } = require('../controllers/userController');
 const { login, logout } = require('../controllers/authController'); // Import login and logout
 const router = express.Router();
+const { forgotPassword, resetPassword } = require('../controllers/authController');
+
+router.post('/forgot-password', forgotPassword); // from userController.js
+
+
+router.post('/reset-password/:token', resetPassword);
+
 
 // POST route for creating a new user
 router.post('/', createUser);

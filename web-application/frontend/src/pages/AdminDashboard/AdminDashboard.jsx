@@ -40,13 +40,13 @@ const AdminDashboardPage = () => {
     if (!isPlaying || videoError) return NoStreamImage;
     switch (selectedModel) {
       case "v8n":
-        return "http://192.168.100.14:8003/video_feed?model=yolov8n";
+        return "http://192.168.160.1:8003/video_feed?model=yolov8n";
       case "v11":
-        return "http://192.168.100.14:8003/video_feed?model=yolov8s";
+        return "http://192.168.160.1:8003/video_feed?model=yolov8s";
       case "cv":
-        return "http://192.168.100.14:8003/video_feed?model=yolov5";
+        return "http://192.168.160.1:8003/video_feed?model=yolov5";
       case "trained":
-        return "http://192.168.100.14:8003/video_feed?model=trained";  
+        return "http://192.168.160.1:8003/video_feed?model=trained";  
       default:
         return NoStreamImage;
     }

@@ -20,12 +20,18 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['admin', 'operator', 'observer'], // Allowed roles
+    enum: ['admin', 'operator', 'observer'],
     required: true,
   },
   permissions: {
-    type: Array, // Array of specific permissions if needed
+    type: Array,
     default: [],
+  },
+  resetPasswordToken: {
+    type: String,
+  },
+  resetPasswordExpires: {
+    type: Date,
   },
   createdAt: {
     type: Date,
