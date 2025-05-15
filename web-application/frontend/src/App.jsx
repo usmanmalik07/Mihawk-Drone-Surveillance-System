@@ -17,6 +17,9 @@ import Results from './pages/Results/Results';
 import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoute";
 import WeatherComponent from './pages/WeatherPage/WeatherPage';
 import SettingsPage from './pages/Settings/Settings';
+
+import AllThreatsView from './pages/Report/AllThreatsView';
+import ThreatDetail from './pages/Report/ThreatDetail';
 function App() {
   return (
     <Router>
@@ -41,6 +44,10 @@ function App() {
           <Route path="/observer-dashboard" element={<ProtectedRoute element={<ObserverDashboardPage />} allowedRoles={["observer"]} />} />
           <Route path="/weather" element={<WeatherComponent />} />
           <Route path="/settings" element={<SettingsPage />} />
+          
+      <Route path="/threats" element={<AllThreatsView />} />
+      <Route path="/threats/:threatId" element={<ThreatDetail />} />
+    
 
 
 

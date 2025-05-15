@@ -1,43 +1,62 @@
-// components/DetectionPopup.jsx
-import React from "react";
-import "./DetectionPopup.css"; // Create CSS to style this popup
-import { useDetectionAlert } from "../../pages/DetectionAlert/DetectionAlertContext"; // Adjust the import path as necessary
+import React, { useEffect } from 'react';
+import './DetectionPopup.css';
+import { useDetectionAlert } from "../../pages/DetectionAlert/DetectionAlertContext";
 
-const DetectionPopup = ({ onConfirm, onReject }) => {
+const DetectionPopup = ({ onConfirm, onReject, verifying }) => {
   const { detection, clearDetectionAlert } = useDetectionAlert();
+
+  useEffect(() => {
+    if (!detection) return;
+    
+    const timer = setTimeout(() => {
+      clearDetectionAlert();
+    }, 30000); // 30 seconds timeout
+
+    return () => clearTimeout(timer);
+  }, [detection, clearDetectionAlert]);
 
   if (!detection) return null;
 
   return (
     <div className="popup-overlay">
-      <div className="popup">
-        <h2>New Detection</h2>
-        <p><strong>Item:</strong> {detection.item || "Unknown"}</p>
+      <div className="popup-content">
+        <h3>Threat Detected: {detection.item}</h3>
+        {detection.frame && (
+          <img 
+            src={`data:image/jpeg;base64,${detection.frame}`} 
+            alt="Detected threat" 
+            className="popup-image"
+          />
+        )}
+        <div className="detection-details">
           <p><strong>Time:</strong> {new Date(detection.timestamp).toLocaleString()}</p>
-
           {detection.location && (
             <p>
-              <strong>Location:</strong> {detection.location.lat.toFixed(4)}, {detection.location.lon.toFixed(4)}
+              <strong>Location:</strong> 
+              {detection.location.lat.toFixed(4)}, {detection.location.lon.toFixed(4)}
             </p>
           )}
+        </div>
         <div className="popup-actions">
           <button
-            className="real-btn"
+            className="confirm-btn"
             onClick={() => {
-              onConfirm(detection);
+              onConfirm();
               clearDetectionAlert();
             }}
+            disabled={verifying}
           >
-            Real
+            {verifying ? "Verifying..." : "Confirm Threat"}
           </button>
           <button
-            className="fake-btn"
+            className="reject-btn"
             onClick={() => {
-              onReject(detection);
+              onReject();
               clearDetectionAlert();
             }}
+            disabled={verifying}
           >
-            Fake
+            {verifying ? "Verifying..." : "False Alarm"}
           </button>
         </div>
       </div>

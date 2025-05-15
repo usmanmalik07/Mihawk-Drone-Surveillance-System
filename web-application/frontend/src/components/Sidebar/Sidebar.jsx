@@ -74,7 +74,7 @@ const Sidebar = () => {
           {(userRole === "admin" || userRole === "operator") && (
             <>
               <li>
-                <Link to="/report" className="sidebar-link">Reports</Link>
+                <Link to="/threats" className="sidebar-link">Reports</Link>
               </li>
               <li>
                 <Link to="/results" className="sidebar-link">Analytics</Link>
