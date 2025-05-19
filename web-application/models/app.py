@@ -57,7 +57,7 @@ except Exception as e:
 unverified_detections = {}
 connected_clients = []
 frame_queue = queue.Queue(maxsize=10)
-rtsp_url = "rtsp://@192.168.100.4:1945"
+rtsp_url = "rtmp://10.113.84.79:1935/live/test"
 frame_width = 640
 frame_height = 480
 
@@ -191,13 +191,13 @@ def get_all_threats(
             raise HTTPException(status_code=503, detail="Database service unavailable")
         
         threats = list(verified_threats.find(
-            {"verified": True},  # Only get verified threats
+            {"verified": True}, 
             {
                 "_id": 1, 
                 "item": 1, 
                 "timestamp": 1, 
                 "frame": 1,
-                "verified": 1,  # Make sure this is included
+                "verified": 1, 
                 "verified_by": 1,
                 "verified_at": 1
             }
