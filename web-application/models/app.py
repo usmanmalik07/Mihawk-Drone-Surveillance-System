@@ -250,15 +250,18 @@ def debug_db():
 def process_frame(frame, model_name):
     model = models[model_name]
     results = model(frame)
-    
-    threat_types = ["pistol", "gun", "knife", "weapon"]
+
+    threat_types = ["pistol", "gun", "weapon"]
     for box in results[0].boxes:
         class_id = int(box.cls[0])
+        conf = float(box.conf[0])  # Get confidence score
         item_name = model.names[class_id]
-        if item_name.lower() in threat_types:
-            asyncio.run(store_temp_detection(item_name, frame))
+        
+        if item_name.lower() in threat_types and conf >= 0.7:
+            asyncio.run(store_temp_detection(item_name, frame, conf))
     
     return results[0].plot()
+
 
 def generate_frames(model_name):
     while True:
