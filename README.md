@@ -6,15 +6,18 @@ Github Repository for our final year project Mihawk
 3. SRS + Scope Presentation
 4. SDS
 5. SDS Presentation
+6. Final Presentation
 ## Implementation started
 
 ## Deliverables Completed : 
   ### -> Idea Defense
   ### -> 40% Implementation + Presentation
   ### -> 60% Implementation + Presentation
+  ### -> 100% Implementation + Presentation
   
 
 ## Deliverables : 
   ### 40% Presentation on 16th December 2024..
   ### 60% Presentation on 10th March 2025
+  ### 100% Presentation on 19th May 2025
 
