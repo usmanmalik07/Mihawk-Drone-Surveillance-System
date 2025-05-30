@@ -111,10 +111,10 @@ const AdminDashboard = () => {
   const getVideoFeedSrc = () => {
     if (!isPlaying || videoError) return NoStreamImage;
     switch (selectedModel) {
-      case "v8n": return "http://10.113.84.79:8003/video_feed?model=yolov8n";
-      case "v11": return "http://10.113.84.79:8003/video_feed?model=yolov8s";
-      case "cv": return "http://10.113.84.79:8003/video_feed?model=yolov5";
-      case "trained": return "http://10.113.84.79:8003/video_feed?model=trained";
+      case "v8n": return "http://192.168.100.68:8003/video_feed?model=yolov8n";
+      case "v11": return "http://192.168.100.68:8003/video_feed?model=yolov8s";
+      case "cv": return "http://192.168.100.68:8003/video_feed?model=yolov5";
+      case "trained": return "http://192.168.100.68:8003/video_feed?model=trained";
       default: return NoStreamImage;
     }
   };
