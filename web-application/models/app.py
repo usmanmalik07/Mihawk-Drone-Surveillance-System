@@ -57,7 +57,7 @@ except Exception as e:
 unverified_detections = {}
 connected_clients = []
 frame_queue = queue.Queue(maxsize=10)
-rtsp_url = "rtmp://10.113.84.79:1935/live/test"
+rtsp_url = "rtsp://192.168.100.39:1945/"
 frame_width = 640
 frame_height = 480
 
